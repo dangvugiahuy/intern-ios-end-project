@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3672C9051BF00C9C3FF /* AppDelegate.swift */; };
 		2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */; };
-		2947C36C2C9051BF00C9C3FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C36B2C9051BF00C9C3FF /* ViewController.swift */; };
 		2947C36F2C9051BF00C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C36E2C9051BF00C9C3FF /* Base */; };
 		2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3702C9051C000C9C3FF /* Assets.xcassets */; };
 		2947C3742C9051C000C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3732C9051C000C9C3FF /* Base */; };
+		29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */; };
+		29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */; };
+		29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */; };
+		29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585A62C9295D500E26CC4 /* OnBoardingViewController.swift */; };
+		29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */; };
+		29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585AB2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift */; };
+		29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C585AC2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib */; };
+		29C585B52C92D90400E26CC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585B42C92D90400E26CC4 /* LoginViewController.swift */; };
 		662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */; };
 		662E1E772C91B62700CBA8B3 /* TodoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E762C91B62700CBA8B3 /* TodoListViewController.xib */; };
 		662E1E782C91B62700CBA8B3 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E752C91B62700CBA8B3 /* TodoListViewController.swift */; };
@@ -28,11 +35,18 @@
 		2947C3642C9051BF00C9C3FF /* Remind Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remind Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2947C3672C9051BF00C9C3FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2947C36B2C9051BF00C9C3FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2947C36E2C9051BF00C9C3FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2947C3702C9051C000C9C3FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2947C3732C9051C000C9C3FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2947C3752C9051C000C9C3FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		29C585A62C9295D500E26CC4 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		29C585AB2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		29C585AC2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnBoardingCollectionViewCell.xib; sourceTree = "<group>"; };
+		29C585B42C92D90400E26CC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		662E1E752C91B62700CBA8B3 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		662E1E762C91B62700CBA8B3 /* TodoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoListViewController.xib; sourceTree = "<group>"; };
@@ -76,8 +90,8 @@
 			children = (
 				2947C3672C9051BF00C9C3FF /* AppDelegate.swift */,
 				2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */,
-				2947C36B2C9051BF00C9C3FF /* ViewController.swift */,
 				2947C36D2C9051BF00C9C3FF /* Main.storyboard */,
+				29C585A82C929B6900E26CC4 /* Models */,
 				662E1E702C91B3FC00CBA8B3 /* Views */,
 				662E1E6D2C91B39800CBA8B3 /* Ultilities */,
 				662E1E712C91B41700CBA8B3 /* Resource */,
@@ -85,6 +99,42 @@
 				2947C3752C9051C000C9C3FF /* Info.plist */,
 			);
 			path = "Remind Me";
+			sourceTree = "<group>";
+		};
+		29C5859D2C92892B00E26CC4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */,
+				29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */,
+				29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		29C585A52C92953200E26CC4 /* IntroFlow */ = {
+			isa = PBXGroup;
+			children = (
+				29C585A62C9295D500E26CC4 /* OnBoardingViewController.swift */,
+				29C585AB2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift */,
+				29C585AC2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib */,
+			);
+			path = IntroFlow;
+			sourceTree = "<group>";
+		};
+		29C585A82C929B6900E26CC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */ = {
+			isa = PBXGroup;
+			children = (
+				29C585B42C92D90400E26CC4 /* LoginViewController.swift */,
+			);
+			path = LoginRegisterUserFlow;
 			sourceTree = "<group>";
 		};
 		662E1E6D2C91B39800CBA8B3 /* Ultilities */ = {
@@ -98,6 +148,8 @@
 		662E1E702C91B3FC00CBA8B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */,
+				29C585A52C92953200E26CC4 /* IntroFlow */,
 				662E1E742C91B60C00CBA8B3 /* ProfileFlow */,
 				662E1E732C91B60300CBA8B3 /* FeedFlow */,
 				662E1E722C91B5F700CBA8B3 /* TodoListFlow */,
@@ -108,6 +160,7 @@
 		662E1E712C91B41700CBA8B3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				29C5859D2C92892B00E26CC4 /* Fonts */,
 				2947C3702C9051C000C9C3FF /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -209,10 +262,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				662E1E7F2C91B66C00CBA8B3 /* ProfileViewController.xib in Resources */,
+				29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */,
 				662E1E772C91B62700CBA8B3 /* TodoListViewController.xib in Resources */,
 				662E1E7B2C91B63900CBA8B3 /* FeedViewController.xib in Resources */,
+				29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */,
 				2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */,
 				2947C3742C9051C000C9C3FF /* Base in Resources */,
+				29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */,
+				29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */,
 				662E1E842C91B7A000CBA8B3 /* TaskDetailViewController.xib in Resources */,
 				2947C36F2C9051BF00C9C3FF /* Base in Resources */,
 			);
@@ -225,14 +282,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2947C36C2C9051BF00C9C3FF /* ViewController.swift in Sources */,
 				662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */,
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
+				29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */,
 				662E1E802C91B66C00CBA8B3 /* ProfileViewController.swift in Sources */,
 				662E1E7C2C91B63900CBA8B3 /* FeedViewController.swift in Sources */,
+				29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
+				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,
 				662E1E782C91B62700CBA8B3 /* TodoListViewController.swift in Sources */,
+				29C585B52C92D90400E26CC4 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

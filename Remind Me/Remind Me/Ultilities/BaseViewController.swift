@@ -14,4 +14,11 @@ class BaseViewController: UIViewController {
 
     }
     
+    func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func next(vc: UIViewController) {
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
