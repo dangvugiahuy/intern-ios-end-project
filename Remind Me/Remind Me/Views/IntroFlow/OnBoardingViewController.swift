@@ -32,8 +32,7 @@ class OnBoardingViewController: BaseViewController {
     }
     
     private func setupFirstLoadVC() {
-        nextButton.layer.masksToBounds = true
-        nextButton.layer.cornerRadius = 10
+        nextButton.setupFilledButton()
         let nib = UINib(nibName: "OnBoardingCollectionViewCell", bundle: .main)
         onboardingCollectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
         onboardingCollectionView.delegate = self

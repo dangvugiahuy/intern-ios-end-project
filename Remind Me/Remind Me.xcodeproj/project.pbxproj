@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292D73F82C94460E0069A2B1 /* TodoViewController.swift */; };
+		292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292D73FA2C9446420069A2B1 /* FeedViewController.swift */; };
 		2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3672C9051BF00C9C3FF /* AppDelegate.swift */; };
 		2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */; };
 		2947C36F2C9051BF00C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C36E2C9051BF00C9C3FF /* Base */; };
 		2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3702C9051C000C9C3FF /* Assets.xcassets */; };
 		2947C3742C9051C000C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3732C9051C000C9C3FF /* Base */; };
+		29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */; };
+		29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */; };
+		29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC0812C940058006FA486 /* LoginUserViewController.swift */; };
 		29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */; };
 		29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */; };
 		29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */; };
@@ -19,19 +24,15 @@
 		29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */; };
 		29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585AB2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift */; };
 		29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C585AC2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib */; };
-		29C585B52C92D90400E26CC4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585B42C92D90400E26CC4 /* LoginViewController.swift */; };
+		29C585B52C92D90400E26CC4 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C585B42C92D90400E26CC4 /* RegisterUserViewController.swift */; };
 		662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */; };
-		662E1E772C91B62700CBA8B3 /* TodoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E762C91B62700CBA8B3 /* TodoListViewController.xib */; };
-		662E1E782C91B62700CBA8B3 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E752C91B62700CBA8B3 /* TodoListViewController.swift */; };
-		662E1E7B2C91B63900CBA8B3 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E7A2C91B63900CBA8B3 /* FeedViewController.xib */; };
-		662E1E7C2C91B63900CBA8B3 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E792C91B63900CBA8B3 /* FeedViewController.swift */; };
-		662E1E7F2C91B66C00CBA8B3 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E7E2C91B66C00CBA8B3 /* ProfileViewController.xib */; };
-		662E1E802C91B66C00CBA8B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E7D2C91B66C00CBA8B3 /* ProfileViewController.swift */; };
 		662E1E842C91B7A000CBA8B3 /* TaskDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */; };
 		662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E822C91B7A000CBA8B3 /* TaskDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		292D73F82C94460E0069A2B1 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		292D73FA2C9446420069A2B1 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		2947C3642C9051BF00C9C3FF /* Remind Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remind Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2947C3672C9051BF00C9C3FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +40,9 @@
 		2947C3702C9051C000C9C3FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2947C3732C9051C000C9C3FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2947C3752C9051C000C9C3FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		29ABC0812C940058006FA486 /* LoginUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewController.swift; sourceTree = "<group>"; };
 		29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -46,14 +50,8 @@
 		29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		29C585AB2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		29C585AC2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnBoardingCollectionViewCell.xib; sourceTree = "<group>"; };
-		29C585B42C92D90400E26CC4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		29C585B42C92D90400E26CC4 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
 		662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		662E1E752C91B62700CBA8B3 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
-		662E1E762C91B62700CBA8B3 /* TodoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoListViewController.xib; sourceTree = "<group>"; };
-		662E1E792C91B63900CBA8B3 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		662E1E7A2C91B63900CBA8B3 /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
-		662E1E7D2C91B66C00CBA8B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		662E1E7E2C91B66C00CBA8B3 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		662E1E822C91B7A000CBA8B3 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,12 +91,22 @@
 				2947C36D2C9051BF00C9C3FF /* Main.storyboard */,
 				29C585A82C929B6900E26CC4 /* Models */,
 				662E1E702C91B3FC00CBA8B3 /* Views */,
+				29ABC07C2C93DAFB006FA486 /* Extensions */,
 				662E1E6D2C91B39800CBA8B3 /* Ultilities */,
 				662E1E712C91B41700CBA8B3 /* Resource */,
 				2947C3722C9051C000C9C3FF /* LaunchScreen.storyboard */,
 				2947C3752C9051C000C9C3FF /* Info.plist */,
 			);
 			path = "Remind Me";
+			sourceTree = "<group>";
+		};
+		29ABC07C2C93DAFB006FA486 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */,
+				29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		29C5859D2C92892B00E26CC4 /* Fonts */ = {
@@ -132,7 +140,8 @@
 		29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */ = {
 			isa = PBXGroup;
 			children = (
-				29C585B42C92D90400E26CC4 /* LoginViewController.swift */,
+				29C585B42C92D90400E26CC4 /* RegisterUserViewController.swift */,
+				29ABC0812C940058006FA486 /* LoginUserViewController.swift */,
 			);
 			path = LoginRegisterUserFlow;
 			sourceTree = "<group>";
@@ -148,8 +157,8 @@
 		662E1E702C91B3FC00CBA8B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */,
 				29C585A52C92953200E26CC4 /* IntroFlow */,
+				29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */,
 				662E1E742C91B60C00CBA8B3 /* ProfileFlow */,
 				662E1E732C91B60300CBA8B3 /* FeedFlow */,
 				662E1E722C91B5F700CBA8B3 /* TodoListFlow */,
@@ -169,9 +178,8 @@
 		662E1E722C91B5F700CBA8B3 /* TodoListFlow */ = {
 			isa = PBXGroup;
 			children = (
-				662E1E752C91B62700CBA8B3 /* TodoListViewController.swift */,
-				662E1E762C91B62700CBA8B3 /* TodoListViewController.xib */,
 				662E1E812C91B77300CBA8B3 /* TaskDetail */,
+				292D73F82C94460E0069A2B1 /* TodoViewController.swift */,
 			);
 			path = TodoListFlow;
 			sourceTree = "<group>";
@@ -179,8 +187,7 @@
 		662E1E732C91B60300CBA8B3 /* FeedFlow */ = {
 			isa = PBXGroup;
 			children = (
-				662E1E792C91B63900CBA8B3 /* FeedViewController.swift */,
-				662E1E7A2C91B63900CBA8B3 /* FeedViewController.xib */,
+				292D73FA2C9446420069A2B1 /* FeedViewController.swift */,
 			);
 			path = FeedFlow;
 			sourceTree = "<group>";
@@ -188,8 +195,6 @@
 		662E1E742C91B60C00CBA8B3 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
-				662E1E7D2C91B66C00CBA8B3 /* ProfileViewController.swift */,
-				662E1E7E2C91B66C00CBA8B3 /* ProfileViewController.xib */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";
@@ -261,10 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				662E1E7F2C91B66C00CBA8B3 /* ProfileViewController.xib in Resources */,
 				29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */,
-				662E1E772C91B62700CBA8B3 /* TodoListViewController.xib in Resources */,
-				662E1E7B2C91B63900CBA8B3 /* FeedViewController.xib in Resources */,
 				29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */,
 				2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */,
 				2947C3742C9051C000C9C3FF /* Base in Resources */,
@@ -286,13 +288,15 @@
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */,
-				662E1E802C91B66C00CBA8B3 /* ProfileViewController.swift in Sources */,
-				662E1E7C2C91B63900CBA8B3 /* FeedViewController.swift in Sources */,
+				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
+				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
 				29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */,
+				29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */,
+				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
 				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,
-				662E1E782C91B62700CBA8B3 /* TodoListViewController.swift in Sources */,
-				29C585B52C92D90400E26CC4 /* LoginViewController.swift in Sources */,
+				292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */,
+				29C585B52C92D90400E26CC4 /* RegisterUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +454,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,6 +485,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

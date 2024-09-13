@@ -2,7 +2,7 @@
 //  FeedViewController.swift
 //  Remind Me
 //
-//  Created by Huy Gia on 11/9/24.
+//  Created by huy.dang on 9/13/24.
 //
 
 import UIKit
@@ -13,5 +13,5 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
     }
-
+    
 }
