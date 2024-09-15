@@ -28,6 +28,7 @@
 		662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */; };
 		662E1E842C91B7A000CBA8B3 /* TaskDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */; };
 		662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E822C91B7A000CBA8B3 /* TaskDetailViewController.swift */; };
+		666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666B687A2C952D94003212AC /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		662E1E822C91B7A000CBA8B3 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDetailViewController.xib; sourceTree = "<group>"; };
+		666B687A2C952D94003212AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +161,7 @@
 			children = (
 				29C585A52C92953200E26CC4 /* IntroFlow */,
 				29C585AF2C92D1E600E26CC4 /* LoginRegisterUserFlow */,
-				662E1E742C91B60C00CBA8B3 /* ProfileFlow */,
+				666B68792C952D68003212AC /* ProfileFlow */,
 				662E1E732C91B60300CBA8B3 /* FeedFlow */,
 				662E1E722C91B5F700CBA8B3 /* TodoListFlow */,
 			);
@@ -192,13 +194,6 @@
 			path = FeedFlow;
 			sourceTree = "<group>";
 		};
-		662E1E742C91B60C00CBA8B3 /* ProfileFlow */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProfileFlow;
-			sourceTree = "<group>";
-		};
 		662E1E812C91B77300CBA8B3 /* TaskDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +201,14 @@
 				662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */,
 			);
 			path = TaskDetail;
+			sourceTree = "<group>";
+		};
+		666B68792C952D68003212AC /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				666B687A2C952D94003212AC /* ProfileViewController.swift */,
+			);
+			path = ProfileFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +291,7 @@
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */,
+				666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */,
 				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
 				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
 				29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */,

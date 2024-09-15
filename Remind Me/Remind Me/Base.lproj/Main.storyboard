@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBG-uI-dWU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -717,12 +717,33 @@
         <!--Profile-->
         <scene sceneID="FYN-3C-mFR">
             <objects>
-                <viewController id="uTZ-eT-m1f" sceneMemberID="viewController">
+                <viewController id="uTZ-eT-m1f" customClass="ProfileViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ekk-tY-0tH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8N2-na-yCZ">
+                                <rect key="frame" x="154" y="103" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="0k9-WT-N5p"/>
+                                    <constraint firstAttribute="width" constant="85" id="hVe-Ay-3kx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMH-9n-fFk">
+                                <rect key="frame" x="172" y="212" width="49" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aH0-lH-O4X"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hMH-9n-fFk" firstAttribute="top" secondItem="8N2-na-yCZ" secondAttribute="bottom" constant="24" id="8GM-GD-Qhg"/>
+                            <constraint firstItem="8N2-na-yCZ" firstAttribute="top" secondItem="aH0-lH-O4X" secondAttribute="top" constant="44" id="9RD-I0-6yV"/>
+                            <constraint firstItem="8N2-na-yCZ" firstAttribute="centerX" secondItem="Ekk-tY-0tH" secondAttribute="centerX" id="Din-4s-dAW"/>
+                            <constraint firstItem="hMH-9n-fFk" firstAttribute="centerX" secondItem="Ekk-tY-0tH" secondAttribute="centerX" id="ft8-w6-Jxn"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" selectedImage="person.crop.circle.fill" id="uW0-lj-4LD"/>
                 </viewController>
