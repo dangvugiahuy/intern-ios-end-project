@@ -21,4 +21,10 @@ class BaseViewController: UIViewController {
     func next(vc: UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func setupLeftNavigationBarItem() {
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
+        self.navigationItem.backButtonTitle = ""
+    }
 }

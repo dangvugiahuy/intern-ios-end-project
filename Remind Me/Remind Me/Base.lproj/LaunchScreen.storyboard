@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,15 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giD-NR-iS4">
-                                <rect key="frame" x="106.66666666666669" y="236" width="180" height="180"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="ic7-2Q-hHs"/>
-                                    <constraint firstAttribute="height" constant="180" id="laV-Od-NPW"/>
-                                </constraints>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OKO-Zn-V1J">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appIcon" translatesAutoresizingMaskIntoConstraints="NO" id="OKO-Zn-V1J">
                                 <rect key="frame" x="96.666666666666686" y="226" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="BmX-Yn-VhP"/>
@@ -32,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appName" translatesAutoresizingMaskIntoConstraints="NO" id="fvh-2S-0ax">
-                                <rect key="frame" x="96.666666666666686" y="470" width="200" height="40"/>
+                                <rect key="frame" x="96.666666666666686" y="450" width="200" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2iU-ea-uP9"/>
                                     <constraint firstAttribute="height" constant="40" id="VZQ-lh-zrq"/>
@@ -44,10 +37,8 @@
                         <constraints>
                             <constraint firstItem="fvh-2S-0ax" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="DLd-xY-Y6G"/>
                             <constraint firstItem="OKO-Zn-V1J" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EqB-Lm-9pH"/>
-                            <constraint firstItem="giD-NR-iS4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="Qju-Zf-rh4"/>
-                            <constraint firstItem="fvh-2S-0ax" firstAttribute="top" secondItem="OKO-Zn-V1J" secondAttribute="bottom" constant="44" id="ggO-he-lKp"/>
+                            <constraint firstItem="fvh-2S-0ax" firstAttribute="top" secondItem="OKO-Zn-V1J" secondAttribute="bottom" constant="24" id="ggO-he-lKp"/>
                             <constraint firstItem="OKO-Zn-V1J" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="hPe-4R-P4O"/>
-                            <constraint firstItem="giD-NR-iS4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mkU-6F-enF"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -57,7 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="appIcon" width="1024" height="1024"/>
+        <image name="appIcon" width="108.33333587646484" height="108"/>
         <image name="appName" width="200" height="40"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
