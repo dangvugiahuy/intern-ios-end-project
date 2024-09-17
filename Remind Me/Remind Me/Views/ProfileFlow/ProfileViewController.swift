@@ -17,6 +17,11 @@ class ProfileViewController: BaseViewController {
         setupFirstLoadVC()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     private func setupFirstLoadVC() {
         self.title = "Profile"
         userAvatarImageView.setupAvtImage()
@@ -29,6 +34,17 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func changeUserImageSelector(_ sender: Any) {
-        
+        let actionSheet = UIAlertController(title: "Change account image", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            actionSheet.dismiss(animated: true)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Take picture", style: .default, handler: { _ in
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Import from gallery", style: .default, handler: { _ in
+            
+        }))
+        actionSheet.view.tintColor = UIColor(named: "Greyscale800")
+        self.present(actionSheet, animated: true)
     }
 }

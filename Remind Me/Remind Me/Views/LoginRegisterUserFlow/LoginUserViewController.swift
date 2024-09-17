@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginUserViewController: UIViewController {
+class LoginUserViewController: BaseViewController {
 
     @IBOutlet weak var emailTextFieldView: UIView!
     @IBOutlet weak var passwordTextFieldView: UIView!
