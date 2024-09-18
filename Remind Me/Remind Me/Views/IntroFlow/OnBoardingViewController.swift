@@ -45,7 +45,9 @@ class OnBoardingViewController: BaseViewController {
             let indexPath = IndexPath(row: currentPage, section: 0)
             onboardingCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         } else {
-            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterUserVC") as! RegisterUserViewController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         }
     }
     

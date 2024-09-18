@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBG-uI-dWU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G09-rK-Ms7">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -38,6 +38,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ur-QZ-ooE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1178" y="1504"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="3xS-7b-CnY">
+            <objects>
+                <viewController id="G09-rK-Ms7" customClass="RootViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IQ2-4X-a7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="EWg-sD-bhL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FiF-Ya-vwz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242" y="364"/>
         </scene>
         <!--On Boarding View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -123,7 +138,7 @@
         <!--Register User View Controller-->
         <scene sceneID="HmP-Vs-zFX">
             <objects>
-                <viewController id="qzQ-uz-KFu" customClass="RegisterUserViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterUserVC" id="qzQ-uz-KFu" customClass="RegisterUserViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PqT-sX-q5s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -683,12 +698,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39x-SM-F7T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4991" y="-28"/>
+            <point key="canvasLocation" x="4942" y="-28"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Home Tab Bar Controller-->
         <scene sceneID="RTY-cA-KwN">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="DBG-uI-dWU" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="DBG-uI-dWU" customClass="HomeTabBarController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8kR-f2-MHp">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1407,11 +1422,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Esh-Do-y9b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4174" y="-28"/>
+            <point key="canvasLocation" x="4073" y="-28"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mbX-uf-Svk"/>
+        <segue reference="f5l-xA-Glq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="appIcon" width="108.33333587646484" height="108"/>
