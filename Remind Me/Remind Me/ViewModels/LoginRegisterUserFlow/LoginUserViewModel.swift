@@ -7,6 +7,15 @@
 
 import Foundation
 
+protocol LoginUserViewModelDelegate: AnyObject {
+    
+}
+
 final class LoginUserViewModel {
     
+    weak var delegate: LoginUserViewModelDelegate?
+    
+    func signOut() {
+        
+    }
 }

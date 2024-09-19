@@ -18,7 +18,7 @@ enum RegisterUserErrorType: Error {
         case .InvalidEmail:
             return "Invalid email address. Please try again!"
         case .EmailAlreadyInUse:
-            return "Email address is already in use"
+            return "Email address is already in use. Please use another email"
         case .WeakPassword:
             return """
 Your password must:

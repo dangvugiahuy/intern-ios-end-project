@@ -8,6 +8,8 @@
 import UIKit
 
 class RegisterUserViewController: UIViewController {
+    
+    private let vm: RegisterUserViewModel = RegisterUserViewModel()
 
     @IBOutlet weak var emailTextFieldView: UIView!
     @IBOutlet weak var passwordTextFieldView: UIView!
@@ -34,6 +36,7 @@ class RegisterUserViewController: UIViewController {
         hideShowPassButton.hideShowPasswordButtonConfig()
         hideShowComfirmPassButton.hideShowPasswordButtonConfig()
         viewTapGesture.cancelsTouchesInView = false
+        vm.delegate = self
     }
     
     private func comfirmPassMatched() -> Bool {
@@ -67,6 +70,9 @@ class RegisterUserViewController: UIViewController {
             return
         }
         
+        vm.email = emailTextField.text!
+        vm.password = passwordTextField.text!
+        vm.register()
     }
     
     @IBAction func hideKeyboard(_ sender: Any) {
@@ -75,7 +81,12 @@ class RegisterUserViewController: UIViewController {
     }
 }
 
-extension RegisterUserViewController: UITextFieldDelegate {
+extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModelDelegate {
+    
+    func showErrorAlert(message: String) {
+        UIAlertController.showErrorAlert(on: self, message: message)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:

@@ -19,4 +19,14 @@ final class UserManagementService {
             return false
         }
     }
+    
+    func signOutSuccess() -> Bool {
+        do {
+            try Auth.auth().signOut()
+            return true
+        } catch let signOutError as NSError {
+            
+        }
+        return false
+    }
 }
