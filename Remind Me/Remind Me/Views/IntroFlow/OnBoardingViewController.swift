@@ -28,6 +28,7 @@ class OnBoardingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.setValue(true, forKey: "LaunchBefore")
         setupFirstLoadVC()
     }
     

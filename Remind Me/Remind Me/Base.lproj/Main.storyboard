@@ -57,7 +57,7 @@
         <!--On Boarding View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="onboardingVC" id="BYZ-38-t0r" customClass="OnBoardingViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingVC" id="BYZ-38-t0r" customClass="OnBoardingViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,6 +300,9 @@
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpButtonClicked:" destination="qzQ-uz-KFu" eventType="touchUpInside" id="shr-dd-ohp"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lT-9l-bpF">
                                 <rect key="frame" x="24" y="547.66666666666663" width="327" height="45"/>
@@ -387,6 +390,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Aw1-I8-GLX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="2lT-9l-bpF" firstAttribute="leading" secondItem="Aw1-I8-GLX" secondAttribute="leading" constant="24" id="3cd-OC-XLX"/>
                             <constraint firstItem="Aw1-I8-GLX" firstAttribute="trailing" secondItem="yqE-2g-Ryk" secondAttribute="trailing" constant="24" id="6dc-Se-sMi"/>
@@ -415,6 +419,9 @@
                             <constraint firstItem="Aw1-I8-GLX" firstAttribute="trailing" secondItem="2lT-9l-bpF" secondAttribute="trailing" constant="24" id="yTX-QG-vU7"/>
                             <constraint firstItem="Aw1-I8-GLX" firstAttribute="trailing" secondItem="wFN-s6-VFn" secondAttribute="trailing" constant="24" id="zsf-nQ-dVr"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mfO-Ul-bRn" appends="YES" id="LEG-4Q-ijL"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="comfirmPassTextField" destination="xDf-VY-qbh" id="Yab-jb-qfF"/>
@@ -427,16 +434,22 @@
                         <outlet property="passwordTextField" destination="dCd-pn-QM6" id="e2K-wV-7IU"/>
                         <outlet property="passwordTextFieldView" destination="dML-d7-vli" id="yWp-wh-ZFo"/>
                         <outlet property="signUpButton" destination="wFN-s6-VFn" id="fvM-XY-eb4"/>
+                        <outlet property="viewTapGesture" destination="mfO-Ul-bRn" id="pgK-fa-TUS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jQL-A9-ogA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mfO-Ul-bRn">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="qzQ-uz-KFu" id="FYT-U3-AZH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2180" y="-28.078817733990149"/>
         </scene>
         <!--Login User View Controller-->
         <scene sceneID="YIB-70-gQc">
             <objects>
-                <viewController id="x0f-Pe-Mwu" customClass="LoginUserViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginUserVC" id="x0f-Pe-Mwu" customClass="LoginUserViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hMx-iA-Tt9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -545,6 +558,9 @@
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInButtonClicked:" destination="x0f-Pe-Mwu" eventType="touchUpInside" id="bHQ-Sb-jlH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0N-nR-555">
                                 <rect key="frame" x="24" y="562.66666666666663" width="327" height="58"/>
@@ -1426,7 +1442,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f5l-xA-Glq"/>
+        <segue reference="mbX-uf-Svk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="appIcon" width="108.33333587646484" height="108"/>

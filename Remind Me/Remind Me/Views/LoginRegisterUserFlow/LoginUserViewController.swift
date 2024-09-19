@@ -28,11 +28,23 @@ class LoginUserViewController: BaseViewController {
         hideShowPasswordButton.hideShowPasswordButtonConfig()
     }
     
+    private func foundEmptyField() -> Bool {
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            return true
+        }
+        return false
+    }
+    
     @IBAction func hideShowPasswordClicked(_ sender: Any) {
         hideShowPasswordButton.isSelected.toggle()
         passwordTextField.isSecureTextEntry = !hideShowPasswordButton.isSelected
     }
     
+    @IBAction func signInButtonClicked(_ sender: Any) {
+        guard foundEmptyField() == false else {
+            return
+        }
+    }
 }
 
 extension LoginUserViewController: UITextFieldDelegate {

@@ -9,5 +9,9 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    
+    static func showErrorAlert(on vc: UIViewController, message: String) {
+        let alert = UIAlertController(title: "Remind Me", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        vc.present(alert, animated: true)
+    }
 }

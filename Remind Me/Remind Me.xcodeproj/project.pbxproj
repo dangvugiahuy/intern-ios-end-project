@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290858822C9BDDA800A59C8B /* UserManagementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290858812C9BDDA800A59C8B /* UserManagementService.swift */; };
+		290858852C9C1B2800A59C8B /* RegisterUserErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290858842C9C1B2800A59C8B /* RegisterUserErrorType.swift */; };
 		292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292D73F82C94460E0069A2B1 /* TodoViewController.swift */; };
 		292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292D73FA2C9446420069A2B1 /* FeedViewController.swift */; };
 		2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3672C9051BF00C9C3FF /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		290858812C9BDDA800A59C8B /* UserManagementService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementService.swift; sourceTree = "<group>"; };
+		290858842C9C1B2800A59C8B /* RegisterUserErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserErrorType.swift; sourceTree = "<group>"; };
 		292D73F82C94460E0069A2B1 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		292D73FA2C9446420069A2B1 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		2947C3642C9051BF00C9C3FF /* Remind Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remind Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290858832C9C1AFA00A59C8B /* ErrorType */ = {
+			isa = PBXGroup;
+			children = (
+				290858842C9C1B2800A59C8B /* RegisterUserErrorType.swift */,
+			);
+			path = ErrorType;
+			sourceTree = "<group>";
+		};
 		2947C35B2C9051BF00C9C3FF = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +198,7 @@
 			children = (
 				29A0D0622C9A80F6008B6E37 /* EmailPasswordAuthService.swift */,
 				29A0D0642C9A8125008B6E37 /* GoogleAuthService.swift */,
+				290858812C9BDDA800A59C8B /* UserManagementService.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -283,6 +296,7 @@
 		662E1E6D2C91B39800CBA8B3 /* Ultilities */ = {
 			isa = PBXGroup;
 			children = (
+				290858832C9C1AFA00A59C8B /* ErrorType */,
 				662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */,
 			);
 			path = Ultilities;
@@ -450,6 +464,7 @@
 				29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */,
 				666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */,
 				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
+				290858852C9C1B2800A59C8B /* RegisterUserErrorType.swift in Sources */,
 				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
 				29A0D06D2C9A8B07008B6E37 /* NetworkMonitor.swift in Sources */,
 				29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */,
@@ -460,6 +475,7 @@
 				29A5DB422C99671600862103 /* ChangePasswordViewController.swift in Sources */,
 				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
 				29A0D0792C9ACBE8008B6E37 /* RootViewController.swift in Sources */,
+				290858822C9BDDA800A59C8B /* UserManagementService.swift in Sources */,
 				29A0D05F2C9A7A4B008B6E37 /* RegisterUserViewModel.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
 				29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */,
