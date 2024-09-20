@@ -26,4 +26,18 @@ final class EmailPasswordAuthService {
         }
     }
     
+    func signIn(email: String, password: String, completion: @escaping (Result<AuthDataResult, AuthErrorCode>) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] userData, error in
+            guard let strongSelf = self else { return }
+            guard error == nil else {
+                if let error = error as NSError? {
+                    guard let errorCode = AuthErrorCode(rawValue: error.code) else { return }
+                    completion(.failure(errorCode))
+                }
+                return
+            }
+            completion(.success(userData!))
+        }
+    }
+    
 }

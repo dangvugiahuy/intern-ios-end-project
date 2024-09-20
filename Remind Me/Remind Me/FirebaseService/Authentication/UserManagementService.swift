@@ -25,8 +25,7 @@ final class UserManagementService {
             try Auth.auth().signOut()
             return true
         } catch let signOutError as NSError {
-            
+            return false
         }
-        return false
     }
 }

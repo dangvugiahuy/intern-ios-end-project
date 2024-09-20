@@ -38,6 +38,8 @@
 		29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */; };
 		29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */; };
 		29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC0812C940058006FA486 /* LoginUserViewController.swift */; };
+		29B5AB472C9D21860001D4E3 /* LoginUserErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */; };
+		29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */; };
 		29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */; };
 		29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */; };
 		29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */; };
@@ -83,6 +85,8 @@
 		29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		29ABC0812C940058006FA486 /* LoginUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewController.swift; sourceTree = "<group>"; };
+		29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserErrorType.swift; sourceTree = "<group>"; };
+		29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		29C585A02C9289E300E26CC4 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		29C585A22C9289ED00E26CC4 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				290858842C9C1B2800A59C8B /* RegisterUserErrorType.swift */,
+				29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */,
 			);
 			path = ErrorType;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 		29A0D05A2C9A794E008B6E37 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				29B5AB482C9D54660001D4E3 /* ProfileFlow */,
 				29A0D05B2C9A7985008B6E37 /* LoginRegisterUserFlow */,
 			);
 			path = ViewModels;
@@ -245,6 +251,14 @@
 				297086EA2C992A510031F478 /* UIAlertController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		29B5AB482C9D54660001D4E3 /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */,
+			);
+			path = ProfileFlow;
 			sourceTree = "<group>";
 		};
 		29C5859D2C92892B00E26CC4 /* Fonts */ = {
@@ -466,6 +480,7 @@
 				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
 				290858852C9C1B2800A59C8B /* RegisterUserErrorType.swift in Sources */,
 				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
+				29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */,
 				29A0D06D2C9A8B07008B6E37 /* NetworkMonitor.swift in Sources */,
 				29C585A72C9295D500E26CC4 /* OnBoardingViewController.swift in Sources */,
 				29A0D0712C9AA8DE008B6E37 /* InternetUnavailableViewController.swift in Sources */,
@@ -476,6 +491,7 @@
 				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
 				29A0D0792C9ACBE8008B6E37 /* RootViewController.swift in Sources */,
 				290858822C9BDDA800A59C8B /* UserManagementService.swift in Sources */,
+				29B5AB472C9D21860001D4E3 /* LoginUserErrorType.swift in Sources */,
 				29A0D05F2C9A7A4B008B6E37 /* RegisterUserViewModel.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
 				29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */,

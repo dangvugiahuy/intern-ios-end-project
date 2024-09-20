@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginUserViewController: BaseViewController {
+    
+    private let vm: LoginUserViewModel = LoginUserViewModel()
 
     @IBOutlet weak var emailTextFieldView: UIView!
     @IBOutlet weak var passwordTextFieldView: UIView!
@@ -26,6 +28,7 @@ class LoginUserViewController: BaseViewController {
         passwordTextFieldView.textFieldViewConfig()
         signInButton.setupFilledButton()
         hideShowPasswordButton.hideShowPasswordButtonConfig()
+        vm.delegate = self
     }
     
     private func foundEmptyField() -> Bool {
@@ -42,12 +45,27 @@ class LoginUserViewController: BaseViewController {
     
     @IBAction func signInButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
+            UIAlertController.showErrorAlert(on: self, message: "All field is require, please try again")
             return
         }
+        vm.email = emailTextField.text!
+        vm.password = passwordTextField.text!
+        vm.signIn()
     }
 }
 
-extension LoginUserViewController: UITextFieldDelegate {
+extension LoginUserViewController: UITextFieldDelegate, LoginUserViewModelDelegate {
+    
+    func logInSuccessHandle() {
+        let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
+        tabBarVC.modalPresentationStyle = .fullScreen
+        present(tabBarVC, animated: true)
+    }
+    
+    func showErrorAlert(message: String) {
+        UIAlertController.showErrorAlert(on: self, message: message)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:

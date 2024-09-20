@@ -6,15 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RegisterUserViewModelDelegate: AnyObject {
     func showErrorAlert(message: String)
+    func registerSuccessHandle()
 }
 
 final class RegisterUserViewModel {
     
     var email: String = ""
     var password: String = ""
+    var vc: UIViewController?
     var error: RegisterUserErrorType = .None
     weak var delegate: RegisterUserViewModelDelegate?
     
@@ -22,7 +25,7 @@ final class RegisterUserViewModel {
         EmailPasswordAuthService.shared.createUser(email: email, password: password) { [self] result in
             switch result {
             case .success(let success):
-                break
+                delegate?.registerSuccessHandle()
             case .failure(let failure):
                 if failure == .invalidEmail {
                     error = .InvalidEmail
@@ -30,6 +33,20 @@ final class RegisterUserViewModel {
                     error = .EmailAlreadyInUse
                 } else if failure == .weakPassword {
                     error = .WeakPassword
+                }
+                delegate?.showErrorAlert(message: error.errorDescription())
+            }
+        }
+    }
+    
+    func registerWithGoogle() {
+        GoogleAuthService.shared.signIn(vc: vc!) { [self] result in
+            switch result {
+            case .success(let success):
+                delegate?.registerSuccessHandle()
+            case .failure(let failure):
+                if failure == .emailAlreadyInUse {
+                    error = .EmailAlreadyInUse
                 }
                 delegate?.showErrorAlert(message: error.errorDescription())
             }

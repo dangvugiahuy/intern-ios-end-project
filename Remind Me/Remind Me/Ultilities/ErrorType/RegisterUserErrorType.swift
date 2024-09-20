@@ -8,6 +8,7 @@
 import Foundation
 
 enum RegisterUserErrorType: Error {
+    
     case InvalidEmail
     case EmailAlreadyInUse
     case WeakPassword
@@ -31,4 +32,5 @@ Your password must:
             return ""
         }
     }
+    
 }
