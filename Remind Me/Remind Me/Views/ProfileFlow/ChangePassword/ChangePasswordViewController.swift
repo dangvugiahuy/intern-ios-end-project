@@ -37,6 +37,10 @@ class ChangePasswordViewController: UIViewController {
         hideShowComfirmPassButton.hideShowPasswordButtonConfig()
     }
     
+    private func comfirmPassMatched() -> Bool {
+        return newPasswordTextField.text == comfirmPasswordTextField.text
+    }
+    
     @IBAction func hideShowOldPassButtonClicked(_ sender: Any) {
         hideShowOldPassButton.isSelected.toggle()
         oldPasswordTextField.isSecureTextEntry = !hideShowOldPassButton.isSelected
@@ -53,7 +57,10 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func saveChangeButtonClicked(_ sender: Any) {
-        
+        guard comfirmPassMatched() == true else {
+            UIAlertController.showErrorAlert(on: self, message: "Comfirm password doesn't match, please try again")
+            return
+        }
     }
 }
 

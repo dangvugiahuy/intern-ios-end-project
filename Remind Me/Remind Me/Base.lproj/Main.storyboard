@@ -578,6 +578,9 @@
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="signInWithGoogleButtonClicked:" destination="x0f-Pe-Mwu" eventType="touchUpInside" id="hIs-sC-EgB"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6H-L1-msh">
                                 <rect key="frame" x="24" y="640.66666666666663" width="327" height="20"/>
@@ -1160,15 +1163,35 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Save Change"/>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e1i-Dg-eey">
+                                <rect key="frame" x="24" y="340.66666666666669" width="327" height="32.666666666666686"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-Rm-VIM">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="32.666666666666664"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="D9z-CB-zYE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in with Google, so cannot use this feature" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KH6-Oa-ZYb">
+                                        <rect key="frame" x="32" y="0.0" width="295" height="32.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="14"/>
+                                        <color key="textColor" name="Redscale900"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nrx-7W-ucr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Nrx-7W-ucr" firstAttribute="trailing" secondItem="kCm-ex-ovz" secondAttribute="trailing" constant="24" id="2Yh-3a-VIN"/>
                             <constraint firstItem="SYQ-wI-ZSC" firstAttribute="top" secondItem="Nrx-7W-ucr" secondAttribute="top" constant="40" id="2vu-Dd-V7g"/>
+                            <constraint firstItem="Nrx-7W-ucr" firstAttribute="trailing" secondItem="e1i-Dg-eey" secondAttribute="trailing" constant="24" id="BPc-qh-WJv"/>
                             <constraint firstItem="5rH-QX-dH4" firstAttribute="leading" secondItem="Nrx-7W-ucr" secondAttribute="leading" constant="24" id="EQJ-jr-ybc"/>
+                            <constraint firstItem="e1i-Dg-eey" firstAttribute="top" secondItem="kCm-ex-ovz" secondAttribute="bottom" constant="34" id="JkL-Md-1NY"/>
                             <constraint firstItem="5rH-QX-dH4" firstAttribute="top" secondItem="SYQ-wI-ZSC" secondAttribute="bottom" constant="8" id="OLK-dW-zB4"/>
                             <constraint firstItem="SYQ-wI-ZSC" firstAttribute="leading" secondItem="Nrx-7W-ucr" secondAttribute="leading" constant="24" id="PBq-3N-uxu"/>
+                            <constraint firstItem="e1i-Dg-eey" firstAttribute="leading" secondItem="Nrx-7W-ucr" secondAttribute="leading" constant="24" id="ewP-oH-BhS"/>
                             <constraint firstItem="kCm-ex-ovz" firstAttribute="leading" secondItem="Nrx-7W-ucr" secondAttribute="leading" constant="24" id="kCP-0x-9Rw"/>
                             <constraint firstItem="kCm-ex-ovz" firstAttribute="top" secondItem="5rH-QX-dH4" secondAttribute="bottom" constant="24" id="toX-NR-jl9"/>
                             <constraint firstItem="Nrx-7W-ucr" firstAttribute="trailing" secondItem="5rH-QX-dH4" secondAttribute="trailing" constant="24" id="vFL-M1-zpa"/>
@@ -1228,7 +1251,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EF-e2-kMx">
-                                        <rect key="frame" x="285" y="14.666666666666686" width="30" height="31"/>
+                                        <rect key="frame" x="285" y="14.666666666666687" width="30" height="30.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="coy-zK-iCx"/>
                                         </constraints>
@@ -1267,7 +1290,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cl-By-Hia">
-                                        <rect key="frame" x="285" y="14.666666666666686" width="30" height="31"/>
+                                        <rect key="frame" x="285" y="14.666666666666687" width="30" height="30.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="xL3-Q7-2fO"/>
                                         </constraints>
@@ -1318,7 +1341,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixB-7d-T7L">
-                                        <rect key="frame" x="285" y="14.666666666666686" width="30" height="31"/>
+                                        <rect key="frame" x="285" y="14.666666666666687" width="30" height="30.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="cjA-Am-hr0"/>
                                         </constraints>
@@ -1358,6 +1381,24 @@
                                     <action selector="saveChangeButtonClicked:" destination="dLU-7c-Txc" eventType="touchUpInside" id="oE6-4i-QxP"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Uwq-SX-byV">
+                                <rect key="frame" x="24" y="562" width="327" height="39.333333333333371"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="1ft-No-4Eu">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="39.333333333333336"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="kTW-7P-NCL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in with Google, so cannot use this feature" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hO-5J-9Z5">
+                                        <rect key="frame" x="37" y="0.0" width="290" height="39.333333333333336"/>
+                                        <color key="tintColor" name="Redscale900"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="14"/>
+                                        <color key="textColor" name="Redscale900"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6eu-4A-Agb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1371,15 +1412,18 @@
                             <constraint firstItem="tma-aZ-3l0" firstAttribute="top" secondItem="cjH-lA-QuA" secondAttribute="bottom" constant="20" id="NkO-y6-mKO"/>
                             <constraint firstItem="X1t-nj-EPg" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="OjA-3F-lRd"/>
                             <constraint firstItem="PQG-G4-Ugj" firstAttribute="top" secondItem="tma-aZ-3l0" secondAttribute="bottom" constant="8" id="S7R-Ww-IMN"/>
+                            <constraint firstItem="6eu-4A-Agb" firstAttribute="trailing" secondItem="Uwq-SX-byV" secondAttribute="trailing" constant="24" id="UeQ-pc-lQv"/>
                             <constraint firstItem="kt8-9k-f5C" firstAttribute="top" secondItem="m6D-pv-qph" secondAttribute="bottom" constant="8" id="VZq-R2-2zW"/>
                             <constraint firstItem="X1t-nj-EPg" firstAttribute="top" secondItem="kt8-9k-f5C" secondAttribute="bottom" constant="24" id="WiQ-h2-84i"/>
                             <constraint firstItem="m6D-pv-qph" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="ZtF-uS-mg4"/>
+                            <constraint firstItem="Uwq-SX-byV" firstAttribute="top" secondItem="X1t-nj-EPg" secondAttribute="bottom" constant="34" id="cnF-uN-0UY"/>
                             <constraint firstItem="6eu-4A-Agb" firstAttribute="trailing" secondItem="X1t-nj-EPg" secondAttribute="trailing" constant="24" id="gvO-rM-Twj"/>
                             <constraint firstItem="PQG-G4-Ugj" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="mrp-a6-WeL"/>
                             <constraint firstItem="kt8-9k-f5C" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="nEQ-W7-eWI"/>
                             <constraint firstItem="6eu-4A-Agb" firstAttribute="trailing" secondItem="cjH-lA-QuA" secondAttribute="trailing" constant="24" id="nHW-b3-G48"/>
                             <constraint firstItem="mqe-08-PMy" firstAttribute="top" secondItem="6eu-4A-Agb" secondAttribute="top" constant="40" id="nwC-oM-koo"/>
                             <constraint firstItem="cjH-lA-QuA" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="pLM-SZ-sKK"/>
+                            <constraint firstItem="Uwq-SX-byV" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="wsq-Er-1GJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bvK-aQ-nuA"/>
@@ -1449,7 +1493,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Y8n-hy-A5d"/>
         <segue reference="mbX-uf-Svk"/>
     </inferredMetricsTieBreakers>
     <resources>

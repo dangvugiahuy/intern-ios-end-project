@@ -11,6 +11,7 @@ enum LoginUserErrorType: Error {
     
     case InvalidEmail
     case UserDisabled
+    case EmailAlreadyInUse
     case Default
     
     func errorDescription() -> String {
@@ -19,6 +20,8 @@ enum LoginUserErrorType: Error {
             return "Invalid email address. Please try again!"
         case .UserDisabled:
             return "Your account has been disabled. Please contact us for more details"
+        case .EmailAlreadyInUse:
+            return "Email address is available with another Sign In Mehtod. Please use another email"
         case .Default:
             return "Your email or password is incorrect. Please try again"
         }

@@ -29,6 +29,7 @@ class LoginUserViewController: BaseViewController {
         signInButton.setupFilledButton()
         hideShowPasswordButton.hideShowPasswordButtonConfig()
         vm.delegate = self
+        vm.vc = self
     }
     
     private func foundEmptyField() -> Bool {
@@ -51,6 +52,10 @@ class LoginUserViewController: BaseViewController {
         vm.email = emailTextField.text!
         vm.password = passwordTextField.text!
         vm.signIn()
+    }
+    
+    @IBAction func signInWithGoogleButtonClicked(_ sender: Any) {
+        vm.signInWithGoogle()
     }
 }
 
