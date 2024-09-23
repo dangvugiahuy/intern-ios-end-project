@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum SignInMethod {
-    case EmailPassword
-    case Google
+enum SignInMethod: String {
+    case EmailPassword = "EmailPassword"
+    case Google = "Google"
+    
+    static func getCurrentSignInMethodValue() -> String {
+        return UserDefaults.standard.string(forKey: "SignInMethod") ?? ""
+    }
 }

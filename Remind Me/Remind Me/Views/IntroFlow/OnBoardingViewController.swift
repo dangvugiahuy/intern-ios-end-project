@@ -51,10 +51,6 @@ class OnBoardingViewController: BaseViewController {
             self.present(vc, animated: true)
         }
     }
-    
-    @IBAction func skipButtonClicked(_ sender: Any) {
-        
-    }
 }
 
 extension OnBoardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

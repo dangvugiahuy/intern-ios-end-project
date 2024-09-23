@@ -10,7 +10,7 @@ import UIKit
 
 extension UIAlertController {
     
-    static func showErrorAlert(on vc: UIViewController, message: String) {
+    static func showSimpleAlert(on vc: UIViewController, message: String) {
         let alert = UIAlertController(title: "Remind Me", message: message, preferredStyle: .alert)
         alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
         alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))

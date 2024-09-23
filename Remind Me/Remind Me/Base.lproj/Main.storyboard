@@ -103,7 +103,6 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="SKIP"/>
                                 <connections>
-                                    <action selector="skipButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="us1-PO-lfh"/>
                                     <segue destination="qzQ-uz-KFu" kind="presentation" modalPresentationStyle="fullScreen" id="f5l-xA-Glq"/>
                                 </connections>
                             </button>
@@ -763,7 +762,7 @@
         <!--Profile View Controller-->
         <scene sceneID="FYN-3C-mFR">
             <objects>
-                <viewController id="uTZ-eT-m1f" customClass="ProfileViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" id="uTZ-eT-m1f" customClass="ProfileViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ekk-tY-0tH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1134,7 +1133,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rH-QX-dH4">
                                 <rect key="frame" x="24" y="164.66666666666666" width="327" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eu-Vq-nJo">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eu-Vq-nJo">
                                         <rect key="frame" x="10" y="0.0" width="307" height="60"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1162,18 +1161,21 @@
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Save Change"/>
+                                <connections>
+                                    <action selector="saveChangeButtonClicked:" destination="szf-Sf-Gjw" eventType="touchUpInside" id="QsR-3j-8lY"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e1i-Dg-eey">
-                                <rect key="frame" x="24" y="340.66666666666669" width="327" height="32.666666666666686"/>
+                                <rect key="frame" x="24" y="340.66666666666669" width="327" height="39.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-Rm-VIM">
-                                        <rect key="frame" x="0.0" y="0.0" width="24" height="32.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="39.333333333333336"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="D9z-CB-zYE"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are signed in with Google, so cannot use this feature" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KH6-Oa-ZYb">
-                                        <rect key="frame" x="32" y="0.0" width="295" height="32.666666666666664"/>
+                                        <rect key="frame" x="32" y="0.0" width="295" height="39.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="14"/>
                                         <color key="textColor" name="Redscale900"/>
                                         <nil key="highlightedColor"/>
@@ -1202,6 +1204,7 @@
                         <outlet property="fullNameTextField" destination="5eu-Vq-nJo" id="T08-39-qLV"/>
                         <outlet property="fullNameTextFieldView" destination="5rH-QX-dH4" id="2SF-ng-MPr"/>
                         <outlet property="saveChangeButton" destination="kCm-ex-ovz" id="VDN-6K-f0j"/>
+                        <outlet property="warningGoogleSignInStackView" destination="e1i-Dg-eey" id="jLV-Lk-0Nc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISd-BM-0Jj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1425,6 +1428,9 @@
                             <constraint firstItem="cjH-lA-QuA" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="pLM-SZ-sKK"/>
                             <constraint firstItem="Uwq-SX-byV" firstAttribute="leading" secondItem="6eu-4A-Agb" secondAttribute="leading" constant="24" id="wsq-Er-1GJ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="B6y-Ho-Mwi" appends="YES" id="O3v-pb-Kv4"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="bvK-aQ-nuA"/>
                     <connections>
@@ -1438,9 +1444,16 @@
                         <outlet property="oldPasswordTextField" destination="4DM-sW-Sr2" id="AhF-Ce-Opy"/>
                         <outlet property="oldPasswordTextFieldView" destination="cjH-lA-QuA" id="NXS-gF-I3p"/>
                         <outlet property="saveChangeButton" destination="X1t-nj-EPg" id="15H-Nk-Xys"/>
+                        <outlet property="viewTapGesture" destination="B6y-Ho-Mwi" id="DZk-SL-ZL5"/>
+                        <outlet property="warningStackView" destination="Uwq-SX-byV" id="FFf-pW-LRV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DAp-bs-m51" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="B6y-Ho-Mwi">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="dLU-7c-Txc" id="23i-fW-MCM"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4942" y="2322"/>
         </scene>

@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: BaseViewController {
     
+    private let vm: ChangePasswordViewModel =  ChangePasswordViewModel()
+    
+    @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var oldPasswordTextFieldView: UIView!
     @IBOutlet weak var newPasswordTextFieldView: UIView!
     @IBOutlet weak var comfirmPasswordTextFieldView: UIView!
@@ -19,6 +23,7 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var hideShowOldPassButton: UIButton!
     @IBOutlet weak var hideShowNewPassButton: UIButton!
     @IBOutlet weak var hideShowComfirmPassButton: UIButton!
+    @IBOutlet weak var warningStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,7 @@ class ChangePasswordViewController: UIViewController {
     private func setupFirstLoadVC() {
         self.title = "Change account password"
         self.tabBarController?.tabBar.isHidden = true
+        vm.delegate = self
         oldPasswordTextFieldView.textFieldViewConfig()
         newPasswordTextFieldView.textFieldViewConfig()
         comfirmPasswordTextFieldView.textFieldViewConfig()
@@ -35,6 +41,19 @@ class ChangePasswordViewController: UIViewController {
         hideShowOldPassButton.hideShowPasswordButtonConfig()
         hideShowNewPassButton.hideShowPasswordButtonConfig()
         hideShowComfirmPassButton.hideShowPasswordButtonConfig()
+        viewTapGesture.cancelsTouchesInView = false
+        warningStackView.isHidden = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
+        saveChangeButton.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
+        oldPasswordTextField.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
+        newPasswordTextField.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
+        comfirmPasswordTextField.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
+    }
+    
+    private func foundEmptyField() -> Bool {
+        if oldPasswordTextField.text == "" || newPasswordTextField.text == "" || comfirmPasswordTextField.text == "" {
+            return true
+        }
+        return false
     }
     
     private func comfirmPassMatched() -> Bool {
@@ -57,14 +76,38 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func saveChangeButtonClicked(_ sender: Any) {
-        guard comfirmPassMatched() == true else {
-            UIAlertController.showErrorAlert(on: self, message: "Comfirm password doesn't match, please try again")
+        guard foundEmptyField() == false else {
+            UIAlertController.showSimpleAlert(on: self, message: "All field is require, please try again")
             return
         }
+        guard comfirmPassMatched() == true else {
+            UIAlertController.showSimpleAlert(on: self, message: "Comfirm password doesn't match, please try again")
+            return
+        }
+        vm.password = oldPasswordTextField.text!
+        vm.newPassword = newPasswordTextField.text!
+        vm.changePassword()
+    }
+    
+    @IBAction func hideKeyboard(_ sender: Any) {
+        view.endEditing(true)
+        viewTapGesture.cancelsTouchesInView = false
     }
 }
 
-extension ChangePasswordViewController: UITextFieldDelegate {
+extension ChangePasswordViewController: UITextFieldDelegate, ChangPasswordViewModelDelegate {
+    
+    func showErrorAlert(message: String) {
+        UIAlertController.showSimpleAlert(on: self, message: message)
+    }
+    
+    func changePassSuccessHandle() {
+        let vc = ChangePasswordSuccessViewController()
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+        self.next(vc: vc)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case oldPasswordTextField:
@@ -74,5 +117,9 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         default:
             textField.endEditing(true)
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        viewTapGesture.cancelsTouchesInView = true
     }
 }

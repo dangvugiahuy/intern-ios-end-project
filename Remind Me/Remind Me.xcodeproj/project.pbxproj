@@ -18,6 +18,10 @@
 		2947C3742C9051C000C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3732C9051C000C9C3FF /* Base */; };
 		297086EB2C992A510031F478 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086EA2C992A510031F478 /* UIAlertController.swift */; };
 		297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086ED2C993C360031F478 /* EmailAuthViewController.swift */; };
+		299AC7002CA1007900608361 /* ChangePasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC6FE2CA1007900608361 /* ChangePasswordSuccessViewController.swift */; };
+		299AC7012CA1007900608361 /* ChangePasswordSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */; };
+		299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */; };
+		299AC7062CA141E600608361 /* ChangeNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC7052CA141E600608361 /* ChangeNameViewModel.swift */; };
 		29A0D05D2C9A79D0008B6E37 /* LoginUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D05C2C9A79D0008B6E37 /* LoginUserViewModel.swift */; };
 		29A0D05F2C9A7A4B008B6E37 /* RegisterUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D05E2C9A7A4B008B6E37 /* RegisterUserViewModel.swift */; };
 		29A0D0632C9A80F6008B6E37 /* EmailPasswordAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D0622C9A80F6008B6E37 /* EmailPasswordAuthService.swift */; };
@@ -72,6 +76,10 @@
 		2947C3752C9051C000C9C3FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		297086EA2C992A510031F478 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		297086ED2C993C360031F478 /* EmailAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthViewController.swift; sourceTree = "<group>"; };
+		299AC6FE2CA1007900608361 /* ChangePasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordSuccessViewController.swift; sourceTree = "<group>"; };
+		299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordSuccessViewController.xib; sourceTree = "<group>"; };
+		299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordErrorType.swift; sourceTree = "<group>"; };
+		299AC7052CA141E600608361 /* ChangeNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewModel.swift; sourceTree = "<group>"; };
 		29A0D05C2C9A79D0008B6E37 /* LoginUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewModel.swift; sourceTree = "<group>"; };
 		29A0D05E2C9A7A4B008B6E37 /* RegisterUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewModel.swift; sourceTree = "<group>"; };
 		29A0D0622C9A80F6008B6E37 /* EmailPasswordAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPasswordAuthService.swift; sourceTree = "<group>"; };
@@ -128,6 +136,7 @@
 			children = (
 				290858842C9C1B2800A59C8B /* RegisterUserErrorType.swift */,
 				29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */,
+				299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */,
 			);
 			path = ErrorType;
 			sourceTree = "<group>";
@@ -173,8 +182,18 @@
 			isa = PBXGroup;
 			children = (
 				29A5DB412C99671600862103 /* ChangePasswordViewController.swift */,
+				299AC6FE2CA1007900608361 /* ChangePasswordSuccessViewController.swift */,
+				299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */,
 			);
 			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		299AC7042CA141C200608361 /* ChangeName */ = {
+			isa = PBXGroup;
+			children = (
+				299AC7052CA141E600608361 /* ChangeNameViewModel.swift */,
+			);
+			path = ChangeName;
 			sourceTree = "<group>";
 		};
 		29A0D05A2C9A794E008B6E37 /* ViewModels */ = {
@@ -260,8 +279,9 @@
 		29B5AB482C9D54660001D4E3 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
-				661E06982C9EFD1400D54656 /* ChangePassword */,
 				29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */,
+				299AC7042CA141C200608361 /* ChangeName */,
+				661E06982C9EFD1400D54656 /* ChangePassword */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";
@@ -383,10 +403,10 @@
 		666B68792C952D68003212AC /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
+				666B687A2C952D94003212AC /* ProfileViewController.swift */,
 				29A5DB432C9983D000862103 /* ChangeName */,
 				297086EC2C993B260031F478 /* ChangePassword */,
 				29EA98372C981E2E001DB26A /* AboutUs */,
-				666B687A2C952D94003212AC /* ProfileViewController.swift */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";
@@ -461,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */,
+				299AC7012CA1007900608361 /* ChangePasswordSuccessViewController.xib in Resources */,
 				29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */,
 				29A0D0722C9AA8DE008B6E37 /* InternetUnavailableViewController.xib in Resources */,
 				29A5DB402C995F0A00862103 /* GoogleService-Info.plist in Resources */,
@@ -494,6 +515,7 @@
 				666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */,
 				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
 				290858852C9C1B2800A59C8B /* RegisterUserErrorType.swift in Sources */,
+				299AC7062CA141E600608361 /* ChangeNameViewModel.swift in Sources */,
 				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
 				29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */,
 				29A0D06D2C9A8B07008B6E37 /* NetworkMonitor.swift in Sources */,
@@ -501,6 +523,7 @@
 				29A0D0712C9AA8DE008B6E37 /* InternetUnavailableViewController.swift in Sources */,
 				297086EB2C992A510031F478 /* UIAlertController.swift in Sources */,
 				29A0D05D2C9A79D0008B6E37 /* LoginUserViewModel.swift in Sources */,
+				299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */,
 				29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */,
 				29A5DB422C99671600862103 /* ChangePasswordViewController.swift in Sources */,
 				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
@@ -508,6 +531,7 @@
 				290858822C9BDDA800A59C8B /* UserManagementService.swift in Sources */,
 				29B5AB472C9D21860001D4E3 /* LoginUserErrorType.swift in Sources */,
 				29A0D05F2C9A7A4B008B6E37 /* RegisterUserViewModel.swift in Sources */,
+				299AC7002CA1007900608361 /* ChangePasswordSuccessViewController.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
 				29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */,
 				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,

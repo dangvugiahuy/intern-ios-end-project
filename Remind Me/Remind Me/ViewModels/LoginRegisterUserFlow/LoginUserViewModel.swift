@@ -17,7 +17,7 @@ final class LoginUserViewModel {
     
     var email: String = ""
     var password: String = ""
-    var error: LoginUserErrorType = .Default
+    private var error: LoginUserErrorType = .Default
     var vc: UIViewController?
     weak var delegate: LoginUserViewModelDelegate?
     
@@ -25,7 +25,7 @@ final class LoginUserViewModel {
         EmailPasswordAuthService.shared.signIn(email: email, password: password) { [self] result in
             switch result {
             case .success(_):
-                UserDefaults.standard.set(SignInMethod.EmailPassword, forKey: "SignInMethod")
+                UserDefaults.standard.set(SignInMethod.EmailPassword.rawValue, forKey: "SignInMethod")
                 delegate?.logInSuccessHandle()
             case .failure(let failure):
                 if failure == .invalidEmail {
@@ -42,7 +42,7 @@ final class LoginUserViewModel {
         GoogleAuthService.shared.signIn(vc: vc!) { [self] result in
             switch result {
             case .success(_):
-                UserDefaults.standard.set(SignInMethod.Google, forKey: "SignInMethod")
+                UserDefaults.standard.set(SignInMethod.Google.rawValue, forKey: "SignInMethod")
                 delegate?.logInSuccessHandle()
             case .failure(let failure):
                 if failure == .emailAlreadyInUse {

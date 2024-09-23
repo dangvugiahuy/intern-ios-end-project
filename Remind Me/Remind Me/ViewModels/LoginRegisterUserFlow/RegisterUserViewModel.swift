@@ -18,14 +18,14 @@ final class RegisterUserViewModel {
     var email: String = ""
     var password: String = ""
     var vc: UIViewController?
-    var error: RegisterUserErrorType = .None
+    private var error: RegisterUserErrorType = .None
     weak var delegate: RegisterUserViewModelDelegate?
     
     func register() {
         EmailPasswordAuthService.shared.createUser(email: email, password: password) { [self] result in
             switch result {
             case .success(_):
-                UserDefaults.standard.set(SignInMethod.EmailPassword, forKey: "SignInMethod")
+                UserDefaults.standard.set(SignInMethod.EmailPassword.rawValue, forKey: "SignInMethod")
                 delegate?.registerSuccessHandle()
             case .failure(let failure):
                 if failure == .invalidEmail {
@@ -44,7 +44,7 @@ final class RegisterUserViewModel {
         GoogleAuthService.shared.signIn(vc: vc!) { [self] result in
             switch result {
             case .success(_):
-                UserDefaults.standard.set(SignInMethod.Google, forKey: "SignInMethod")
+                UserDefaults.standard.set(SignInMethod.Google.rawValue, forKey: "SignInMethod")
                 delegate?.registerSuccessHandle()
             case .failure(let failure):
                 if failure == .emailAlreadyInUse {

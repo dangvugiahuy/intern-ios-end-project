@@ -63,11 +63,11 @@ class RegisterUserViewController: UIViewController {
     
     @IBAction func signUpButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
-            UIAlertController.showErrorAlert(on: self, message: "All field is require, please try again")
+            UIAlertController.showSimpleAlert(on: self, message: "All field is require, please try again")
             return
         }
         guard comfirmPassMatched() == true else {
-            UIAlertController.showErrorAlert(on: self, message: "Comfirm password doesn't match, please try again")
+            UIAlertController.showSimpleAlert(on: self, message: "Comfirm password doesn't match, please try again")
             return
         }
         vm.email = emailTextField.text!
@@ -103,7 +103,7 @@ extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModel
     }
     
     func showErrorAlert(message: String) {
-        UIAlertController.showErrorAlert(on: self, message: message)
+        UIAlertController.showSimpleAlert(on: self, message: message)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

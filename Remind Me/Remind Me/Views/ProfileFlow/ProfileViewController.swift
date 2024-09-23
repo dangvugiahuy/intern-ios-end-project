@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 import SwiftUI
 
 class ProfileViewController: BaseViewController {
     
-    let vm: ProfileViewModel = ProfileViewModel()
+    private let vm: ProfileViewModel = ProfileViewModel()
     
     @IBOutlet weak var userDisplayNameLabel: UILabel!
     @IBOutlet weak var userEmailLabel: UILabel!
@@ -19,11 +20,12 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFirstLoadVC()
-        setupUIWithUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        vm.reloadUserProfile()
+        setupUIWithUserData()
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -35,9 +37,9 @@ class ProfileViewController: BaseViewController {
     }
     
     private func setupUIWithUserData() {
-        userDisplayNameLabel.text = vm.user?.displayName?.isEmpty != nil ? vm.user?.displayName : vm.user?.email
-        userEmailLabel.text = vm.user?.email
-        userAvatarImageView.loadImageFromURL((vm.user?.photoURL?.absoluteString) ?? "")
+        userDisplayNameLabel.text = vm.getUserDisplayName()
+        userEmailLabel.text = vm.getUserEmail()
+        userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
     }
     
     @IBSegueAction func goToAboutUsView(_ coder: NSCoder) -> UIViewController? {

@@ -14,7 +14,7 @@ protocol ProfileViewModelDelegate: AnyObject {
 
 final class ProfileViewModel {
     
-    var user: User?
+    private var user: User?
     weak var delegate: ProfileViewModelDelegate?
     
     init() {
@@ -28,5 +28,34 @@ final class ProfileViewModel {
         case false:
             break
         }
+    }
+    
+    func reloadUserProfile() {
+        UserManagementService.shared.reload(from: user!) { result in
+            switch result {
+            case .success(let user):
+                self.user = user
+            case .failure(let failure):
+                break
+            }
+        }
+    }
+    
+    func getUserEmail() -> String {
+        guard let user = user else { return "" }
+        guard let email = user.email else { return "" }
+        return email
+    }
+    
+    func getUserDisplayName() -> String {
+        guard let user = user else { return "No name" }
+        guard let displayName = user.displayName else { return "No name" }
+        return displayName
+    }
+    
+    func getUserPhotoURL() -> String {
+        guard let user = user else { return "" }
+        guard let photoURL = user.photoURL?.absoluteString else { return "" }
+        return photoURL
     }
 }
