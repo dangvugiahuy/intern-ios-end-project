@@ -41,7 +41,7 @@ class ChangePasswordViewController: BaseViewController {
         hideShowOldPassButton.hideShowPasswordButtonConfig()
         hideShowNewPassButton.hideShowPasswordButtonConfig()
         hideShowComfirmPassButton.hideShowPasswordButtonConfig()
-        viewTapGesture.cancelsTouchesInView = false
+        viewTapGesture.isEnabled = false
         warningStackView.isHidden = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
         saveChangeButton.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
         oldPasswordTextField.isEnabled = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
@@ -91,7 +91,7 @@ class ChangePasswordViewController: BaseViewController {
     
     @IBAction func hideKeyboard(_ sender: Any) {
         view.endEditing(true)
-        viewTapGesture.cancelsTouchesInView = false
+        viewTapGesture.isEnabled = false
     }
 }
 
@@ -120,6 +120,6 @@ extension ChangePasswordViewController: UITextFieldDelegate, ChangPasswordViewMo
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        viewTapGesture.cancelsTouchesInView = true
+        viewTapGesture.isEnabled = true
     }
 }

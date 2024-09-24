@@ -7,22 +7,22 @@
 
 import UIKit
 
-class TodoViewController: UIViewController {
-
+class TodoViewController: BaseViewController {
+        
+    @IBOutlet weak var switchTaskSegmentControl: UISegmentedControl!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupFirstLoadVC()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if NetworkMonitor.shared.isConnected {
-            
-        } else {
-            let vc = InternetUnavailableViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false)
-        }
+    private func setupFirstLoadVC() {
+        self.title = "Todo"
+        switchTaskSegmentControl.setupSegment()
     }
     
+    @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
+        
+    }
 }

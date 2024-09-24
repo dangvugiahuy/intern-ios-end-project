@@ -35,7 +35,7 @@ class RegisterUserViewController: UIViewController {
         signUpButton.setupFilledButton()
         hideShowPassButton.hideShowPasswordButtonConfig()
         hideShowComfirmPassButton.hideShowPasswordButtonConfig()
-        viewTapGesture.cancelsTouchesInView = false
+        viewTapGesture.isEnabled = false
         vm.delegate = self
         vm.vc = self
     }
@@ -81,7 +81,7 @@ class RegisterUserViewController: UIViewController {
     
     @IBAction func hideKeyboard(_ sender: Any) {
         view.endEditing(true)
-        viewTapGesture.cancelsTouchesInView = false
+        viewTapGesture.isEnabled = false
     }
     
 }
@@ -118,7 +118,7 @@ extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModel
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        viewTapGesture.cancelsTouchesInView = true
+        viewTapGesture.isEnabled = true
     }
     
 }

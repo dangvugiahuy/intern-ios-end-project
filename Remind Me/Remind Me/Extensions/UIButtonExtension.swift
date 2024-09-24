@@ -18,4 +18,9 @@ extension UIButton {
         self.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
         self.setImage(UIImage(systemName: "eye.fill"), for: .selected)
     }
+    
+    func setupCircleButton() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = self.frame.width / 2
+    }
 }

@@ -12,6 +12,7 @@ class ChangeNameViewController: BaseViewController {
  
     private let vm: ChangeNameViewModel =  ChangeNameViewModel()
 
+    @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var fullNameTextFieldView: UIView!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var warningGoogleSignInStackView: UIStackView!
@@ -27,6 +28,7 @@ class ChangeNameViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = true
         fullNameTextFieldView.textFieldViewConfig()
         saveChangeButton.setupFilledButton()
+        viewTapGesture.isEnabled = false
         vm.delegate = self
         fullNameTextField.text = vm.getUserDisplayName()
         warningGoogleSignInStackView.isHidden = SignInMethod.getCurrentSignInMethodValue() != "Google" ? true : false
@@ -50,6 +52,12 @@ class ChangeNameViewController: BaseViewController {
         vm.name = fullNameTextField.text!
         vm.changeName()
     }
+    
+    @IBAction func hideKeyboard(_ sender: Any) {
+        view.endEditing(true)
+        viewTapGesture.isEnabled = false
+    }
+    
 }
 
 extension ChangeNameViewController: UITextFieldDelegate, ChangNameViewModelDelegate {
@@ -67,5 +75,9 @@ extension ChangeNameViewController: UITextFieldDelegate, ChangNameViewModelDeleg
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        viewTapGesture.isEnabled = true
     }
 }

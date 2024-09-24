@@ -12,6 +12,7 @@ class LoginUserViewController: BaseViewController {
     private let vm: LoginUserViewModel = LoginUserViewModel()
 
     @IBOutlet weak var emailTextFieldView: UIView!
+    @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var passwordTextFieldView: UIView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -28,6 +29,7 @@ class LoginUserViewController: BaseViewController {
         passwordTextFieldView.textFieldViewConfig()
         signInButton.setupFilledButton()
         hideShowPasswordButton.hideShowPasswordButtonConfig()
+        viewTapGesture.isEnabled = false
         vm.delegate = self
         vm.vc = self
     }
@@ -54,6 +56,11 @@ class LoginUserViewController: BaseViewController {
         vm.signIn()
     }
     
+    @IBAction func hideKeyboard(_ sender: Any) {
+        view.endEditing(true)
+        viewTapGesture.isEnabled = false
+    }
+    
     @IBAction func signInWithGoogleButtonClicked(_ sender: Any) {
         vm.signInWithGoogle()
     }
@@ -78,5 +85,9 @@ extension LoginUserViewController: UITextFieldDelegate, LoginUserViewModelDelega
         default:
             textField.endEditing(true)
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        viewTapGesture.isEnabled = true
     }
 }
