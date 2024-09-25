@@ -27,10 +27,9 @@ class ChangePasswordViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         self.title = "Change account password"
         self.tabBarController?.tabBar.isHidden = true
         vm.delegate = self

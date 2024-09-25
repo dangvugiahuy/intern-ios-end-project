@@ -21,10 +21,9 @@ class LoginUserViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         emailTextFieldView.textFieldViewConfig()
         passwordTextFieldView.textFieldViewConfig()
         signInButton.setupFilledButton()
@@ -70,8 +69,8 @@ extension LoginUserViewController: UITextFieldDelegate, LoginUserViewModelDelega
     
     func logInSuccessHandle() {
         let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
-        tabBarVC.modalPresentationStyle = .fullScreen
-        present(tabBarVC, animated: true)
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        sceneDelegate.window?.rootViewController = tabBarVC
     }
     
     func showErrorAlert(message: String) {

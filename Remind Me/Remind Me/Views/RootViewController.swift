@@ -26,8 +26,8 @@ class RootViewController: UIViewController {
                 let userSignedIn = UserManagementService.shared.isUserSignedIn()
                 if userSignedIn {
                     let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
-                    tabBarVC.modalPresentationStyle = .fullScreen
-                    present(tabBarVC, animated: true)
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                    sceneDelegate.window?.rootViewController = tabBarVC
                 } else {
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginUserVC") as! LoginUserViewController
                     vc.modalPresentationStyle = .fullScreen

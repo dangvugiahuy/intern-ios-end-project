@@ -29,10 +29,9 @@ class OnBoardingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.setValue(true, forKey: "LaunchBefore")
-        setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         nextButton.setupFilledButton()
         let nib = UINib(nibName: "OnBoardingCollectionViewCell", bundle: .main)
         onboardingCollectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)

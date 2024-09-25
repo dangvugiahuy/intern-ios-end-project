@@ -8,11 +8,13 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupFirstLoadVC()
     }
+    
+    func setupFirstLoadVC() {}
     
     func back(to vc: UIViewController) {
         self.navigationController?.popToViewController(vc, animated: true)
@@ -20,6 +22,10 @@ class BaseViewController: UIViewController {
     
     func back() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func backToRoot() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func next(vc: UIViewController) {

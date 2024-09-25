@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterUserViewController: UIViewController {
+class RegisterUserViewController: BaseViewController {
     
     private let vm: RegisterUserViewModel = RegisterUserViewModel()
 
@@ -25,10 +25,9 @@ class RegisterUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         emailTextFieldView.textFieldViewConfig()
         passwordTextFieldView.textFieldViewConfig()
         comfirmPassTextFieldView.textFieldViewConfig()

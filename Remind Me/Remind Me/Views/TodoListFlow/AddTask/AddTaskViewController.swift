@@ -9,6 +9,7 @@ import UIKit
 
 class AddTaskViewController: BaseViewController {
 
+    @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var listTaskNavigateView: UIView!
     @IBOutlet weak var detailTaskNavigateView: UIView!
     @IBOutlet weak var editTaskView: UIView!
@@ -22,7 +23,7 @@ class AddTaskViewController: BaseViewController {
         setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         self.title = "New Task"
         self.setupLeftNavigationBarItem()
         editTaskView.layer.masksToBounds = true
@@ -34,6 +35,8 @@ class AddTaskViewController: BaseViewController {
         detailTaskNavigateView.textFieldViewConfig()
         listTaskNavigateView.textFieldViewConfig()
         addTaskButton.isEnabled = false
+        taskTitleTextField.becomeFirstResponder()
+        viewTapGesture.isEnabled = false
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -55,6 +58,11 @@ class AddTaskViewController: BaseViewController {
         addTaskButton.isEnabled = taskTitleTextField.text != "" ? true : false
     }
     
+    @IBAction func hideKeyboard(_ sender: Any) {
+        view.endEditing(true)
+        viewTapGesture.isEnabled = false
+    }
+    
 }
 
 extension AddTaskViewController: UITextViewDelegate, UITextFieldDelegate {
@@ -64,6 +72,7 @@ extension AddTaskViewController: UITextViewDelegate, UITextFieldDelegate {
             textView.text = ""
             textView.textColor = .greyscale800
         }
+        viewTapGesture.isEnabled = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -71,5 +80,9 @@ extension AddTaskViewController: UITextViewDelegate, UITextFieldDelegate {
             taskDescriptionTextView.text = "Notes"
             taskDescriptionTextView.textColor = .placeholderText
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        viewTapGesture.isEnabled = true
     }
 }

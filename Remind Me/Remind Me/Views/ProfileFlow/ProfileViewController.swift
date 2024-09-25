@@ -19,7 +19,6 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFirstLoadVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +28,7 @@ class ProfileViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         self.title = "Profile"
         userAvatarImageView.setupAvtImage()
         self.setupLeftNavigationBarItem()
@@ -80,9 +79,9 @@ class ProfileViewController: BaseViewController {
 
 extension ProfileViewController: ProfileViewModelDelegate {
     func signOutSuccessHandle() {
-        let vc = self.storyboard?.instantiateViewController(identifier: "LoginUserVC") as! LoginUserViewController
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.navigationBar.isHidden = true
-        self.next(vc: vc)
+        let vc = self.storyboard?.instantiateViewController(identifier: "RootVC") as! RootViewController
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        sceneDelegate.window?.rootViewController = vc
+        self.backToRoot()
     }
 }

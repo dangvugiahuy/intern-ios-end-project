@@ -42,6 +42,12 @@
 		29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */; };
 		29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */; };
 		29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ABC0812C940058006FA486 /* LoginUserViewController.swift */; };
+		29B184C72CA3AEC400A4EE06 /* ChooseTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B184C62CA3AEC400A4EE06 /* ChooseTaskListViewController.swift */; };
+		29B184CA2CA3CD3200A4EE06 /* CloudFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B184C92CA3CD3200A4EE06 /* CloudFirestoreService.swift */; };
+		29B184CD2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 29B184CC2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community */; };
+		29B184CF2CA3E83700A4EE06 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B184CE2CA3E83700A4EE06 /* TaskList.swift */; };
+		29B184D12CA3E8CC00A4EE06 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B184D02CA3E8CC00A4EE06 /* Todo.swift */; };
+		29B184D32CA4096A00A4EE06 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B184D22CA4096A00A4EE06 /* PresentationController.swift */; };
 		29B5AB472C9D21860001D4E3 /* LoginUserErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */; };
 		29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */; };
 		29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */; };
@@ -99,6 +105,11 @@
 		29ABC07D2C93DB3B006FA486 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		29ABC07F2C93EB5E006FA486 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		29ABC0812C940058006FA486 /* LoginUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewController.swift; sourceTree = "<group>"; };
+		29B184C62CA3AEC400A4EE06 /* ChooseTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTaskListViewController.swift; sourceTree = "<group>"; };
+		29B184C92CA3CD3200A4EE06 /* CloudFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFirestoreService.swift; sourceTree = "<group>"; };
+		29B184CE2CA3E83700A4EE06 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		29B184D02CA3E8CC00A4EE06 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		29B184D22CA4096A00A4EE06 /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		29B5AB462C9D21860001D4E3 /* LoginUserErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserErrorType.swift; sourceTree = "<group>"; };
 		29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		29C5859E2C9289CD00E26CC4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -131,6 +142,7 @@
 				29A0D06A2C9A82A2008B6E37 /* GoogleSignInSwift in Frameworks */,
 				29A5DB3A2C995CC800862103 /* FirebaseAuth in Frameworks */,
 				29A0D0682C9A82A2008B6E37 /* GoogleSignIn in Frameworks */,
+				29B184CD2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				29A5DB3C2C995CC800862103 /* FirebaseFirestore in Frameworks */,
 				29A5DB3E2C995CC800862103 /* FirebaseStorage in Frameworks */,
 			);
@@ -154,6 +166,7 @@
 			children = (
 				2947C3662C9051BF00C9C3FF /* Remind Me */,
 				2947C3652C9051BF00C9C3FF /* Products */,
+				29B184CB2CA3D2AB00A4EE06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +238,7 @@
 		29A0D0602C9A7EA6008B6E37 /* FirebaseService */ = {
 			isa = PBXGroup;
 			children = (
+				29B184C82CA3CD0B00A4EE06 /* CloudFirestore */,
 				29A0D0612C9A7ED0008B6E37 /* Authentication */,
 			);
 			path = FirebaseService;
@@ -286,6 +300,29 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		29B184C52CA3AE9200A4EE06 /* ChooseTaskList */ = {
+			isa = PBXGroup;
+			children = (
+				29B184C62CA3AEC400A4EE06 /* ChooseTaskListViewController.swift */,
+			);
+			path = ChooseTaskList;
+			sourceTree = "<group>";
+		};
+		29B184C82CA3CD0B00A4EE06 /* CloudFirestore */ = {
+			isa = PBXGroup;
+			children = (
+				29B184C92CA3CD3200A4EE06 /* CloudFirestoreService.swift */,
+			);
+			path = CloudFirestore;
+			sourceTree = "<group>";
+		};
+		29B184CB2CA3D2AB00A4EE06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		29B5AB482C9D54660001D4E3 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				29C585A92C929BA300E26CC4 /* OnboardingSlide.swift */,
+				29B184CE2CA3E83700A4EE06 /* TaskList.swift */,
+				29B184D02CA3E8CC00A4EE06 /* Todo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +386,7 @@
 			children = (
 				29FF84F92CA2A11E00673602 /* AddTaskViewController.swift */,
 				29FF84FD2CA2C8CD00673602 /* EditTaskDetail */,
+				29B184C52CA3AE9200A4EE06 /* ChooseTaskList */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -371,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				290858832C9C1AFA00A59C8B /* ErrorType */,
+				29B184D22CA4096A00A4EE06 /* PresentationController.swift */,
 				662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */,
 				668940162C9FD0200099AC20 /* SignInMethod.swift */,
 			);
@@ -461,6 +502,7 @@
 				29A5DB3D2C995CC800862103 /* FirebaseStorage */,
 				29A0D0672C9A82A2008B6E37 /* GoogleSignIn */,
 				29A0D0692C9A82A2008B6E37 /* GoogleSignInSwift */,
+				29B184CC2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = "Remind Me";
 			productReference = 2947C3642C9051BF00C9C3FF /* Remind Me.app */;
@@ -533,12 +575,16 @@
 				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
+				29B184D12CA3E8CC00A4EE06 /* Todo.swift in Sources */,
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				29A0D0652C9A8125008B6E37 /* GoogleAuthService.swift in Sources */,
+				29B184C72CA3AEC400A4EE06 /* ChooseTaskListViewController.swift in Sources */,
+				29B184CA2CA3CD3200A4EE06 /* CloudFirestoreService.swift in Sources */,
 				29FF84FC2CA2B64E00673602 /* UIBarButtonItem.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				29A5DB452C9983F900862103 /* ChangeNameViewController.swift in Sources */,
 				668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */,
+				29B184CF2CA3E83700A4EE06 /* TaskList.swift in Sources */,
 				29A0D0632C9A80F6008B6E37 /* EmailPasswordAuthService.swift in Sources */,
 				29C585AD2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.swift in Sources */,
 				666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */,
@@ -568,6 +614,7 @@
 				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,
 				292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */,
 				661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */,
+				29B184D32CA4096A00A4EE06 /* PresentationController.swift in Sources */,
 				29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */,
 				29C585B52C92D90400E26CC4 /* RegisterUserViewController.swift in Sources */,
 			);
@@ -843,6 +890,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29A5DB382C995CC800862103 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		29B184CC2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29A5DB382C995CC800862103 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

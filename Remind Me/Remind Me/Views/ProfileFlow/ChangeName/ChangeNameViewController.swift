@@ -20,10 +20,9 @@ class ChangeNameViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         self.title = "Change account name"
         self.tabBarController?.tabBar.isHidden = true
         fullNameTextFieldView.textFieldViewConfig()

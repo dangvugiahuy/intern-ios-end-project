@@ -14,7 +14,7 @@ class EditTaskDetailViewController: BaseViewController {
         setupFirstLoadVC()
     }
     
-    private func setupFirstLoadVC() {
+    override func setupFirstLoadVC() {
         self.title = "Details"
     }
 }

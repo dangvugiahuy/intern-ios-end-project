@@ -35,7 +35,7 @@ final class ProfileViewModel {
             switch result {
             case .success(let user):
                 self.user = user
-            case .failure(let failure):
+            case .failure(_):
                 break
             }
         }
