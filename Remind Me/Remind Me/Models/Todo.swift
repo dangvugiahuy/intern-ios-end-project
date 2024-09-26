@@ -18,7 +18,7 @@ struct Todo: Codable, Identifiable {
     var completed: Bool
 }
 
-enum Priority: Int {
+enum Priority: Int, CaseIterable {
     case None = 0
     case Low = 1
     case Medium = 2

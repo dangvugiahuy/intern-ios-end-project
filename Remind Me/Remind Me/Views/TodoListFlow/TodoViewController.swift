@@ -37,7 +37,7 @@ class TodoViewController: BaseViewController {
 extension TodoViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentController = PresentationController(presentedViewController: presented, presenting: presenting)
-        presentController.heightValue = 0.7
+        presentController.heightValue = 0.8
         presentController.yValue = (1 - presentController.heightValue!)
         return presentController
     }
