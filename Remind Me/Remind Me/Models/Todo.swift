@@ -15,7 +15,7 @@ struct Todo: Codable, Identifiable {
     var date: TimeInterval?
     var time: TimeInterval?
     var priority: Int
-    var completed: Bool
+    var completed: Bool = false
 }
 
 enum Priority: Int, CaseIterable {
