@@ -44,7 +44,7 @@ class ChangeNameViewController: BaseViewController {
     
     @IBAction func saveChangeButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
-            UIAlertController.showSimpleAlert(on: self, message: "Display name is require, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "Display name is require, please try again")
             fullNameTextField.text = vm.getUserDisplayName()
             return
         }
@@ -62,9 +62,7 @@ class ChangeNameViewController: BaseViewController {
 extension ChangeNameViewController: UITextFieldDelegate, ChangNameViewModelDelegate {
     
     func changeNameSuccessHandle() {
-        let alert = UIAlertController(title: "Remind Me", message: "Change Display name successfully", preferredStyle: .alert)
-        alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
-        alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
+        let alert = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Change Display name successfully", style: .alert)
         alert.view.tintColor = UIColor(named: "Greyscale800")
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
             self.back()

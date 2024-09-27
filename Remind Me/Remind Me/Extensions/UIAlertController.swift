@@ -10,13 +10,20 @@ import UIKit
 
 extension UIAlertController {
     
-    static func showSimpleAlert(on vc: UIViewController, message: String) {
+    static func showSimpleAlertWithOKButton(on vc: UIViewController, message: String) {
         let alert = UIAlertController(title: "Remind Me", message: message, preferredStyle: .alert)
         alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
         alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         alert.view.tintColor = UIColor(named: "Greyscale800")
         vc.present(alert, animated: true)
+    }
+    
+    static func createSimpleAlert(with title: String, and message: String, style: UIAlertController.Style) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
+        alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
+        return alert
     }
     
     func setTitleAtt(font: UIFont?, color: UIColor?) {

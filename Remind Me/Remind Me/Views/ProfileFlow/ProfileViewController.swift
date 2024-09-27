@@ -47,9 +47,7 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func changeUserImageSelector(_ sender: Any) {
-        let actionSheet = UIAlertController(title: "Remind Me", message: "Change account image", preferredStyle: .actionSheet)
-        actionSheet.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Greyscale800"))
-        actionSheet.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
+        let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Change account image", style: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             actionSheet.dismiss(animated: true)
         }))
@@ -64,9 +62,7 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func signOutButtonClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "Remind Me", message: "Are you sure to log out", preferredStyle: .alert)
-        alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
-        alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
+        let alert = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Are you sure to log out", style: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             alert.dismiss(animated: true)
         }))

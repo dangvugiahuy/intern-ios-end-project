@@ -76,11 +76,11 @@ class ChangePasswordViewController: BaseViewController {
     
     @IBAction func saveChangeButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
-            UIAlertController.showSimpleAlert(on: self, message: "All field is require, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "All field is require, please try again")
             return
         }
         guard comfirmPassMatched() == true else {
-            UIAlertController.showSimpleAlert(on: self, message: "Comfirm password doesn't match, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "Comfirm password doesn't match, please try again")
             return
         }
         vm.password = oldPasswordTextField.text!
@@ -97,7 +97,7 @@ class ChangePasswordViewController: BaseViewController {
 extension ChangePasswordViewController: UITextFieldDelegate, ChangPasswordViewModelDelegate {
     
     func showErrorAlert(message: String) {
-        UIAlertController.showSimpleAlert(on: self, message: message)
+        UIAlertController.showSimpleAlertWithOKButton(on: self, message: message)
     }
     
     func changePassSuccessHandle() {

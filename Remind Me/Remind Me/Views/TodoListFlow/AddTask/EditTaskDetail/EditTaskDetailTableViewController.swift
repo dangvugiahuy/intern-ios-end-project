@@ -16,6 +16,7 @@ class EditTaskDetailTableViewController: UITableViewController {
     public var priority: Priority?
     public var date: TimeInterval?
     public var time: TimeInterval?
+    private var dateShowType: DateShowType = .Other("")
     
     weak var delegate: EditTaskDetailTableViewControllerDelegate?
 
@@ -50,6 +51,8 @@ class EditTaskDetailTableViewController: UITableViewController {
         hideShowTimeSwitch.isOn = time != nil ? true : false
         dateLabel.isHidden = hideShowDateSwitch.isOn ? false : true
         timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
+        setupDateUIWithData()
+        setupTimeUIWithData()
         taskPriorityLabel.text = "\(priority ?? Priority.None)"
     }
     
@@ -79,6 +82,31 @@ class EditTaskDetailTableViewController: UITableViewController {
         return config
     }
     
+    private func setupDateUIWithData() {
+        if let date = date {
+            let dateFromInterval = Date(timeIntervalSinceNow: date)
+            taskDatePicker.setDate(dateFromInterval, animated: true)
+            if Calendar.current.isDateInToday(dateFromInterval) {
+                dateShowType = .Today
+            } else if Calendar.current.isDateInYesterday(dateFromInterval) {
+                dateShowType = .Yesterday
+            } else if Calendar.current.isDateInTomorrow(dateFromInterval) {
+                dateShowType = .Tomorrow
+            } else {
+                dateShowType = .Other(DateFormatter().formated(from: dateFromInterval, with: "EEEE, MMMM d, yyyy"))
+            }
+            dateLabel.text = dateShowType.dateStringFormat()
+        }
+    }
+    
+    private func setupTimeUIWithData() {
+        if let time = time {
+            let timeFromInterval = Date(timeIntervalSinceNow: time)
+            taskTimePicker.setDate(timeFromInterval, animated: true)
+            timeLabel.text = DateFormatter().formated(from: timeFromInterval, with: "h:mm a")
+        }
+    }
+    
     private func setContextMenuAction() -> [UIMenuElement] {
         var actions = [UIMenuElement]()
         Priority.allCases.map {
@@ -97,9 +125,11 @@ class EditTaskDetailTableViewController: UITableViewController {
         if !hideShowDateSwitch.isOn && hideShowTimeSwitch.isOn {
             hideShowTimeSwitch.isOn = false
             timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
+            self.time = hideShowTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSinceNow : nil
         }
         dateLabel.isHidden = hideShowDateSwitch.isOn ? false : true
         self.date = hideShowDateSwitch.isOn ? taskDatePicker.date.timeIntervalSinceNow : nil
+        setupDateUIWithData()
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -108,11 +138,26 @@ class EditTaskDetailTableViewController: UITableViewController {
         if hideShowTimeSwitch.isOn && !hideShowDateSwitch.isOn {
             hideShowDateSwitch.isOn = true
             dateLabel.isHidden = hideShowDateSwitch.isOn ? false : true
+            self.date = hideShowDateSwitch.isOn ? taskDatePicker.date.timeIntervalSinceNow : nil
+            setupDateUIWithData()
         }
         timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
-        self.time = hideShowTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSinceNow : nil
         taskTimePicker.alpha = hideShowTimeSwitch.isOn ? 1 : 0
+        self.time = hideShowTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSinceNow : nil
+        setupTimeUIWithData()
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    
+    
+    @IBAction func taskDatePickerChange(_ sender: Any) {
+        self.date = taskDatePicker.date.timeIntervalSinceNow
+        setupDateUIWithData()
+    }
+    
+    @IBAction func taskTimePickerChange(_ sender: Any) {
+        self.time = taskTimePicker.date.timeIntervalSinceNow
+        setupTimeUIWithData()
+    }
+    
 }

@@ -32,6 +32,12 @@ class TodoViewController: BaseViewController {
         self.present(navigateVC, animated: true)
     }
     
+    @IBAction func addTaskListClicked(_ sender: UIBarButtonItem) {
+        let navigateVC = self.storyboard?.instantiateViewController(withIdentifier: "AddTaskListNavigateVC") as! UINavigationController
+        navigateVC.modalPresentationStyle = .custom
+        navigateVC.transitioningDelegate = self
+        self.present(navigateVC, animated: true)
+    }
 }
 
 extension TodoViewController: UIViewControllerTransitioningDelegate {

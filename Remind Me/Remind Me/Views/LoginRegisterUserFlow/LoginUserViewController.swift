@@ -47,7 +47,7 @@ class LoginUserViewController: BaseViewController {
     
     @IBAction func signInButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
-            UIAlertController.showSimpleAlert(on: self, message: "All field is require, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "All field is require, please try again")
             return
         }
         vm.email = emailTextField.text!
@@ -74,7 +74,7 @@ extension LoginUserViewController: UITextFieldDelegate, LoginUserViewModelDelega
     }
     
     func showErrorAlert(message: String) {
-        UIAlertController.showSimpleAlert(on: self, message: message)
+        UIAlertController.showSimpleAlertWithOKButton(on: self, message: message)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

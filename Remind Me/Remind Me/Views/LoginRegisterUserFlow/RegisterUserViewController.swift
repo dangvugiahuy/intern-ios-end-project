@@ -62,11 +62,11 @@ class RegisterUserViewController: BaseViewController {
     
     @IBAction func signUpButtonClicked(_ sender: Any) {
         guard foundEmptyField() == false else {
-            UIAlertController.showSimpleAlert(on: self, message: "All field is require, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "All field is require, please try again")
             return
         }
         guard comfirmPassMatched() == true else {
-            UIAlertController.showSimpleAlert(on: self, message: "Comfirm password doesn't match, please try again")
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "Comfirm password doesn't match, please try again")
             return
         }
         vm.email = emailTextField.text!
@@ -88,9 +88,7 @@ class RegisterUserViewController: BaseViewController {
 extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModelDelegate {
     
     func registerSuccessHandle() {
-        let alert = UIAlertController(title: "Remind Me", message: "You’re all set", preferredStyle: .alert)
-        alert.setTitleAtt(font: UIFont(name: "Poppins-SemiBold", size: 18), color: UIColor(named: "Primary900"))
-        alert.setMessageAtt(font: UIFont(name: "Poppins-Light", size: 14), color: UIColor(named: "Greyscale800"))
+        let alert = UIAlertController.createSimpleAlert(with: "Remind Me", and: "You’re all set", style: .alert)
         let okButton = UIAlertAction(title: "Let's GO!", style: .default) { _ in
             let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
             tabBarVC.modalPresentationStyle = .fullScreen
@@ -102,7 +100,7 @@ extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModel
     }
     
     func showErrorAlert(message: String) {
-        UIAlertController.showSimpleAlert(on: self, message: message)
+        UIAlertController.showSimpleAlertWithOKButton(on: self, message: message)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -12,7 +12,8 @@ class AddTaskTableViewController: UITableViewController {
     private var priority: Priority?
     private var date: TimeInterval?
     private var time: TimeInterval?
-
+    private var dateShowType: DateShowType = .Other("")
+    
     @IBOutlet weak var taskDetailLabel: UILabel!
     @IBOutlet weak var taskNotesTextViewPlaceholderLabel: UILabel!
     @IBOutlet weak var taskNotesTextView: UITextView!
@@ -34,14 +35,26 @@ class AddTaskTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if date == nil && time == nil {
-            taskDetailLabel.isHidden = true
-        } else {
-            taskDetailLabel.isHidden = false
-            let dateString: String = date != nil ? "\(date!), " : ""
-            let timeString: String = time != nil ? "\(time!)" : ""
-            taskDetailLabel.text = dateString + timeString
+        tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
+        updateDateTime()
+    }
+    
+    private func updateDateTime() {
+        taskDetailLabel.isHidden = date == nil && time == nil ? true : false
+        if let date = date {
+            if Calendar.current.isDateInToday(Date(timeIntervalSinceNow: date)) {
+                dateShowType = .Today
+            } else if Calendar.current.isDateInYesterday(Date(timeIntervalSinceNow: date)) {
+                dateShowType = .Yesterday
+            } else if Calendar.current.isDateInTomorrow(Date(timeIntervalSinceNow: date)) {
+                dateShowType = .Tomorrow
+            } else {
+                dateShowType = .Other(DateFormatter().formated(from: Date(timeIntervalSinceNow: date), with: "MMM d, yyyy"))
+            }
         }
+        let dateString: String = date != nil ? dateShowType.dateStringFormat() : ""
+        let timeString: String = time != nil ? " at " + DateFormatter().formated(from: Date(timeIntervalSinceNow: time!), with: "h:mm a") : ""
+        taskDetailLabel.text = dateString + timeString
     }
     
     @IBAction func taskTitleTextFieldChangeHandle(_ sender: Any) {
@@ -80,6 +93,7 @@ extension AddTaskTableViewController: UITextFieldDelegate, UITextViewDelegate, E
         self.priority = priority
         self.date = date
         self.time = time
+        updateDateTime()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
