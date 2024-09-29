@@ -76,6 +76,11 @@
 		662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662E1E822C91B7A000CBA8B3 /* TaskDetailViewController.swift */; };
 		666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666B687A2C952D94003212AC /* ProfileViewController.swift */; };
 		668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668940162C9FD0200099AC20 /* SignInMethod.swift */; };
+		669075C82CA93A31001E3B63 /* AddTaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */; };
+		669075CB2CA94991001E3B63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CA2CA94991001E3B63 /* String.swift */; };
+		669075D02CA96005001E3B63 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CF2CA96005001E3B63 /* TaskListViewController.swift */; };
+		669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */; };
+		669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +149,11 @@
 		662E1E832C91B7A000CBA8B3 /* TaskDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskDetailViewController.xib; sourceTree = "<group>"; };
 		666B687A2C952D94003212AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		668940162C9FD0200099AC20 /* SignInMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMethod.swift; sourceTree = "<group>"; };
+		669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListViewModel.swift; sourceTree = "<group>"; };
+		669075CA2CA94991001E3B63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		669075CF2CA96005001E3B63 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
+		669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,8 +242,9 @@
 		29A0D05A2C9A794E008B6E37 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				29B5AB482C9D54660001D4E3 /* ProfileFlow */,
 				29A0D05B2C9A7985008B6E37 /* LoginRegisterUserFlow */,
+				29B5AB482C9D54660001D4E3 /* ProfileFlow */,
+				669075C62CA939E2001E3B63 /* TodoListFlow */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -310,6 +321,7 @@
 				29FF84FB2CA2B64E00673602 /* UIBarButtonItem.swift */,
 				29A88C7B2CA662B400CE0662 /* DateFormatter.swift */,
 				29C0893B2CA6A7B000BAC69D /* UIColor.swift */,
+				669075CA2CA94991001E3B63 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -479,8 +491,8 @@
 			isa = PBXGroup;
 			children = (
 				292D73F82C94460E0069A2B1 /* TodoViewController.swift */,
-				29C089332CA6926200BAC69D /* AddTaskList */,
-				29FF84F82CA2A0F800673602 /* AddTask */,
+				669075CC2CA95F20001E3B63 /* ManageTaskList */,
+				665B25122CA97D0200382ABC /* ManageTask */,
 				662E1E812C91B77300CBA8B3 /* TaskDetail */,
 			);
 			path = TodoListFlow;
@@ -503,6 +515,14 @@
 			path = TaskDetail;
 			sourceTree = "<group>";
 		};
+		665B25122CA97D0200382ABC /* ManageTask */ = {
+			isa = PBXGroup;
+			children = (
+				29FF84F82CA2A0F800673602 /* AddTask */,
+			);
+			path = ManageTask;
+			sourceTree = "<group>";
+		};
 		666B68792C952D68003212AC /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +532,57 @@
 				29EA98372C981E2E001DB26A /* AboutUs */,
 			);
 			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		669075C62CA939E2001E3B63 /* TodoListFlow */ = {
+			isa = PBXGroup;
+			children = (
+				669075C92CA93E75001E3B63 /* ManageTaskList */,
+			);
+			path = TodoListFlow;
+			sourceTree = "<group>";
+		};
+		669075C92CA93E75001E3B63 /* ManageTaskList */ = {
+			isa = PBXGroup;
+			children = (
+				669075CD2CA95F4E001E3B63 /* AddTaskList */,
+			);
+			path = ManageTaskList;
+			sourceTree = "<group>";
+		};
+		669075CC2CA95F20001E3B63 /* ManageTaskList */ = {
+			isa = PBXGroup;
+			children = (
+				669075CE2CA95FC1001E3B63 /* TaskList */,
+				29C089332CA6926200BAC69D /* AddTaskList */,
+			);
+			path = ManageTaskList;
+			sourceTree = "<group>";
+		};
+		669075CD2CA95F4E001E3B63 /* AddTaskList */ = {
+			isa = PBXGroup;
+			children = (
+				669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */,
+			);
+			path = AddTaskList;
+			sourceTree = "<group>";
+		};
+		669075CE2CA95FC1001E3B63 /* TaskList */ = {
+			isa = PBXGroup;
+			children = (
+				669075CF2CA96005001E3B63 /* TaskListViewController.swift */,
+				669075D12CA96091001E3B63 /* TaskListDetail */,
+			);
+			path = TaskList;
+			sourceTree = "<group>";
+		};
+		669075D12CA96091001E3B63 /* TaskListDetail */ = {
+			isa = PBXGroup;
+			children = (
+				669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */,
+				669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */,
+			);
+			path = TaskListDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -591,6 +662,7 @@
 				29A0D0722C9AA8DE008B6E37 /* InternetUnavailableViewController.xib in Resources */,
 				29A5DB402C995F0A00862103 /* GoogleService-Info.plist in Resources */,
 				2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */,
+				669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */,
 				2947C3742C9051C000C9C3FF /* Base in Resources */,
 				29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */,
 				29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */,
@@ -611,7 +683,9 @@
 				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
+				669075D02CA96005001E3B63 /* TaskListViewController.swift in Sources */,
 				29B184D12CA3E8CC00A4EE06 /* Todo.swift in Sources */,
+				669075CB2CA94991001E3B63 /* String.swift in Sources */,
 				29C089392CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift in Sources */,
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				29A0D0652C9A8125008B6E37 /* GoogleAuthService.swift in Sources */,
@@ -639,6 +713,7 @@
 				29C089352CA6928E00BAC69D /* AddTaskListTableViewController.swift in Sources */,
 				29A0D05D2C9A79D0008B6E37 /* LoginUserViewModel.swift in Sources */,
 				299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */,
+				669075C82CA93A31001E3B63 /* AddTaskListViewModel.swift in Sources */,
 				29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */,
 				29A5DB422C99671600862103 /* ChangePasswordViewController.swift in Sources */,
 				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
@@ -657,6 +732,7 @@
 				29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */,
 				29C585B52C92D90400E26CC4 /* RegisterUserViewController.swift in Sources */,
 				291DFE192CA4FA3B0019A851 /* AddTaskTableViewController.swift in Sources */,
+				669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

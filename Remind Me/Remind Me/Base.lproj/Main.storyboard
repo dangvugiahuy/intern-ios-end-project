@@ -37,27 +37,50 @@
                                     <constraint firstAttribute="height" constant="40" id="LB3-eM-GZN"/>
                                 </constraints>
                                 <segments>
+                                    <segment title="Today"/>
                                     <segment title="All"/>
                                     <segment title="Completed"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="Primary900"/>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdS-WY-od2">
+                                <rect key="frame" x="16" y="179" width="361" height="541"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Dvi-ed-hhM">
+                                        <rect key="frame" x="170.66666666666666" y="260.66666666666669" width="20" height="20"/>
+                                        <color key="color" name="Primary900"/>
+                                    </activityIndicatorView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Apq-ba-iou">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="541"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Apq-ba-iou" secondAttribute="trailing" id="FfC-oJ-h6H"/>
+                                    <constraint firstItem="Dvi-ed-hhM" firstAttribute="centerY" secondItem="HdS-WY-od2" secondAttribute="centerY" id="b2Q-TG-HL0"/>
+                                    <constraint firstAttribute="bottom" secondItem="Apq-ba-iou" secondAttribute="bottom" id="syF-w8-gdu"/>
+                                    <constraint firstItem="Apq-ba-iou" firstAttribute="top" secondItem="HdS-WY-od2" secondAttribute="top" id="tR5-rH-gaU"/>
+                                    <constraint firstItem="Dvi-ed-hhM" firstAttribute="centerX" secondItem="HdS-WY-od2" secondAttribute="centerX" id="ucX-d1-wnR"/>
+                                    <constraint firstItem="Apq-ba-iou" firstAttribute="leading" secondItem="HdS-WY-od2" secondAttribute="leading" id="vOu-uM-OHX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pn6-B6-FH1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="pn6-B6-FH1" firstAttribute="trailing" secondItem="HdS-WY-od2" secondAttribute="trailing" constant="16" id="4Sb-Od-ehY"/>
                             <constraint firstItem="jXU-R0-OgH" firstAttribute="leading" secondItem="pn6-B6-FH1" secondAttribute="leading" constant="16" id="6iO-dd-uBO"/>
+                            <constraint firstItem="HdS-WY-od2" firstAttribute="leading" secondItem="pn6-B6-FH1" secondAttribute="leading" constant="16" id="IV0-EP-pVV"/>
                             <constraint firstItem="pn6-B6-FH1" firstAttribute="trailing" secondItem="jXU-R0-OgH" secondAttribute="trailing" constant="16" id="KKa-Mh-Jex"/>
+                            <constraint firstItem="pn6-B6-FH1" firstAttribute="bottom" secondItem="HdS-WY-od2" secondAttribute="bottom" id="agp-Y3-j1D"/>
                             <constraint firstItem="jXU-R0-OgH" firstAttribute="top" secondItem="pn6-B6-FH1" secondAttribute="top" constant="12" id="hG3-dR-ps0"/>
+                            <constraint firstItem="HdS-WY-od2" firstAttribute="top" secondItem="jXU-R0-OgH" secondAttribute="bottom" constant="24" id="oad-DH-lay"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="wJ3-kX-3YR">
-                        <barButtonItem key="leftBarButtonItem" image="text.badge.plus" catalog="system" style="plain" id="fZj-5i-bKU">
+                        <barButtonItem key="leftBarButtonItem" image="tray.2" catalog="system" style="plain" id="fZj-5i-bKU">
                             <color key="tintColor" name="Primary900"/>
-                            <connections>
-                                <action selector="addTaskListClicked:" destination="Hqr-Yv-acx" id="JNA-qH-5kK"/>
-                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="slider.horizontal.3" catalog="system" style="plain" id="fpO-6Q-sqW">
@@ -77,6 +100,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="filterButton" destination="fpO-6Q-sqW" id="U16-cX-x7t"/>
+                        <outlet property="manageTaskListButton" destination="fZj-5i-bKU" id="47H-9K-nLz"/>
                         <outlet property="switchTaskSegmentControl" destination="jXU-R0-OgH" id="XvC-hP-dLy"/>
                     </connections>
                 </viewController>
@@ -87,7 +111,7 @@
         <!--Add Task Table View Controller-->
         <scene sceneID="6Od-Oc-C5T">
             <objects>
-                <tableViewController id="ptd-9H-UbW" customClass="AddTaskTableViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddNewTaskVC" id="ptd-9H-UbW" customClass="AddTaskTableViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="rtw-Im-lQe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,7 +334,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxM-vu-4wD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-244" y="2418"/>
+            <point key="canvasLocation" x="681.67938931297704" y="2417.605633802817"/>
         </scene>
         <!--Edit Task Detail Table View Controller-->
         <scene sceneID="6hS-eN-dKf">
@@ -385,14 +409,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nHx-2V-2qA">
-                                        <rect key="frame" x="20" y="73.333332061767578" width="353" height="347.66665649414062"/>
+                                        <rect key="frame" x="20" y="73.333332061767578" width="353" height="349.66665649414062"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nHx-2V-2qA" id="jdV-yY-Cji">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="347.66665649414062"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="349.66665649414062"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="4QX-jK-k6z">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="347.66666666666669"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="349.66666666666669"/>
                                                     <color key="tintColor" name="Primary900"/>
                                                     <connections>
                                                         <action selector="taskDatePickerChange:" destination="Sgd-HC-HN9" eventType="valueChanged" id="Jaf-Ta-hPm"/>
@@ -408,7 +432,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Qy8-lD-gEq">
-                                        <rect key="frame" x="20" y="420.9999885559082" width="353" height="55.333332061767578"/>
+                                        <rect key="frame" x="20" y="422.9999885559082" width="353" height="55.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qy8-lD-gEq" id="BZL-Sm-260">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="55.333332061767578"/>
@@ -468,7 +492,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hKB-j9-8da">
-                                        <rect key="frame" x="20" y="476.33332061767578" width="353" height="226.33332824707031"/>
+                                        <rect key="frame" x="20" y="478.33332061767578" width="353" height="226.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hKB-j9-8da" id="yOn-IZ-ZUB">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="226.33332824707031"/>
@@ -494,7 +518,7 @@
                             <tableViewSection id="AWE-bo-h3g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oVE-Vx-2cR">
-                                        <rect key="frame" x="20" y="738.66664886474609" width="353" height="55.333332061767578"/>
+                                        <rect key="frame" x="20" y="740.66664886474609" width="353" height="55.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oVE-Vx-2cR" id="3VK-ap-dEs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="55.333332061767578"/>
@@ -563,7 +587,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apx-hO-x3i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1129.0076335877861" y="3205.6338028169016"/>
+            <point key="canvasLocation" x="-202" y="3201"/>
         </scene>
         <!--Choose Task List View Controller-->
         <scene sceneID="wkr-io-Ls7">
@@ -608,7 +632,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWi-I6-zsc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="3206"/>
+            <point key="canvasLocation" x="1535" y="3201"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="3xS-7b-CnY">
@@ -1696,7 +1720,7 @@
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcw-8a-ISQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6795" y="2253"/>
+            <point key="canvasLocation" x="6795" y="2285"/>
         </scene>
         <!--Change Name View Controller-->
         <scene sceneID="SFz-Hh-IwH">
@@ -1801,7 +1825,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5040" y="2245"/>
+            <point key="canvasLocation" x="5040" y="2285"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9UP-SW-DfO">
@@ -2047,7 +2071,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5926" y="2253"/>
+            <point key="canvasLocation" x="5926" y="2285"/>
         </scene>
         <!--Profile-->
         <scene sceneID="8Sy-hc-z9i">
@@ -2118,10 +2142,26 @@
             </objects>
             <point key="canvasLocation" x="-1958" y="1504"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="os9-iX-8X9">
+            <objects>
+                <viewController id="hcr-VO-ZUK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qU3-QT-7a0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Kgt-56-O8N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oBn-DW-Dk1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L9Y-cb-zsi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1129" y="2418"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="G9h-bm-Afw">
             <objects>
-                <navigationController storyboardIdentifier="AddTaskNavigateVC" automaticallyAdjustsScrollViewInsets="NO" id="Njm-DZ-Etn" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Njm-DZ-Etn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7rh-YK-cv2">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -2138,12 +2178,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZB-EP-Bg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1129" y="2418"/>
+            <point key="canvasLocation" x="-202.29007633587784" y="2417.605633802817"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7N-cl-cWy">
             <objects>
-                <navigationController storyboardIdentifier="AddTaskListNavigateVC" automaticallyAdjustsScrollViewInsets="NO" id="sPk-sb-se3" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sPk-sb-se3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="juU-Zy-3ji">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -2164,7 +2204,7 @@
         <!--Add Task List Table View Controller-->
         <scene sceneID="B5z-A4-xqa">
             <objects>
-                <tableViewController id="stn-1V-Wp9" customClass="AddTaskListTableViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddTaskListVC" id="stn-1V-Wp9" customClass="AddTaskListTableViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Tn9-nz-4iw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2194,6 +2234,7 @@
                                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="24"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                     <connections>
+                                                        <action selector="listNameTextFieldChange:" destination="stn-1V-Wp9" eventType="editingChanged" id="U57-ht-hd9"/>
                                                         <outlet property="delegate" destination="stn-1V-Wp9" id="X8k-ST-Ebx"/>
                                                     </connections>
                                                 </textField>
@@ -2280,6 +2321,24 @@
             </objects>
             <point key="canvasLocation" x="588.54961832061065" y="1503.5211267605634"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dkq-I5-cv5">
+            <objects>
+                <navigationController storyboardIdentifier="TaskListNavigateVC" automaticallyAdjustsScrollViewInsets="NO" id="kHC-dG-LVN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Whh-WB-gNT">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hcr-VO-ZUK" kind="relationship" relationship="rootViewController" id="S2A-uv-TTS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZN-aa-GYD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1958.0152671755725" y="2417.605633802817"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="mbX-uf-Svk"/>
@@ -2308,7 +2367,7 @@
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="square.fill" catalog="system" width="128" height="114"/>
         <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
-        <image name="text.badge.plus" catalog="system" width="128" height="107"/>
+        <image name="tray.2" catalog="system" width="128" height="115"/>
         <namedColor name="FormBackground">
             <color red="0.94117647058823528" green="0.94117647058823528" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -86,4 +86,29 @@ final class UserManagementService {
             completion(.success(user))
         }
     }
+    
+    func createUserDataInCloudFireStore(user: User) {
+        let fireStoreService =  CloudFirestoreService(user: user)
+        fireStoreService.checkUserExistInDB { result in
+            switch result {
+            case .success(let isUserExists):
+                switch isUserExists {
+                case true:
+                    break
+                case false:
+                    fireStoreService.createTaskList(list: TaskList(name: "Remind Me", tintColor: "#4169E1")) { result in
+                        switch result {
+                        case .success(_):
+                            print("Success")
+                            break
+                        case .failure(let failure):
+                            print( "Write Data Error: " + failure.localizedDescription)
+                        }
+                    }
+                }
+            case .failure(let fail):
+                print("Get Document Error: " + fail.localizedDescription)
+            }
+        }
+    }
 }

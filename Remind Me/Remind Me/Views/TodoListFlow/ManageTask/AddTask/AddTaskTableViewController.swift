@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol AddTaskTableViewControllerDelegate: AnyObject {
+    func addNewTaskSuccessHandle()
+}
+
 class AddTaskTableViewController: UITableViewController {
     
     private var priority: Priority?
     private var date: TimeInterval?
     private var time: TimeInterval?
     private var dateShowType: DateShowType = .Other("")
+    weak var delegate: AddTaskTableViewControllerDelegate?
     
     @IBOutlet weak var taskDetailLabel: UILabel!
     @IBOutlet weak var taskNotesTextViewPlaceholderLabel: UILabel!
@@ -77,7 +82,8 @@ class AddTaskTableViewController: UITableViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        
+        self.dismiss(animated: true)
+        delegate?.addNewTaskSuccessHandle()
     }
     
     @IBSegueAction func goToAddDetailTaskVC(_ coder: NSCoder) -> EditTaskDetailTableViewController? {

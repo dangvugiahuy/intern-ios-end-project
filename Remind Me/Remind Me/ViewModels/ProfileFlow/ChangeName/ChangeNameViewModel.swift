@@ -23,7 +23,7 @@ final class ChangeNameViewModel {
     }
     
     func changeName() {
-        guard let user = user else { return }
+        guard let user = self.user else { return }
         UserManagementService.shared.changeName(from: user, with: name) { [self] result in
             switch result {
             case .success(_):
@@ -35,7 +35,7 @@ final class ChangeNameViewModel {
     }
     
     func getUserDisplayName() -> String {
-        guard let user = user else { return "No name" }
+        guard let user = self.user else { return "" }
         guard let displayName = user.displayName else { return "No name" }
         return displayName
     }

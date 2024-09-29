@@ -41,8 +41,9 @@ final class LoginUserViewModel {
     func signInWithGoogle() {
         GoogleAuthService.shared.signIn(vc: vc!) { [self] result in
             switch result {
-            case .success(_):
+            case .success(let userAuthData):
                 UserDefaults.standard.set(SignInMethod.Google.rawValue, forKey: "SignInMethod")
+                UserManagementService.shared.createUserDataInCloudFireStore(user: userAuthData.user)
                 delegate?.logInSuccessHandle()
             case .failure(let failure):
                 if failure == .emailAlreadyInUse {

@@ -16,7 +16,6 @@ protocol ChangPasswordViewModelDelegate: AnyObject {
 final class ChangePasswordViewModel {
     
     private let user: User?
-    private let email: String?
     var password: String = ""
     var newPassword: String = ""
     private var error: ChangePasswordErrorType = .None
@@ -24,7 +23,6 @@ final class ChangePasswordViewModel {
     
     init() {
         user = Auth.auth().currentUser
-        email = user?.email
     }
     
     private func signOut() {
@@ -37,7 +35,8 @@ final class ChangePasswordViewModel {
     }
     
     func changePassword() {
-        UserManagementService.shared.reAuthenTicate(email: email!, password: password) { [self] result in
+        guard let user = self.user else { return }
+        UserManagementService.shared.reAuthenTicate(email: user.email!, password: password) { [self] result in
             switch result {
             case .success(let userData):
                 UserManagementService.shared.changePassword(from: userData.user, with: newPassword) { [self] result in

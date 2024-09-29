@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import UIKit
 
 protocol RegisterUserViewModelDelegate: AnyObject {
@@ -24,8 +25,9 @@ final class RegisterUserViewModel {
     func register() {
         EmailPasswordAuthService.shared.createUser(email: email, password: password) { [self] result in
             switch result {
-            case .success(_):
+            case .success(let userAuthData):
                 UserDefaults.standard.set(SignInMethod.EmailPassword.rawValue, forKey: "SignInMethod")
+                UserManagementService.shared.createUserDataInCloudFireStore(user: userAuthData.user)
                 delegate?.registerSuccessHandle()
             case .failure(let failure):
                 if failure == .invalidEmail {
@@ -43,8 +45,9 @@ final class RegisterUserViewModel {
     func registerWithGoogle() {
         GoogleAuthService.shared.signIn(vc: vc!) { [self] result in
             switch result {
-            case .success(_):
+            case .success(let userAuthData):
                 UserDefaults.standard.set(SignInMethod.Google.rawValue, forKey: "SignInMethod")
+                UserManagementService.shared.createUserDataInCloudFireStore(user: userAuthData.user)
                 delegate?.registerSuccessHandle()
             case .failure(let failure):
                 if failure == .emailAlreadyInUse {

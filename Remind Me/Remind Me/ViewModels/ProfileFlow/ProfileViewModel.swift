@@ -18,7 +18,7 @@ final class ProfileViewModel {
     weak var delegate: ProfileViewModelDelegate?
     
     init() {
-        user = Auth.auth().currentUser
+        self.user = Auth.auth().currentUser
     }
     
     func signOut() {
@@ -31,7 +31,8 @@ final class ProfileViewModel {
     }
     
     func reloadUserProfile() {
-        UserManagementService.shared.reload(from: user!) { result in
+        guard let user = self.user else { return }
+        UserManagementService.shared.reload(from: user) { result in
             switch result {
             case .success(let user):
                 self.user = user
@@ -42,19 +43,19 @@ final class ProfileViewModel {
     }
     
     func getUserEmail() -> String {
-        guard let user = user else { return "" }
+        guard let user = self.user else { return "" }
         guard let email = user.email else { return "" }
         return email
     }
     
     func getUserDisplayName() -> String {
-        guard let user = user else { return "No name" }
+        guard let user = self.user else { return "No name" }
         guard let displayName = user.displayName else { return "No name" }
         return displayName
     }
     
     func getUserPhotoURL() -> String {
-        guard let user = user else { return "" }
+        guard let user = self.user else { return "" }
         guard let photoURL = user.photoURL?.absoluteString else { return "" }
         return photoURL
     }
