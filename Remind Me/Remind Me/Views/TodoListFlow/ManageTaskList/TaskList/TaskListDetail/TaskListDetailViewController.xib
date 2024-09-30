@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskListDetailViewController" customModule="Remind_Me" customModuleProvider="target">
             <connections>
+                <outlet property="addNewTaskButton" destination="j6m-v3-VKG" id="dht-tj-pLD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,12 +25,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZF-U6-Pwl">
-                    <rect key="frame" x="16" y="75" width="361" height="45"/>
-                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins-SemiBold" pointSize="32"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6m-v3-VKG">
                     <rect key="frame" x="16" y="778.66666666666663" width="150" height="39.333333333333371"/>
                     <constraints>
@@ -42,7 +37,7 @@
                     </buttonConfiguration>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6vA-Wg-RZN">
-                    <rect key="frame" x="16" y="136" width="361" height="626.66666666666663"/>
+                    <rect key="frame" x="16" y="59" width="361" height="703.66666666666652"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -50,14 +45,11 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2zZ-0g-v1j"/>
+                <constraint firstItem="6vA-Wg-RZN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Hdv-YO-e2g"/>
                 <constraint firstItem="6vA-Wg-RZN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="MaC-hb-9Qn"/>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="PZV-Y0-xAZ"/>
-                <constraint firstItem="6vA-Wg-RZN" firstAttribute="top" secondItem="DZF-U6-Pwl" secondAttribute="bottom" constant="16" id="QIr-Bk-54O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6vA-Wg-RZN" secondAttribute="trailing" constant="16" id="Qu6-nf-uDk"/>
-                <constraint firstItem="DZF-U6-Pwl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="XTQ-Sp-WSV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DZF-U6-Pwl" secondAttribute="trailing" constant="16" id="cy7-Tx-WC8"/>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="top" secondItem="6vA-Wg-RZN" secondAttribute="bottom" constant="16" id="hcS-o0-MMz"/>
-                <constraint firstItem="DZF-U6-Pwl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="z9E-F5-Rqj"/>
             </constraints>
             <point key="canvasLocation" x="58.778625954198468" y="-11.267605633802818"/>
         </view>

@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 protocol AddTaskListViewModelDelegate: AnyObject {
-    func addTaskListSuccessHandle()
+    func addTaskListSuccessHandle(list: TaskList)
 }
 
 final class AddTaskListViewModel {
@@ -27,10 +27,10 @@ final class AddTaskListViewModel {
     func addNewTaskList() {
         guard let user = self.user else { return }
         let service = CloudFirestoreService(user: user)
-        service.createTaskList(list: TaskList(name: self.name, tintColor: self.tintColor)) { [self] result in
+        service.createTaskList(list: TaskList(id: UUID().uuidString, name: self.name, tintColor: self.tintColor)) { [self] result in
             switch result {
-            case .success(_):
-                delegate?.addTaskListSuccessHandle()
+            case .success(let model):
+                delegate?.addTaskListSuccessHandle(list: model)
             case .failure(let failure):
                 print( "Write Data Error: " + failure.localizedDescription)
             }

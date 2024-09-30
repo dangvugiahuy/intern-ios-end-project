@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 struct TaskList: Codable, Identifiable {
-    @DocumentID var id: String?
+    var id: String?
     var name: String
     var tintColor: String
 }

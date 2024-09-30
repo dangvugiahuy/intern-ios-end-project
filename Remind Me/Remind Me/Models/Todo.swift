@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 struct Todo: Codable, Identifiable {
-    @DocumentID var id: String?
+    var id: String?
     var title: String
     var note: String?
     var date: TimeInterval?

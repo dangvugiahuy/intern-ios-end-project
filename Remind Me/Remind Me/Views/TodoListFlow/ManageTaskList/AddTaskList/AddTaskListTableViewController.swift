@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddTaskListTableViewControllerDelegate: AnyObject {
-    func addTaskListSuccessHandle()
+    func addTaskListSuccessHandle(list: TaskList)
 }
 
 class AddTaskListTableViewController: UITableViewController {
@@ -57,11 +57,9 @@ class AddTaskListTableViewController: UITableViewController {
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
-//        vm.name = listNameTextField.text!
-//        vm.tintColor = tintColor
-//        vm.addNewTaskList()
-        self.dismiss(animated: true)
-        delegate?.addTaskListSuccessHandle()
+        vm.name = listNameTextField.text!
+        vm.tintColor = tintColor
+        vm.addNewTaskList()
     }
     
     @IBAction func listNameTextFieldChange(_ sender: Any) {
@@ -71,10 +69,11 @@ class AddTaskListTableViewController: UITableViewController {
 
 extension AddTaskListTableViewController: UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AddTaskListViewModelDelegate {
     
-    func addTaskListSuccessHandle() {
+    func addTaskListSuccessHandle(list: TaskList) {
         self.dismiss(animated: true)
+        delegate?.addTaskListSuccessHandle(list: list)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }

@@ -17,6 +17,11 @@
 		2947C36F2C9051BF00C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C36E2C9051BF00C9C3FF /* Base */; };
 		2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3702C9051C000C9C3FF /* Assets.xcassets */; };
 		2947C3742C9051C000C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C3732C9051C000C9C3FF /* Base */; };
+		294E3CC92CAA6B92008DF4D7 /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CC82CAA6B92008DF4D7 /* TaskListTableViewController.swift */; };
+		294E3CCC2CAA6BED008DF4D7 /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CCB2CAA6BED008DF4D7 /* TaskListTableViewCell.swift */; };
+		294E3CCE2CAA7A1A008DF4D7 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CCD2CAA7A1A008DF4D7 /* TaskListViewModel.swift */; };
+		294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */; };
+		294E3CD42CAAADE7008DF4D7 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CD32CAAADE7008DF4D7 /* AddTaskViewModel.swift */; };
 		297086EB2C992A510031F478 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086EA2C992A510031F478 /* UIAlertController.swift */; };
 		297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086ED2C993C360031F478 /* EmailAuthViewController.swift */; };
 		2971EBDB2CA517C8005B4124 /* EditTaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971EBDA2CA517C8005B4124 /* EditTaskDetailTableViewController.swift */; };
@@ -78,7 +83,6 @@
 		668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668940162C9FD0200099AC20 /* SignInMethod.swift */; };
 		669075C82CA93A31001E3B63 /* AddTaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */; };
 		669075CB2CA94991001E3B63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CA2CA94991001E3B63 /* String.swift */; };
-		669075D02CA96005001E3B63 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CF2CA96005001E3B63 /* TaskListViewController.swift */; };
 		669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */; };
 		669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */; };
 /* End PBXBuildFile section */
@@ -96,6 +100,11 @@
 		2947C3702C9051C000C9C3FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2947C3732C9051C000C9C3FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2947C3752C9051C000C9C3FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		294E3CC82CAA6B92008DF4D7 /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
+		294E3CCB2CAA6BED008DF4D7 /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
+		294E3CCD2CAA7A1A008DF4D7 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		294E3CD32CAAADE7008DF4D7 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		297086EA2C992A510031F478 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		297086ED2C993C360031F478 /* EmailAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthViewController.swift; sourceTree = "<group>"; };
 		2971EBDA2CA517C8005B4124 /* EditTaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +160,6 @@
 		668940162C9FD0200099AC20 /* SignInMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMethod.swift; sourceTree = "<group>"; };
 		669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListViewModel.swift; sourceTree = "<group>"; };
 		669075CA2CA94991001E3B63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		669075CF2CA96005001E3B63 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
 		669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +227,30 @@
 				2947C3752C9051C000C9C3FF /* Info.plist */,
 			);
 			path = "Remind Me";
+			sourceTree = "<group>";
+		};
+		294E3CCA2CAA6BBE008DF4D7 /* TaskListTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				294E3CCB2CAA6BED008DF4D7 /* TaskListTableViewCell.swift */,
+			);
+			path = TaskListTableViewCell;
+			sourceTree = "<group>";
+		};
+		294E3CD12CAAAD2B008DF4D7 /* ManageTask */ = {
+			isa = PBXGroup;
+			children = (
+				294E3CD22CAAAD8E008DF4D7 /* AddTask */,
+			);
+			path = ManageTask;
+			sourceTree = "<group>";
+		};
+		294E3CD22CAAAD8E008DF4D7 /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				294E3CD32CAAADE7008DF4D7 /* AddTaskViewModel.swift */,
+			);
+			path = AddTask;
 			sourceTree = "<group>";
 		};
 		297086EC2C993B260031F478 /* ChangePassword */ = {
@@ -322,6 +354,7 @@
 				29A88C7B2CA662B400CE0662 /* DateFormatter.swift */,
 				29C0893B2CA6A7B000BAC69D /* UIColor.swift */,
 				669075CA2CA94991001E3B63 /* String.swift */,
+				294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				669075C92CA93E75001E3B63 /* ManageTaskList */,
+				294E3CD12CAAAD2B008DF4D7 /* ManageTask */,
 			);
 			path = TodoListFlow;
 			sourceTree = "<group>";
@@ -545,6 +579,7 @@
 		669075C92CA93E75001E3B63 /* ManageTaskList */ = {
 			isa = PBXGroup;
 			children = (
+				294E3CCD2CAA7A1A008DF4D7 /* TaskListViewModel.swift */,
 				669075CD2CA95F4E001E3B63 /* AddTaskList */,
 			);
 			path = ManageTaskList;
@@ -570,7 +605,8 @@
 		669075CE2CA95FC1001E3B63 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
-				669075CF2CA96005001E3B63 /* TaskListViewController.swift */,
+				294E3CC82CAA6B92008DF4D7 /* TaskListTableViewController.swift */,
+				294E3CCA2CAA6BBE008DF4D7 /* TaskListTableViewCell */,
 				669075D12CA96091001E3B63 /* TaskListDetail */,
 			);
 			path = TaskList;
@@ -683,7 +719,6 @@
 				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
-				669075D02CA96005001E3B63 /* TaskListViewController.swift in Sources */,
 				29B184D12CA3E8CC00A4EE06 /* Todo.swift in Sources */,
 				669075CB2CA94991001E3B63 /* String.swift in Sources */,
 				29C089392CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift in Sources */,
@@ -703,6 +738,7 @@
 				292D73F92C94460E0069A2B1 /* TodoViewController.swift in Sources */,
 				290858852C9C1B2800A59C8B /* RegisterUserErrorType.swift in Sources */,
 				299AC7062CA141E600608361 /* ChangeNameViewModel.swift in Sources */,
+				294E3CC92CAA6B92008DF4D7 /* TaskListTableViewController.swift in Sources */,
 				29ABC07E2C93DB3B006FA486 /* UIViewExtension.swift in Sources */,
 				29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */,
 				29A0D06D2C9A8B07008B6E37 /* NetworkMonitor.swift in Sources */,
@@ -711,11 +747,13 @@
 				2971EBDB2CA517C8005B4124 /* EditTaskDetailTableViewController.swift in Sources */,
 				297086EB2C992A510031F478 /* UIAlertController.swift in Sources */,
 				29C089352CA6928E00BAC69D /* AddTaskListTableViewController.swift in Sources */,
+				294E3CD42CAAADE7008DF4D7 /* AddTaskViewModel.swift in Sources */,
 				29A0D05D2C9A79D0008B6E37 /* LoginUserViewModel.swift in Sources */,
 				299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */,
 				669075C82CA93A31001E3B63 /* AddTaskListViewModel.swift in Sources */,
 				29ABC0802C93EB5E006FA486 /* UIButtonExtension.swift in Sources */,
 				29A5DB422C99671600862103 /* ChangePasswordViewController.swift in Sources */,
+				294E3CCE2CAA7A1A008DF4D7 /* TaskListViewModel.swift in Sources */,
 				29ABC0822C940058006FA486 /* LoginUserViewController.swift in Sources */,
 				29A0D0792C9ACBE8008B6E37 /* RootViewController.swift in Sources */,
 				290858822C9BDDA800A59C8B /* UserManagementService.swift in Sources */,
@@ -726,7 +764,9 @@
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
 				29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */,
 				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,
+				294E3CCC2CAA6BED008DF4D7 /* TaskListTableViewCell.swift in Sources */,
 				292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */,
+				294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */,
 				661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */,
 				29B184D32CA4096A00A4EE06 /* PresentationController.swift in Sources */,
 				29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */,

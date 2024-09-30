@@ -96,13 +96,20 @@ final class UserManagementService {
                 case true:
                     break
                 case false:
-                    fireStoreService.createTaskList(list: TaskList(name: "Remind Me", tintColor: "#4169E1")) { result in
+                    fireStoreService.createUserInitData { result in
                         switch result {
                         case .success(_):
-                            print("Success")
-                            break
+                            fireStoreService.createTaskList(list: TaskList(id: UUID().uuidString, name: "Remind Me", tintColor: "#4169E1")) { result in
+                                switch result {
+                                case .success(_):
+                                    print("Success")
+                                    break
+                                case .failure(let failure):
+                                    print( "Write Data Error: " + failure.localizedDescription)
+                                }
+                            }
                         case .failure(let failure):
-                            print( "Write Data Error: " + failure.localizedDescription)
+                            print( "Write User Data Error: " + failure.localizedDescription)
                         }
                     }
                 }

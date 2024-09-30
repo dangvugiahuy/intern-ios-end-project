@@ -16,6 +16,14 @@ class BaseViewController: UIViewController {
     
     func setupFirstLoadVC() {}
     
+    func enableLargeTitle() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func disableLargeTitle() {
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     func back(to vc: UIViewController) {
         self.navigationController?.popToViewController(vc, animated: true)
     }

@@ -7,10 +7,22 @@
 
 import UIKit
 
-class TaskListDetailViewController: UIViewController {
-
+class TaskListDetailViewController: BaseViewController {
+    
+    var list: TaskList?
+    @IBOutlet weak var addNewTaskButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func setupFirstLoadVC() {
+        if let list = self.list {
+            self.title = list.name
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor().colorFrom(hex: list.tintColor)]
+            addNewTaskButton.tintColor = UIColor().colorFrom(hex: list.tintColor)
+            self.tabBarController?.tabBar.isHidden = true
+            self.disableLargeTitle()
+        }
     }
 }

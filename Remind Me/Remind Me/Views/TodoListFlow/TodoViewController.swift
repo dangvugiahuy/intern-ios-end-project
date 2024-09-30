@@ -17,17 +17,30 @@ class TodoViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        self.disableLargeTitle()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.enableLargeTitle()
+    }
+    
     override func setupFirstLoadVC() {
         self.title = "Todo"
         switchTaskSegmentControl.setupSegment()
         manageTaskListButton.primaryAction = nil
         manageTaskListButton.menu = setupMenu()
+        self.setupLeftNavigationBarItem()
     }
     
     private func setupMenu() -> UIMenu {
         let menu = UIMenu(title: "Manage Task List", options: [], children: [
             UIAction(title: "My List", image: UIImage(systemName: "list.bullet.indent"), handler: { _ in
-                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TaskListTableVC") as! TaskListTableViewController
+                self.next(vc: vc)
             }),
             UIAction(title: "Add New List", image: UIImage(systemName: "text.badge.plus"), handler: { _ in
                 let rootview = self.storyboard?.instantiateViewController(withIdentifier: "AddTaskListVC") as! AddTaskListTableViewController
@@ -57,8 +70,10 @@ class TodoViewController: BaseViewController {
 
 extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate {
     
-    func addTaskListSuccessHandle() {
-        print("Success")
+    func addTaskListSuccessHandle(list: TaskList) {
+        let vc = TaskListDetailViewController()
+        vc.list = list
+        self.next(vc: vc)
     }
     
     func addNewTaskSuccessHandle() {
