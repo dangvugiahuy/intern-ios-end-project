@@ -8,7 +8,11 @@
 import UIKit
 
 class TodoViewController: BaseViewController {
+    
+    private let vm: TodoViewModel = TodoViewModel()
+    private var list: [TaskList] = [TaskList]()
         
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var manageTaskListButton: UIBarButtonItem!
     @IBOutlet weak var switchTaskSegmentControl: UISegmentedControl!
     @IBOutlet weak var filterButton: UIBarButtonItem!
@@ -21,6 +25,7 @@ class TodoViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.disableLargeTitle()
+        vm.getAllTaskList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -34,12 +39,14 @@ class TodoViewController: BaseViewController {
         manageTaskListButton.primaryAction = nil
         manageTaskListButton.menu = setupMenu()
         self.setupLeftNavigationBarItem()
+        vm.delegate = self
     }
     
     private func setupMenu() -> UIMenu {
         let menu = UIMenu(title: "Manage Task List", options: [], children: [
             UIAction(title: "My List", image: UIImage(systemName: "list.bullet.indent"), handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "TaskListTableVC") as! TaskListTableViewController
+                vc.list = self.list
                 self.next(vc: vc)
             }),
             UIAction(title: "Add New List", image: UIImage(systemName: "text.badge.plus"), handler: { _ in
@@ -60,6 +67,7 @@ class TodoViewController: BaseViewController {
     
     @IBAction func addTaskClicked(_ sender: UIBarButtonItem) {
         let rootview = self.storyboard?.instantiateViewController(withIdentifier: "AddNewTaskVC") as! AddTaskTableViewController
+        rootview.list = self.list
         rootview.delegate = self
         let navigateVC = UINavigationController(rootViewController: rootview)
         navigateVC.modalPresentationStyle = .custom
@@ -68,16 +76,21 @@ class TodoViewController: BaseViewController {
     }
 }
 
-extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate {
+extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate {
+    
+    func addNewTaskSuccessHandle(task: Todo) {
+        print("success")
+    }
+    
+    func getTaskListSuccessHandle(list: [TaskList]) {
+        self.list = list
+        addButton.isEnabled = self.list.isEmpty ? false : true
+    }
     
     func addTaskListSuccessHandle(list: TaskList) {
         let vc = TaskListDetailViewController()
         vc.list = list
         self.next(vc: vc)
-    }
-    
-    func addNewTaskSuccessHandle() {
-        print("Success")
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {

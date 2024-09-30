@@ -8,12 +8,12 @@
 import UIKit
 
 protocol EditTaskDetailTableViewControllerDelegate: AnyObject {
-    func screenCallBack(priority: Priority?, date: TimeInterval?, time: TimeInterval?)
+    func screenCallBack(priority: Priority, date: TimeInterval?, time: TimeInterval?)
 }
 
 class EditTaskDetailTableViewController: UITableViewController {
     
-    public var priority: Priority?
+    public var priority: Priority
     public var date: TimeInterval?
     public var time: TimeInterval?
     private var dateShowType: DateShowType = .Other("")
@@ -29,7 +29,7 @@ class EditTaskDetailTableViewController: UITableViewController {
     @IBOutlet weak var hideShowDateSwitch: UISwitch!
     
     
-    init?(coder: NSCoder, priority: Priority?, date: TimeInterval?, time: TimeInterval?) {
+    init?(coder: NSCoder, priority: Priority, date: TimeInterval?, time: TimeInterval?) {
         self.priority = priority
         self.date = date
         self.time = time
@@ -53,7 +53,7 @@ class EditTaskDetailTableViewController: UITableViewController {
         timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
         setupDateUIWithData()
         setupTimeUIWithData()
-        taskPriorityLabel.text = "\(priority ?? Priority.None)"
+        taskPriorityLabel.text = "\(priority)"
     }
     
     override func viewDidDisappear(_ animated: Bool) {

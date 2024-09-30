@@ -9,27 +9,17 @@ import UIKit
 
 class TaskListTableViewController: UITableViewController {
     
-    private let vm: TaskListViewModel = TaskListViewModel()
-    private var list: [TaskList] = [TaskList]()
-    private let viewIndicator = UIActivityIndicatorView(style: .medium)
+    var list: [TaskList] = [TaskList]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "My List"
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.greyscale800]
         self.tabBarController?.tabBar.isHidden = true
-        viewIndicator.tintColor = .primary900
-        viewIndicator.hidesWhenStopped = true
-        viewIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.addSubview(viewIndicator)
-        viewIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
-        viewIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor).isActive = true
-        vm.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewIndicator.startAnimating()
-        vm.getAllTaskList()
+        
     }
     
     // MARK: - Table view data source
@@ -39,6 +29,11 @@ class TaskListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.list.isEmpty {
+            self.tableView.createViewWhenEmptyData(title: "No Todo List, please create new list to add new todo")
+        } else {
+            self.tableView.backgroundView = nil
+        }
         return list.count
     }
 
@@ -96,16 +91,6 @@ class TaskListTableViewController: UITableViewController {
 
 }
 
-extension TaskListTableViewController: TaskListViewModelDelegate {
-    func getTaskListSuccessHandle(list: [TaskList]) {
-        self.list = list
-        if self.list.isEmpty {
-            viewIndicator.stopAnimating()
-            self.tableView.createViewWhenEmptyData(title: "No Todo List, please create new list to add new todo")
-        } else {
-            self.tableView.backgroundView = nil
-            viewIndicator.stopAnimating()
-            self.tableView.reloadData()
-        }
-    }
+extension TaskListTableViewController {
+    
 }

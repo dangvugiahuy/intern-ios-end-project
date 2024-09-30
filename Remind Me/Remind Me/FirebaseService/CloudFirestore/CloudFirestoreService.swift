@@ -59,6 +59,16 @@ final class CloudFirestoreService {
         }
     }
     
+    func createTask(from list: TaskList, with task: Todo, completion: @escaping (Result<Todo, Error>) -> Void) {
+        let path = primaryPath + "/TaskList/\(list.id!)/Todos"
+        do  {
+            try db.collection(path).document(task.id!).setData(from: task)
+            completion(.success(task))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
     func checkUserExistInDB(completion: @escaping (Result<Bool, Error>) -> Void) {
         db.document(primaryPath).getDocument { snapshot, error in
             guard error == nil else {

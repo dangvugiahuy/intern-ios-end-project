@@ -8,17 +8,21 @@
 import UIKit
 
 protocol AddTaskTableViewControllerDelegate: AnyObject {
-    func addNewTaskSuccessHandle()
+    func addNewTaskSuccessHandle(task: Todo)
 }
 
 class AddTaskTableViewController: UITableViewController {
     
-    private var priority: Priority?
+    private let vm: AddTaskViewModel =  AddTaskViewModel()
+    private var priority: Priority = .None
     private var date: TimeInterval?
     private var time: TimeInterval?
     private var dateShowType: DateShowType = .Other("")
+    var list: [TaskList] = [TaskList]()
+    var taskListChoosen: TaskList?
     weak var delegate: AddTaskTableViewControllerDelegate?
     
+    @IBOutlet weak var taskListNameLabel: UILabel!
     @IBOutlet weak var taskDetailLabel: UILabel!
     @IBOutlet weak var taskNotesTextViewPlaceholderLabel: UILabel!
     @IBOutlet weak var taskNotesTextView: UITextView!
@@ -32,14 +36,19 @@ class AddTaskTableViewController: UITableViewController {
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
         self.navigationItem.backButtonTitle = ""
+        taskListChoosen = list[0]
         cancelButton.setupPlainLightTitleButton()
         addButton.setupPlainBoldTitleButton()
         taskTitleTextField.becomeFirstResponder()
         addButton.isEnabled = false
         taskNotesTextViewPlaceholderLabel.isHidden = false
+        vm.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let taskListChoosen = self.taskListChoosen {
+            taskListNameLabel.text = taskListChoosen.name
+        }
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
         updateDateTime()
     }
@@ -82,8 +91,11 @@ class AddTaskTableViewController: UITableViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        self.dismiss(animated: true)
-        delegate?.addNewTaskSuccessHandle()
+        guard let taskListChoosen = self.taskListChoosen else { return }
+        vm.taskListChoosen = taskListChoosen
+        let task = Todo(id: UUID().uuidString, title: taskTitleTextField.text!, note: taskNotesTextView.text, date: date, time: time, priority: priority.rawValue)
+        vm.task = task
+        vm.addTask()
     }
     
     @IBSegueAction func goToAddDetailTaskVC(_ coder: NSCoder) -> EditTaskDetailTableViewController? {
@@ -93,9 +105,14 @@ class AddTaskTableViewController: UITableViewController {
     }
 }
 
-extension AddTaskTableViewController: UITextFieldDelegate, UITextViewDelegate, EditTaskDetailTableViewControllerDelegate {
+extension AddTaskTableViewController: UITextFieldDelegate, UITextViewDelegate, EditTaskDetailTableViewControllerDelegate, AddTaskViewModelDelegate {
     
-    func screenCallBack(priority: Priority?, date: TimeInterval?, time: TimeInterval?) {
+    func addTaskSuccessHandle(task: Todo) {
+        self.dismiss(animated: true)
+        delegate?.addNewTaskSuccessHandle(task: task)
+    }
+    
+    func screenCallBack(priority: Priority, date: TimeInterval?, time: TimeInterval?) {
         self.priority = priority
         self.date = date
         self.time = time

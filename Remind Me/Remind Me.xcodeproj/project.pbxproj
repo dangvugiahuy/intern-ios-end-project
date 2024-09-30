@@ -85,6 +85,7 @@
 		669075CB2CA94991001E3B63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CA2CA94991001E3B63 /* String.swift */; };
 		669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */; };
 		669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */; };
+		669BA2122CAAE29A001083FA /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BA2112CAAE29A001083FA /* TodoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		669075CA2CA94991001E3B63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
 		669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListDetailViewController.xib; sourceTree = "<group>"; };
+		669BA2112CAAE29A001083FA /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -570,6 +572,7 @@
 		669075C62CA939E2001E3B63 /* TodoListFlow */ = {
 			isa = PBXGroup;
 			children = (
+				669BA2112CAAE29A001083FA /* TodoViewModel.swift */,
 				669075C92CA93E75001E3B63 /* ManageTaskList */,
 				294E3CD12CAAAD2B008DF4D7 /* ManageTask */,
 			);
@@ -762,6 +765,7 @@
 				29C0893C2CA6A7B000BAC69D /* UIColor.swift in Sources */,
 				299AC7002CA1007900608361 /* ChangePasswordSuccessViewController.swift in Sources */,
 				662E1E852C91B7A000CBA8B3 /* TaskDetailViewController.swift in Sources */,
+				669BA2122CAAE29A001083FA /* TodoViewModel.swift in Sources */,
 				29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */,
 				29C585AA2C929BA300E26CC4 /* OnboardingSlide.swift in Sources */,
 				294E3CCC2CAA6BED008DF4D7 /* TaskListTableViewCell.swift in Sources */,
