@@ -17,9 +17,11 @@ class EditTaskDetailTableViewController: UITableViewController {
     public var date: TimeInterval?
     public var time: TimeInterval?
     private var dateShowType: DateShowType = .Other("")
+    var menuItem: [UIAction] = [UIAction]()
     
     weak var delegate: EditTaskDetailTableViewControllerDelegate?
 
+    @IBOutlet weak var priorityButton: UIButton!
     @IBOutlet weak var taskDatePicker: UIDatePicker!
     @IBOutlet weak var taskPriorityLabel: UILabel!
     @IBOutlet weak var taskTimePicker: UIDatePicker!
@@ -43,6 +45,7 @@ class EditTaskDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Details"
+        priorityButton.showsMenuAsPrimaryAction = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +57,7 @@ class EditTaskDetailTableViewController: UITableViewController {
         setupDateUIWithData()
         setupTimeUIWithData()
         taskPriorityLabel.text = "\(priority)"
+        refreshMenuState()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -70,16 +74,6 @@ class EditTaskDetailTableViewController: UITableViewController {
         default:
             return UITableView.automaticDimension
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        
-        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [self] _ in
-            let menu = UIMenu(title: "", options: .displayInline, children: setContextMenuAction())
-            return menu
-        }
-        
-        return config
     }
     
     private func setupDateUIWithData() {
@@ -107,19 +101,24 @@ class EditTaskDetailTableViewController: UITableViewController {
         }
     }
     
-    private func setContextMenuAction() -> [UIMenuElement] {
-        var actions = [UIMenuElement]()
-        Priority.allCases.map {
+    private func setMenuAction() -> [UIAction] {
+        var actions = [UIAction]()
+        _ = Priority.allCases.map {
             let priority = $0
-            let action = UIAction(title: "\(priority)", image: UIImage(systemName: taskPriorityLabel.text == "\(priority)" ? "checkmark" : "")) { [self] _ in
+            let action = UIAction(title: "\(priority)", image: UIImage(systemName: taskPriorityLabel.text == "\(priority)" ? "checkmark" : "")) { [self] action in
                 taskPriorityLabel.text = "\(priority)"
                 self.priority = priority
+                refreshMenuState()
             }
             actions.append(action)
         }
         return actions
     }
     
+    private func refreshMenuState() {
+        menuItem = setMenuAction()
+        priorityButton.menu = UIMenu(children: menuItem)
+    }
     
     @IBAction func hideShowDateSwitchChange(_ sender: UISwitch) {
         if !hideShowDateSwitch.isOn && hideShowTimeSwitch.isOn {

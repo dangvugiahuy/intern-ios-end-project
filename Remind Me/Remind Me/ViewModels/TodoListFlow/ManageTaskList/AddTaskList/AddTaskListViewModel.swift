@@ -18,7 +18,7 @@ final class AddTaskListViewModel {
     private var service: CloudFirestoreService?
     weak var delegate: AddTaskListViewModelDelegate?
     var name: String = ""
-    var tintColor: String = ""
+    var tintColor: TaskListTintColor?
     
     init() {
         user = Auth.auth().currentUser
@@ -27,7 +27,7 @@ final class AddTaskListViewModel {
     func addNewTaskList() {
         guard let user = self.user else { return }
         let service = CloudFirestoreService(user: user)
-        service.createTaskList(list: TaskList(id: UUID().uuidString, name: self.name, tintColor: self.tintColor)) { [self] result in
+        service.createTaskList(list: TaskList(id: UUID().uuidString, name: self.name, tintColor: self.tintColor!)) { [self] result in
             switch result {
             case .success(let model):
                 delegate?.addTaskListSuccessHandle(list: model)

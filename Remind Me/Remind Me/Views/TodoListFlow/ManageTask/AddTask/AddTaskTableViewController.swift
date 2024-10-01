@@ -93,7 +93,7 @@ class AddTaskTableViewController: UITableViewController {
     @IBAction func addButton(_ sender: Any) {
         guard let taskListChoosen = self.taskListChoosen else { return }
         vm.taskListChoosen = taskListChoosen
-        let task = Todo(id: UUID().uuidString, title: taskTitleTextField.text!, note: taskNotesTextView.text, date: date, time: time, priority: priority.rawValue)
+        let task = Todo(id: UUID().uuidString, title: taskTitleTextField.text!, note: taskNotesTextView.text, date: date, time: time, priority: priority.rawValue, taskList: taskListChoosen)
         vm.task = task
         vm.addTask()
     }
@@ -103,9 +103,20 @@ class AddTaskTableViewController: UITableViewController {
         vc?.delegate = self
         return vc
     }
+    
+    @IBSegueAction func goToChooseTaskListVC(_ coder: NSCoder) -> ChooseTaskListViewController? {
+        let vc = ChooseTaskListViewController(coder: coder, list: list, taskListChoosen: taskListChoosen!)
+        vc?.delegate = self
+        return vc
+    }
 }
 
-extension AddTaskTableViewController: UITextFieldDelegate, UITextViewDelegate, EditTaskDetailTableViewControllerDelegate, AddTaskViewModelDelegate {
+extension AddTaskTableViewController: UITextFieldDelegate, UITextViewDelegate, EditTaskDetailTableViewControllerDelegate, AddTaskViewModelDelegate, ChooseTaskListViewControllerDelegate {
+    
+    func chooseTaskListCallBack(list: [TaskList], taskListChoosen: TaskList) {
+        self.list = list
+        self.taskListChoosen = taskListChoosen
+    }
     
     func addTaskSuccessHandle(task: Todo) {
         self.dismiss(animated: true)

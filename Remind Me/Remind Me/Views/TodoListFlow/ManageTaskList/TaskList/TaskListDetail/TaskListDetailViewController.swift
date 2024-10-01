@@ -19,8 +19,8 @@ class TaskListDetailViewController: BaseViewController {
     override func setupFirstLoadVC() {
         if let list = self.list {
             self.title = list.name
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor().colorFrom(hex: list.tintColor)]
-            addNewTaskButton.tintColor = UIColor().colorFrom(hex: list.tintColor)
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor().colorFrom(hex: list.tintColor.tint)]
+            addNewTaskButton.tintColor = UIColor().colorFrom(hex: list.tintColor.tint)
             self.tabBarController?.tabBar.isHidden = true
             self.disableLargeTitle()
         }

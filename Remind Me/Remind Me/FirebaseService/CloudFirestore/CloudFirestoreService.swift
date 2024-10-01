@@ -30,7 +30,10 @@ final class CloudFirestoreService {
             }
             if !snapshot.isEmpty {
                 list = snapshot.documents.map({ document in
-                    return TaskList(id: document["id"] as? String, name: document["name"] as! String, tintColor: document["tintColor"] as! String)
+                    let taskColorTint = document["tintColor"] as? [String: Any]
+                    let tint = taskColorTint?["tint"] as? String
+                    let backgroundTint = taskColorTint?["backgroundTint"] as? String
+                    return TaskList(id: document["id"] as? String, name: document["name"] as! String, tintColor: TaskListTintColor(tint: tint ?? "", backgroundTint: backgroundTint ?? ""))
                 })
             }
             completion(.success(list))
@@ -83,10 +86,26 @@ final class CloudFirestoreService {
         }
     }
     
-//    func fetchAllTodoData() {
-//        let path = primaryPath + "TaskList"
+//    func fetchAllTask(lists: [TaskList], completion: @escaping (Result<[Todo], Error>) -> Void) {
+//        var todos: [Todo] = [Todo]()
+//        for list in lists {
+//            let path = primaryPath + "/TaskList/\(list.id!)/Todos"
+//            db.collection(path).getDocuments { snapshot, error in
+//                guard let snapshot = snapshot, error == nil else {
+//                    completion(.failure(error!))
+//                    return
+//                }
+//                if !snapshot.isEmpty {
+//                    let tempList = snapshot.documents.map({ document in
+//                        return Todo(id: document["id"] as? String, title: document["title"] as! String, note: document["note"] as? String, date: document["date"] as? TimeInterval, time: document["date"] as? TimeInterval, priority: document["priority"] as! Bool, completed: <#T##Bool#>, taskList: <#T##TaskList#>)
+//                    })
+//                    todos.append(contentsOf: tempList)
+//                }
+//            }
+//        }
+//        completion(.success(todos))
 //    }
-//    
+    
 //    func fetchTodoData(from taskList: TaskList) -> [Todo] {
 //        
 //    }
