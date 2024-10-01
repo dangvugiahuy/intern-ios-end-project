@@ -16,7 +16,7 @@ struct Todo: Codable, Identifiable {
     var time: TimeInterval?
     var priority: Int
     var completed: Bool = false
-    var taskList: TaskList
+    var taskList: TaskList?
 }
 
 enum Priority: Int, CaseIterable {
@@ -24,4 +24,17 @@ enum Priority: Int, CaseIterable {
     case Low = 1
     case Medium = 2
     case High = 3
+    
+    static func toString(prior: Int) -> String {
+        switch prior {
+        case 1:
+            return "Low"
+        case 2:
+            return "Medium"
+        case 3:
+            return "High"
+        default:
+            return "None"
+        }
+    }
 }

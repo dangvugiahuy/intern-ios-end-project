@@ -11,7 +11,11 @@ class TodoViewController: BaseViewController {
     
     private let vm: TodoViewModel = TodoViewModel()
     private var list: [TaskList] = [TaskList]()
+    private var allTodos: [Todo] = [Todo]()
+    private var todos: [Todo] = [Todo]()
         
+    @IBOutlet weak var todosTableView: UITableView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var manageTaskListButton: UIBarButtonItem!
     @IBOutlet weak var switchTaskSegmentControl: UISegmentedControl!
@@ -25,6 +29,7 @@ class TodoViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.disableLargeTitle()
+        loadingIndicator.startAnimating()
         vm.getAllTaskList()
     }
     
@@ -35,7 +40,10 @@ class TodoViewController: BaseViewController {
     
     override func setupFirstLoadVC() {
         self.title = "Todo"
+        todosTableView.delegate = self
+        todosTableView.dataSource = self
         switchTaskSegmentControl.setupSegment()
+        loadingIndicator.hidesWhenStopped = true
         manageTaskListButton.primaryAction = nil
         manageTaskListButton.menu = setupMenu()
         self.setupLeftNavigationBarItem()
@@ -61,6 +69,20 @@ class TodoViewController: BaseViewController {
         return menu
     }
     
+    private func refreshTableView() {
+        switch switchTaskSegmentControl.selectedSegmentIndex {
+        case 1:
+            todos = allTodos
+            break
+        case 2:
+            todos = vm.getTaskCompleted(todos: allTodos)
+            break
+        default:
+            todos = vm.getTodayTasks(todos: allTodos)
+            break
+        }
+    }
+    
     @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
         
     }
@@ -76,15 +98,34 @@ class TodoViewController: BaseViewController {
     }
 }
 
-extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate {
+extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = todosTableView.dequeueReusableCell(withIdentifier: "TaskTableViewCell", for: indexPath) as! TaskTableViewCell
+        cell.task = todos[indexPath.row]
+        return cell
+    }
+    
+    func getAllTaskSuccessHandle(tasks: [Todo]) {
+        print(tasks.count)
+        self.allTodos = tasks
+        refreshTableView()
+        todosTableView.reloadData()
+        loadingIndicator.stopAnimating()
+    }
     
     func addNewTaskSuccessHandle(task: Todo) {
-        print("success")
+        vm.getAllTask(list: self.list)
     }
     
     func getTaskListSuccessHandle(list: [TaskList]) {
         self.list = list
         addButton.isEnabled = self.list.isEmpty ? false : true
+        vm.getAllTask(list: self.list)
     }
     
     func addTaskListSuccessHandle(list: TaskList) {

@@ -86,25 +86,24 @@ final class CloudFirestoreService {
         }
     }
     
-//    func fetchAllTask(lists: [TaskList], completion: @escaping (Result<[Todo], Error>) -> Void) {
-//        var todos: [Todo] = [Todo]()
-//        for list in lists {
-//            let path = primaryPath + "/TaskList/\(list.id!)/Todos"
-//            db.collection(path).getDocuments { snapshot, error in
-//                guard let snapshot = snapshot, error == nil else {
-//                    completion(.failure(error!))
-//                    return
-//                }
-//                if !snapshot.isEmpty {
-//                    let tempList = snapshot.documents.map({ document in
-//                        return Todo(id: document["id"] as? String, title: document["title"] as! String, note: document["note"] as? String, date: document["date"] as? TimeInterval, time: document["date"] as? TimeInterval, priority: document["priority"] as! Bool, completed: <#T##Bool#>, taskList: <#T##TaskList#>)
-//                    })
-//                    todos.append(contentsOf: tempList)
-//                }
-//            }
-//        }
-//        completion(.success(todos))
-//    }
+    func fetchTask(from list: TaskList, completion: @escaping (Result<[Todo], Error>) -> Void) {
+        var todos: [Todo] = [Todo]()
+        let path = primaryPath + "/TaskList/\(list.id!)/Todos"
+        db.collection(path).getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            if !snapshot.isEmpty {
+                todos = snapshot.documents.map({ document in
+                    return Todo(id: document["id"] as? String, title: document["title"] as! String, note: document["note"] as? String, date: document["date"] as? TimeInterval, time: document["time"] as? TimeInterval, priority: document["priority"] as! Int, completed: document["completed"] as! Bool, taskList: list)
+                })
+            }
+            completion(.success(todos))
+        }
+    }
+    
+    
     
 //    func fetchTodoData(from taskList: TaskList) -> [Todo] {
 //        

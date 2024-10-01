@@ -80,16 +80,7 @@ class EditTaskDetailTableViewController: UITableViewController {
         if let date = date {
             let dateFromInterval = Date(timeIntervalSinceNow: date)
             taskDatePicker.setDate(dateFromInterval, animated: true)
-            if Calendar.current.isDateInToday(dateFromInterval) {
-                dateShowType = .Today
-            } else if Calendar.current.isDateInYesterday(dateFromInterval) {
-                dateShowType = .Yesterday
-            } else if Calendar.current.isDateInTomorrow(dateFromInterval) {
-                dateShowType = .Tomorrow
-            } else {
-                dateShowType = .Other(DateFormatter().formated(from: dateFromInterval, with: "EEEE, MMMM d, yyyy"))
-            }
-            dateLabel.text = dateShowType.dateStringFormat()
+            dateLabel.text = Date.dateToString(date: date)
         }
     }
     
