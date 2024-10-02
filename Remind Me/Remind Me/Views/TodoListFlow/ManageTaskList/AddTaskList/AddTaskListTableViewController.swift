@@ -14,8 +14,8 @@ protocol AddTaskListTableViewControllerDelegate: AnyObject {
 class AddTaskListTableViewController: UITableViewController {
     
     private let vm: AddTaskListViewModel = AddTaskListViewModel()
-    private let colors: [TaskListTintColor] = TaskListTintColor.getTaskListTintColor()
-    private var tintColor: TaskListTintColor = TaskListTintColor(tint: "#55847A", backgroundTint: "#CCDAD7")
+    private let colors: [String] = ["#D22B2B", "#F28C28", "#FDDA0D", "#55847A", "#4169E1", "#CF9FFF", "#6F4E37"]
+    private var colorChoosen: String = ""
     weak var delegate: AddTaskListTableViewControllerDelegate?
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -36,7 +36,8 @@ class AddTaskListTableViewController: UITableViewController {
         colorsCollectionView.dataSource = self
         vm.delegate = self
         colorsCollectionView.isScrollEnabled = false
-        listIconImageView.tintColor = UIColor().colorFrom(hex: tintColor.tint)
+        colorChoosen = colors[3]
+        listIconImageView.tintColor = UIColor().colorFrom(hex: colorChoosen)
         colorsCollectionView.selectItem(at: IndexPath(row: 3, section: 0), animated: false, scrollPosition: [])
         doneButton.isEnabled = false
     }
@@ -58,7 +59,7 @@ class AddTaskListTableViewController: UITableViewController {
     
     @IBAction func doneButtonClicked(_ sender: Any) {
         vm.name = listNameTextField.text!
-        vm.tintColor = tintColor
+        vm.tintColor = colorChoosen
         vm.addNewTaskList()
     }
     
@@ -80,7 +81,7 @@ extension AddTaskListTableViewController: UITextFieldDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = colorsCollectionView.dequeueReusableCell(withReuseIdentifier: "colorCell", for: indexPath) as! TaskListChooseColorCollectionViewCell
-        cell.hexColor = colors[indexPath.row].tint
+        cell.hexColor = colors[indexPath.row]
         return cell
     }
     
@@ -97,8 +98,8 @@ extension AddTaskListTableViewController: UITextFieldDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        listIconImageView.tintColor = UIColor().colorFrom(hex: colors[indexPath.row].tint)
-        tintColor = colors[indexPath.row]
+        listIconImageView.tintColor = UIColor().colorFrom(hex: colors[indexPath.row])
+        colorChoosen = colors[indexPath.row]
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

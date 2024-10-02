@@ -18,7 +18,7 @@ final class AddTaskListViewModel {
     private var service: CloudFirestoreService?
     weak var delegate: AddTaskListViewModelDelegate?
     var name: String = ""
-    var tintColor: TaskListTintColor?
+    var tintColor: String?
     
     init() {
         user = Auth.auth().currentUser

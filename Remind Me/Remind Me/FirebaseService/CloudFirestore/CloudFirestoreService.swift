@@ -30,10 +30,7 @@ final class CloudFirestoreService {
             }
             if !snapshot.isEmpty {
                 list = snapshot.documents.map({ document in
-                    let taskColorTint = document["tintColor"] as? [String: Any]
-                    let tint = taskColorTint?["tint"] as? String
-                    let backgroundTint = taskColorTint?["backgroundTint"] as? String
-                    return TaskList(id: document["id"] as? String, name: document["name"] as! String, tintColor: TaskListTintColor(tint: tint ?? "", backgroundTint: backgroundTint ?? ""))
+                    return TaskList(id: document["id"] as? String, name: document["name"] as! String, tintColor: document["tintColor"] as! String)
                 })
             }
             completion(.success(list))
@@ -103,9 +100,14 @@ final class CloudFirestoreService {
         }
     }
     
-    
-    
-//    func fetchTodoData(from taskList: TaskList) -> [Todo] {
-//        
-//    }
+    func setTaskComplete(from task: Todo, completion: @escaping (Result<Any, Error>) -> Void) {
+        let path = primaryPath + "/TaskList/\(task.taskList!.id!)/Todos"
+        db.collection(path).document(task.id!).setData(["completed" : task.completed], merge: true) { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success("Success!"))
+        }
+    }
 }

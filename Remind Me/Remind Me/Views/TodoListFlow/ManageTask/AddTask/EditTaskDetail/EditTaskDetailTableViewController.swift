@@ -80,13 +80,13 @@ class EditTaskDetailTableViewController: UITableViewController {
         if let date = date {
             let dateFromInterval = Date(timeIntervalSinceNow: date)
             taskDatePicker.setDate(dateFromInterval, animated: true)
-            dateLabel.text = Date.dateToString(date: date)
+            dateLabel.text = Date.dateToString(date: date, format: "EEEE, MMMM d, yyyy")
         }
     }
     
     private func setupTimeUIWithData() {
         if let time = time {
-            let timeFromInterval = Date(timeIntervalSinceNow: time)
+            let timeFromInterval = Date(timeIntervalSince1970: time)
             taskTimePicker.setDate(timeFromInterval, animated: true)
             timeLabel.text = DateFormatter().formated(from: timeFromInterval, with: "h:mm a")
         }
@@ -146,7 +146,7 @@ class EditTaskDetailTableViewController: UITableViewController {
     }
     
     @IBAction func taskTimePickerChange(_ sender: Any) {
-        self.time = taskTimePicker.date.timeIntervalSinceNow
+        self.time = taskTimePicker.date.timeIntervalSince1970
         setupTimeUIWithData()
     }
     

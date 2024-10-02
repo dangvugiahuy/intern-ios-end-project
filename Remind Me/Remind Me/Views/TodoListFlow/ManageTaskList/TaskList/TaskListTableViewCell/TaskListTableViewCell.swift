@@ -32,8 +32,8 @@ class TaskListTableViewCell: UITableViewCell {
     
     private func setupUIWithData() {
         if let taskListItem = self.taskListItem {
-            icon1ImageView.tintColor = UIColor().colorFrom(hex: taskListItem.tintColor.tint)
-            icon2ImageView.tintColor = UIColor().colorFrom(hex: taskListItem.tintColor.tint)
+            icon1ImageView.tintColor = UIColor().colorFrom(hex: taskListItem.tintColor)
+            icon2ImageView.tintColor = UIColor().colorFrom(hex: taskListItem.tintColor)
             taskListNameLabel.text = taskListItem.name
         }
     }

@@ -67,7 +67,7 @@ class AddTaskTableViewController: UITableViewController {
             }
         }
         let dateString: String = date != nil ? dateShowType.dateStringFormat() : ""
-        let timeString: String = time != nil ? " at " + DateFormatter().formated(from: Date(timeIntervalSinceNow: time!), with: "h:mm a") : ""
+        let timeString: String = time != nil ? " at " + DateFormatter().formated(from: Date(timeIntervalSince1970: time!), with: "h:mm a") : ""
         taskDetailLabel.text = dateString + timeString
     }
     

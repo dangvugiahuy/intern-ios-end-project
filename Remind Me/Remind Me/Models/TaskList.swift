@@ -11,5 +11,5 @@ import FirebaseFirestore
 struct TaskList: Codable, Identifiable {
     var id: String?
     var name: String
-    var tintColor: TaskListTintColor
+    var tintColor: String
 }

@@ -99,7 +99,7 @@ final class UserManagementService {
                     fireStoreService.createUserInitData { result in
                         switch result {
                         case .success(_):
-                            fireStoreService.createTaskList(list: TaskList(id: UUID().uuidString, name: "Remind Me", tintColor: TaskListTintColor(tint: "#55847A", backgroundTint: "#CCDAD7"))) { result in
+                            fireStoreService.createTaskList(list: TaskList(id: UUID().uuidString, name: "Remind Me", tintColor: "#55847A")) { result in
                                 switch result {
                                 case .success(_):
                                     print("Success")

@@ -61,7 +61,6 @@
 		29B5AB4E2C9D58740001D4E3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */; };
 		29B75BE72CAB92DD00B388AE /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29B75BE62CAB92DD00B388AE /* Poppins-Regular.ttf */; };
 		29B75BEA2CAB94D900B388AE /* ChooseTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B75BE92CAB94D900B388AE /* ChooseTaskListTableViewCell.swift */; };
-		29B75BEC2CABEEC200B388AE /* TaskListTintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B75BEB2CABEEC200B388AE /* TaskListTintColor.swift */; };
 		29C089352CA6928E00BAC69D /* AddTaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C089342CA6928E00BAC69D /* AddTaskListTableViewController.swift */; };
 		29C089392CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C089372CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift */; };
 		29C0893A2CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29C089382CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.xib */; };
@@ -144,7 +143,6 @@
 		29B5AB4D2C9D58740001D4E3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		29B75BE62CAB92DD00B388AE /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		29B75BE92CAB94D900B388AE /* ChooseTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTaskListTableViewCell.swift; sourceTree = "<group>"; };
-		29B75BEB2CABEEC200B388AE /* TaskListTintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTintColor.swift; sourceTree = "<group>"; };
 		29C089342CA6928E00BAC69D /* AddTaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListTableViewController.swift; sourceTree = "<group>"; };
 		29C089372CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListChooseColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		29C089382CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListChooseColorCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -515,7 +513,6 @@
 				662E1E6E2C91B3B300CBA8B3 /* BaseViewController.swift */,
 				668940162C9FD0200099AC20 /* SignInMethod.swift */,
 				29A88C792CA655DD00CE0662 /* DateShowType.swift */,
-				29B75BEB2CABEEC200B388AE /* TaskListTintColor.swift */,
 			);
 			path = Ultilities;
 			sourceTree = "<group>";
@@ -748,7 +745,6 @@
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
 				29B184D12CA3E8CC00A4EE06 /* Todo.swift in Sources */,
 				29B75BEA2CAB94D900B388AE /* ChooseTaskListTableViewCell.swift in Sources */,
-				29B75BEC2CABEEC200B388AE /* TaskListTintColor.swift in Sources */,
 				669075CB2CA94991001E3B63 /* String.swift in Sources */,
 				29C089392CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift in Sources */,
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,

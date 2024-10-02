@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import UIKit
 
 struct Todo: Codable, Identifiable {
     var id: String?
@@ -35,6 +36,19 @@ enum Priority: Int, CaseIterable {
             return "High"
         default:
             return "None"
+        }
+    }
+    
+    static func setColor(prior: Int) -> UIColor {
+        switch prior {
+        case 1:
+            return .primary900
+        case 2:
+            return .bluescale900
+        case 3:
+            return .redscale900
+        default:
+            return .greyscale800
         }
     }
 }

@@ -58,7 +58,12 @@ final class TodoViewModel {
     
     func getTodayTasks(todos: [Todo]) -> [Todo] {
         let result = todos.compactMap {
-            return Calendar.current.isDateInToday(Date(timeIntervalSinceNow: $0.date ?? 0)) ? $0 : nil
+            switch $0.date != nil {
+            case true:
+                return Calendar.current.isDateInToday(Date(timeIntervalSinceNow: $0.date!)) ? $0 : nil
+            case false:
+                return nil
+            }
         }
         return result
     }

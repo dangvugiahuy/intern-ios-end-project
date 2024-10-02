@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    static func dateToString(date: TimeInterval) -> String {
+    static func dateToString(date: TimeInterval, format: String) -> String {
         var dateShowType: DateShowType = .Other("")
         let dateFromInterval = Date(timeIntervalSinceNow: date)
         if Calendar.current.isDateInToday(dateFromInterval) {
@@ -18,7 +18,7 @@ extension Date {
         } else if Calendar.current.isDateInTomorrow(dateFromInterval) {
             dateShowType = .Tomorrow
         } else {
-            dateShowType = .Other(DateFormatter().formated(from: dateFromInterval, with: "EEEE, MMMM d, yyyy"))
+            dateShowType = .Other(DateFormatter().formated(from: dateFromInterval, with: format))
         }
         return dateShowType.dateStringFormat()
     }
