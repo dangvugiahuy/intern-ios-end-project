@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TaskTableViewCellDelegate: AnyObject {
+    func setTaskComplete(indexPath: IndexPath, task: Todo)
+}
+
 class TaskTableViewCell: UITableViewCell {
     
     var task: Todo? {
@@ -14,6 +18,9 @@ class TaskTableViewCell: UITableViewCell {
             setupUIWithData()
         }
     }
+    
+    var indexPath: IndexPath?
+    weak var delegate: TaskTableViewCellDelegate?
     
     
     @IBOutlet weak var completedTaskCheckButton: UIButton!
@@ -75,6 +82,8 @@ class TaskTableViewCell: UITableViewCell {
     
     @IBAction func completeTaskCheckButtonClicked(_ sender: Any) {
         completedTaskCheckButton.isSelected.toggle()
+        task?.completed = completedTaskCheckButton.isSelected
+        delegate?.setTaskComplete(indexPath: indexPath!, task: task!)
     }
     
 }

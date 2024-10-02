@@ -11,6 +11,7 @@ import FirebaseAuth
 protocol TodoViewModelDelegate: AnyObject {
     func getTaskListSuccessHandle(list: [TaskList])
     func getAllTaskSuccessHandle(tasks: [Todo])
+    func setCompleteTaskSuccess()
 }
 
 final class TodoViewModel {
@@ -58,7 +59,7 @@ final class TodoViewModel {
     
     func getTodayTasks(todos: [Todo]) -> [Todo] {
         let result = todos.compactMap {
-            switch $0.date != nil {
+            switch $0.date != nil && $0.completed == false {
             case true:
                 return Calendar.current.isDateInToday(Date(timeIntervalSinceNow: $0.date!)) ? $0 : nil
             case false:
@@ -68,10 +69,21 @@ final class TodoViewModel {
         return result
     }
     
-    func getTaskCompleted(todos: [Todo]) -> [Todo] {
+    func getTaskIsCompleted(todos: [Todo], with completed: Bool) -> [Todo] {
         let result = todos.compactMap {
-            return $0.completed ? $0 : nil
+            return $0.completed == completed ? $0 : nil
         }
         return result
+    }
+    
+    func setCompleteTask(task: Todo) {
+        service?.setTaskComplete(from: task, completion: { [self] result in
+            switch result {
+            case .success(_):
+                delegate?.setCompleteTaskSuccess()
+            case .failure(let failure):
+                print("Write Data Error: \(failure.localizedDescription)")
+            }
+        })
     }
 }
