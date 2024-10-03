@@ -37,6 +37,14 @@ class TaskListDetailViewController: BaseViewController {
         todoTableView.dataSource = self
     }
     
+    private func handleEmptyList() {
+        if self.todos.isEmpty {
+            todoTableView.createViewWhenEmptyData(title: "No Todo in \(list!.name)")
+        } else {
+            todoTableView.backgroundView = nil
+        }
+    }
+    
     @IBAction func addNewTodoClicked(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
         let rootview = storyboard.instantiateViewController(withIdentifier: "AddNewTaskVC") as! AddTaskTableViewController
@@ -52,20 +60,16 @@ class TaskListDetailViewController: BaseViewController {
 extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSource, TaskListDetailViewModelDelegate, TaskListTodoTableViewCellDelegate, AddTaskTableViewControllerDelegate, UIViewControllerTransitioningDelegate {
     
     func deleteTaskSuccess() {
-        if self.todos.isEmpty {
-            todoTableView.createViewWhenEmptyData(title: "No Todo in \(list!.name)")
-        } else {
-            todoTableView.backgroundView = nil
-        }
+        handleEmptyList()
     }
     
-    func deleteTaskHandle(indexPath: IndexPath, task: Todo) {
+    func deleteTaskHandle(cell: UITableViewCell, task: Todo) {
         let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "This todo will be deleted from this list. This cannot be undone.", style: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] _ in
+            let indexPath = todoTableView.indexPath(for: cell)
+            todos.remove(at: indexPath!.row)
             todoTableView.beginUpdates()
-            todos.remove(at: indexPath.row)
-            todoTableView.deleteRows(at: [indexPath], with: .left)
-            todoTableView.reloadData()
+            todoTableView.deleteRows(at: [indexPath!], with: .left)
             todoTableView.endUpdates()
             vm.deleteTask(task: task)
         }))
@@ -74,29 +78,23 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func addNewTaskSuccessHandle(task: Todo) {
-        todoTableView.beginUpdates()
         todos.insert(task, at: 0)
+        todoTableView.beginUpdates()
         let indexPath = IndexPath(row: 0, section: 0)
-        todoTableView.insertRows(at: [indexPath], with: .right)
+        todoTableView.insertRows(at: [indexPath], with: .automatic)
         todoTableView.endUpdates()
-        if todoTableView.backgroundView != nil {
-            todoTableView.backgroundView = nil
-        }
+        handleEmptyList()
     }
     
     func setCompleteTaskSuccess() {
-        if self.todos.isEmpty {
-            todoTableView.createViewWhenEmptyData(title: "No Todo in \(list!.name)")
-        } else {
-            todoTableView.backgroundView = nil
-        }
+        handleEmptyList()
     }
     
-    func setTaskComplete(indexPath: IndexPath, task: Todo) {
+    func setTaskComplete(cell: UITableViewCell, task: Todo) {
+        let indexPath = todoTableView.indexPath(for: cell)
+        todos.remove(at: indexPath!.row)
         todoTableView.beginUpdates()
-        todos.remove(at: indexPath.row)
-        todoTableView.deleteRows(at: [indexPath], with: .left)
-        todoTableView.reloadData()
+        todoTableView.deleteRows(at: [indexPath!], with: .left)
         todoTableView.endUpdates()
         vm.setCompleteTask(task: task)
     }
@@ -105,11 +103,7 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
         self.todos = vm.getTaskinComplete(todos: todos)
         todoTableView.reloadData()
         loadingIndicator.stopAnimating()
-        if self.todos.isEmpty {
-            todoTableView.createViewWhenEmptyData(title: "No Todo in \(list!.name)")
-        } else {
-            todoTableView.backgroundView = nil
-        }
+        handleEmptyList()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TaskTableViewCellDelegate: AnyObject {
-    func setTaskComplete(indexPath: IndexPath, task: Todo)
+    func setTaskComplete(cell: UITableViewCell, task: Todo)
 }
 
 class TaskTableViewCell: UITableViewCell {
@@ -19,9 +19,7 @@ class TaskTableViewCell: UITableViewCell {
         }
     }
     
-    var indexPath: IndexPath?
     weak var delegate: TaskTableViewCellDelegate?
-    
     
     @IBOutlet weak var completedTaskCheckButton: UIButton!
     @IBOutlet weak var timeIconImageView: UIImageView!
@@ -83,6 +81,6 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func completeTaskCheckButtonClicked(_ sender: Any) {
         completedTaskCheckButton.isSelected.toggle()
         task?.completed = completedTaskCheckButton.isSelected
-        delegate?.setTaskComplete(indexPath: indexPath!, task: task!)
+        delegate?.setTaskComplete(cell: self, task: task!)
     }
 }

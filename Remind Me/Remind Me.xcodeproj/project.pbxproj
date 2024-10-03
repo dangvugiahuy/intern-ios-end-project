@@ -562,7 +562,6 @@
 				292D73F82C94460E0069A2B1 /* TodoViewController.swift */,
 				669075CC2CA95F20001E3B63 /* ManageTaskList */,
 				665B25122CA97D0200382ABC /* ManageTask */,
-				662E1E812C91B77300CBA8B3 /* TaskDetail */,
 			);
 			path = TodoListFlow;
 			sourceTree = "<group>";
@@ -587,6 +586,7 @@
 		665B25122CA97D0200382ABC /* ManageTask */ = {
 			isa = PBXGroup;
 			children = (
+				662E1E812C91B77300CBA8B3 /* TaskDetail */,
 				29FF84F82CA2A0F800673602 /* AddTask */,
 				6637FBCF2CAC3050008902FE /* TaskTableViewCell.swift */,
 			);

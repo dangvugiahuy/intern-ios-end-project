@@ -8,8 +8,8 @@
 import UIKit
 
 protocol TaskListTodoTableViewCellDelegate: AnyObject {
-    func setTaskComplete(indexPath: IndexPath, task: Todo)
-    func deleteTaskHandle(indexPath: IndexPath, task: Todo)
+    func setTaskComplete(cell: UITableViewCell, task: Todo)
+    func deleteTaskHandle(cell: UITableViewCell, task: Todo)
 }
 
 class TaskListTodoTableViewCell: UITableViewCell {
@@ -20,11 +20,7 @@ class TaskListTodoTableViewCell: UITableViewCell {
         }
     }
     
-    var indexPath: IndexPath? {
-        didSet {
-            
-        }
-    }
+    var indexPath: IndexPath?
     weak var delegate: TaskListTodoTableViewCellDelegate?
 
     @IBOutlet weak var editTaskButton: UIButton!
@@ -83,7 +79,7 @@ class TaskListTodoTableViewCell: UITableViewCell {
     @IBAction func taskCompleteCheckButtonClicked(_ sender: Any) {
         taskCompleteCheckButton.isSelected.toggle()
         todo?.completed = true
-        delegate?.setTaskComplete(indexPath: indexPath!, task: todo!)
+        delegate?.setTaskComplete(cell: self, task: todo!)
     }
     
     private func createMenu() -> UIMenu {
@@ -92,7 +88,7 @@ class TaskListTodoTableViewCell: UITableViewCell {
                 
             }),
             UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { [self] _ in
-                delegate?.deleteTaskHandle(indexPath: indexPath!, task: todo!)
+                delegate?.deleteTaskHandle(cell: self, task: todo!)
             })
         ])
     }
