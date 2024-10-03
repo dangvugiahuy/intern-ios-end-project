@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,6 +18,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskListDetailViewController" customModule="Remind_Me" customModuleProvider="target">
             <connections>
                 <outlet property="addNewTaskButton" destination="j6m-v3-VKG" id="dht-tj-pLD"/>
+                <outlet property="loadingIndicator" destination="7rH-Q5-c37" id="58J-Q2-4Ef"/>
+                <outlet property="todoTableView" destination="6vA-Wg-RZN" id="Pu8-BY-tYC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,27 +38,39 @@
                     <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system" title="New to do">
                         <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins-SemiBold" pointSize="18"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="addNewTodoClicked:" destination="-1" eventType="touchUpInside" id="Mhv-ts-m1k"/>
+                    </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6vA-Wg-RZN">
-                    <rect key="frame" x="16" y="59" width="361" height="703.66666666666652"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6vA-Wg-RZN">
+                    <rect key="frame" x="0.0" y="59" width="393" height="703.66666666666663"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="7rH-Q5-c37">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" name="Primary900"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2zZ-0g-v1j"/>
+                <constraint firstItem="7rH-Q5-c37" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4eK-MB-E7B"/>
                 <constraint firstItem="6vA-Wg-RZN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Hdv-YO-e2g"/>
-                <constraint firstItem="6vA-Wg-RZN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="MaC-hb-9Qn"/>
+                <constraint firstItem="6vA-Wg-RZN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MaC-hb-9Qn"/>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="PZV-Y0-xAZ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6vA-Wg-RZN" secondAttribute="trailing" constant="16" id="Qu6-nf-uDk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6vA-Wg-RZN" secondAttribute="trailing" id="Qu6-nf-uDk"/>
                 <constraint firstItem="j6m-v3-VKG" firstAttribute="top" secondItem="6vA-Wg-RZN" secondAttribute="bottom" constant="16" id="hcS-o0-MMz"/>
+                <constraint firstItem="7rH-Q5-c37" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uTe-vh-Tl0"/>
             </constraints>
             <point key="canvasLocation" x="58.778625954198468" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="Primary900">
+            <color red="0.33333333333333331" green="0.51764705882352946" blue="0.47843137254901963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

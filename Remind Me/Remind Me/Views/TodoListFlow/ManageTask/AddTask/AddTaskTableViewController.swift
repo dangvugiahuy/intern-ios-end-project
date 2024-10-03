@@ -22,6 +22,7 @@ class AddTaskTableViewController: UITableViewController {
     var taskListChoosen: TaskList?
     weak var delegate: AddTaskTableViewControllerDelegate?
     
+    @IBOutlet weak var selectTaskListCell: UITableViewCell!
     @IBOutlet weak var taskListNameLabel: UILabel!
     @IBOutlet weak var taskDetailLabel: UILabel!
     @IBOutlet weak var taskNotesTextViewPlaceholderLabel: UILabel!
@@ -36,7 +37,10 @@ class AddTaskTableViewController: UITableViewController {
         self.navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.left")
         self.navigationItem.backButtonTitle = ""
-        taskListChoosen = list[0]
+        if !list.isEmpty {
+            taskListChoosen = list[0]
+        }
+        selectTaskListCell.isHidden = list.isEmpty ? true : false
         cancelButton.setupPlainLightTitleButton()
         addButton.setupPlainBoldTitleButton()
         taskTitleTextField.becomeFirstResponder()

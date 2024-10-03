@@ -31,10 +31,8 @@ class TodoViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         self.disableLargeTitle()
-        if allTodos.isEmpty {
-            loadingIndicator.startAnimating()
-            vm.getAllTaskList()
-        }
+        loadingIndicator.startAnimating()
+        vm.getAllTaskList()
         setupClearTaskCompleted()
     }
     
@@ -75,6 +73,8 @@ class TodoViewController: BaseViewController {
     }
     
     private func refreshTableView() {
+        loadingIndicator.isHidden.toggle()
+        loadingIndicator.startAnimating()
         switch switchTaskSegmentControl.selectedSegmentIndex {
         case 1:
             todos = vm.getTaskIsCompleted(todos: allTodos, with: false)
@@ -121,9 +121,30 @@ class TodoViewController: BaseViewController {
         navigateVC.transitioningDelegate = self
         self.present(navigateVC, animated: true)
     }
+    
+    @IBAction func taskClearButtonClicked(_ sender: Any) {
+        let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "\(todos.count) completed todo will be deleted from this list. This cannot be undone.", style: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Delete All", style: .destructive, handler: { [self] _ in
+            let temptodos = todos
+            todos.removeAll()
+            let indexPaths: [IndexPath] = todosTableView.indexPathsForVisibleRows.map {
+                return $0
+            }!
+            todosTableView.deleteRows(at: indexPaths, with: .fade)
+            taskCompletedCountLabel.text = "0 Completed •"
+            taskClearButton.isEnabled = false
+            vm.clearAllCompleteTask(todos: temptodos)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(actionSheet, animated: true)
+    }
 }
 
 extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource, TaskTableViewCellDelegate {
+    
+    func clearAllTaskCompletedSuccess() {
+        vm.getAllTask(list: self.list)
+    }
     
     func setTaskComplete(indexPath: IndexPath, task: Todo) {
         todos.remove(at: indexPath.row)

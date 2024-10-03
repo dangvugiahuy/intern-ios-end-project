@@ -19,7 +19,13 @@ class TaskListTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.greyscale800]
+        tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Table view data source
@@ -42,6 +48,12 @@ class TaskListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListCell", for: indexPath) as! TaskListTableViewCell
         cell.taskListItem = list[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = TaskListDetailViewController()
+        vc.list = list[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     /*

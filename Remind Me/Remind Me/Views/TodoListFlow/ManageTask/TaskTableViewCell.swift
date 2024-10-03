@@ -85,5 +85,4 @@ class TaskTableViewCell: UITableViewCell {
         task?.completed = completedTaskCheckButton.isSelected
         delegate?.setTaskComplete(indexPath: indexPath!, task: task!)
     }
-    
 }

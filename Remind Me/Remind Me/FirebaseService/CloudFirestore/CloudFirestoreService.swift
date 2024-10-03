@@ -110,4 +110,28 @@ final class CloudFirestoreService {
             completion(.success("Success!"))
         }
     }
+    
+    func clearAllDocument(from todos: [Todo], completion: @escaping (Result<Any, Error>) -> Void) {
+        for todo in todos {
+            let path = primaryPath + "/TaskList/\(todo.taskList!.id!)/Todos"
+            db.collection(path).document(todo.id!).delete { error in
+                guard error == nil else {
+                    completion(.failure(error!))
+                    return
+                }
+            }
+        }
+        completion(.success("Clear Success!"))
+    }
+    
+    func deleteDocument(from todo: Todo, completion: @escaping (Result<Any, Error>) -> Void) {
+        let path = primaryPath + "/TaskList/\(todo.taskList!.id!)/Todos"
+        db.collection(path).document(todo.id!).delete { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success("Clear Success!"))
+        }
+    }
 }

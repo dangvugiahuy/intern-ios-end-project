@@ -29,6 +29,9 @@
 		299AC7012CA1007900608361 /* ChangePasswordSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */; };
 		299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */; };
 		299AC7062CA141E600608361 /* ChangeNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC7052CA141E600608361 /* ChangeNameViewModel.swift */; };
+		299F0A8F2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F0A8D2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift */; };
+		299F0A902CAE49CB00AD1589 /* TaskListTodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299F0A8E2CAE49CB00AD1589 /* TaskListTodoTableViewCell.xib */; };
+		299F0A922CAE503900AD1589 /* TaskListDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299F0A912CAE503900AD1589 /* TaskListDetailViewModel.swift */; };
 		29A0D05D2C9A79D0008B6E37 /* LoginUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D05C2C9A79D0008B6E37 /* LoginUserViewModel.swift */; };
 		29A0D05F2C9A7A4B008B6E37 /* RegisterUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D05E2C9A7A4B008B6E37 /* RegisterUserViewModel.swift */; };
 		29A0D0632C9A80F6008B6E37 /* EmailPasswordAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A0D0622C9A80F6008B6E37 /* EmailPasswordAuthService.swift */; };
@@ -117,6 +120,9 @@
 		299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordSuccessViewController.xib; sourceTree = "<group>"; };
 		299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordErrorType.swift; sourceTree = "<group>"; };
 		299AC7052CA141E600608361 /* ChangeNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewModel.swift; sourceTree = "<group>"; };
+		299F0A8D2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTodoTableViewCell.swift; sourceTree = "<group>"; };
+		299F0A8E2CAE49CB00AD1589 /* TaskListTodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTodoTableViewCell.xib; sourceTree = "<group>"; };
+		299F0A912CAE503900AD1589 /* TaskListDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewModel.swift; sourceTree = "<group>"; };
 		29A0D05C2C9A79D0008B6E37 /* LoginUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserViewModel.swift; sourceTree = "<group>"; };
 		29A0D05E2C9A7A4B008B6E37 /* RegisterUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewModel.swift; sourceTree = "<group>"; };
 		29A0D0622C9A80F6008B6E37 /* EmailPasswordAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPasswordAuthService.swift; sourceTree = "<group>"; };
@@ -279,6 +285,15 @@
 				299AC7052CA141E600608361 /* ChangeNameViewModel.swift */,
 			);
 			path = ChangeName;
+			sourceTree = "<group>";
+		};
+		299F0A8C2CAE491200AD1589 /* TaskListTodoCell */ = {
+			isa = PBXGroup;
+			children = (
+				299F0A8D2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift */,
+				299F0A8E2CAE49CB00AD1589 /* TaskListTodoTableViewCell.xib */,
+			);
+			path = TaskListTodoCell;
 			sourceTree = "<group>";
 		};
 		29A0D05A2C9A794E008B6E37 /* ViewModels */ = {
@@ -603,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				294E3CCD2CAA7A1A008DF4D7 /* TaskListViewModel.swift */,
+				299F0A912CAE503900AD1589 /* TaskListDetailViewModel.swift */,
 				669075CD2CA95F4E001E3B63 /* AddTaskList */,
 			);
 			path = ManageTaskList;
@@ -640,6 +656,7 @@
 			children = (
 				669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */,
 				669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */,
+				299F0A8C2CAE491200AD1589 /* TaskListTodoCell */,
 			);
 			path = TaskListDetail;
 			sourceTree = "<group>";
@@ -727,6 +744,7 @@
 				29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */,
 				29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */,
 				662E1E842C91B7A000CBA8B3 /* TaskDetailViewController.xib in Resources */,
+				299F0A902CAE49CB00AD1589 /* TaskListTodoTableViewCell.xib in Resources */,
 				2947C36F2C9051BF00C9C3FF /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,8 +756,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299F0A922CAE503900AD1589 /* TaskListDetailViewModel.swift in Sources */,
 				29A88C7C2CA662B400CE0662 /* DateFormatter.swift in Sources */,
 				662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */,
+				299F0A8F2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift in Sources */,
 				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
