@@ -13,6 +13,7 @@ class TodoViewController: BaseViewController {
     private var list: [TaskList] = [TaskList]()
     private var allTodos: [Todo] = [Todo]()
     private var todos: [Todo] = [Todo]()
+    private var isScreenBack =  false
         
     @IBOutlet weak var taskClearButton: UIButton!
     @IBOutlet weak var taskCompletedCountLabel: UILabel!
@@ -29,9 +30,11 @@ class TodoViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.isScreenBack.toggle()
         self.tabBarController?.tabBar.isHidden = false
         self.disableLargeTitle()
         loadingIndicator.startAnimating()
+        loadingIndicator.isHidden = false
         vm.getAllTaskList()
         setupClearTaskCompleted()
     }
@@ -87,12 +90,6 @@ class TodoViewController: BaseViewController {
             break
         }
         todosTableView.reloadData()
-        loadingIndicator.stopAnimating()
-        if todos.isEmpty {
-            todosTableView.createViewWhenEmptyData(title: "No Todo")
-        } else {
-            todosTableView.backgroundView = nil
-        }
     }
     
     private func setupClearTaskCompleted() {
@@ -100,11 +97,21 @@ class TodoViewController: BaseViewController {
         taskCompletedCountLabel.isHidden = switchTaskSegmentControl.selectedSegmentIndex == 2 ? false : true
     }
     
+    private func handleEmptyList() {
+        if todos.isEmpty {
+            todosTableView.createViewWhenEmptyData(title: "No Todo")
+        } else {
+            todosTableView.backgroundView = nil
+        }
+    }
+    
     @IBAction func switchTaskSegmentControlValueChange(_ sender: Any) {
-        loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
+        loadingIndicator.isHidden = false
         refreshTableView()
         setupClearTaskCompleted()
+        loadingIndicator.stopAnimating()
+        handleEmptyList()
     }
     
     @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
@@ -141,6 +148,30 @@ class TodoViewController: BaseViewController {
 
 extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource, TaskTableViewCellDelegate {
     
+    func editTaskListSuccessHandle(list: TaskList) {}
+    
+    func deleteTaskSuccess() {
+        vm.getAllTask(list: self.list)
+    }
+    
+    func deleteTaskHandle(cell: UITableViewCell, task: Todo) {
+        let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "This todo will be deleted from this list. This cannot be undone.", style: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] _ in
+            let indexPath = todosTableView.indexPath(for: cell)
+            todos.remove(at: indexPath!.row)
+            todosTableView.beginUpdates()
+            todosTableView.deleteRows(at: [indexPath!], with: .left)
+            todosTableView.endUpdates()
+            if switchTaskSegmentControl.selectedSegmentIndex == 2 {
+                taskCompletedCountLabel.text = todos.isEmpty ? "0 Completed •" : "\(todos.count) Completed •"
+                taskClearButton.isEnabled = todos.isEmpty ? false : true
+            }
+            vm.deleteTask(task: task)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(actionSheet, animated: true)
+    }
+    
     func clearAllTaskCompletedSuccess() {
         vm.getAllTask(list: self.list)
     }
@@ -148,7 +179,9 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     func setTaskComplete(cell: UITableViewCell, task: Todo) {
         let indexPath = todosTableView.indexPath(for: cell)
         todos.remove(at: indexPath!.row)
+        todosTableView.beginUpdates()
         todosTableView.deleteRows(at: [indexPath!], with: .left)
+        todosTableView.endUpdates()
         taskCompletedCountLabel.text = todos.isEmpty ? "0 Completed •" : "\(todos.count) Completed •"
         taskClearButton.isEnabled = todos.isEmpty ? false : true
         vm.setCompleteTask(task: task)
@@ -171,12 +204,21 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func getAllTaskSuccessHandle(tasks: [Todo]) {
         self.allTodos = tasks
-        loadingIndicator.isHidden = false
-        loadingIndicator.startAnimating()
-        refreshTableView()
+        switch self.isScreenBack {
+        case true:
+            refreshTableView()
+            loadingIndicator.stopAnimating()
+            handleEmptyList()
+            self.isScreenBack.toggle()
+            break
+        case false:
+            handleEmptyList()
+            break
+        }
     }
     
     func addNewTaskSuccessHandle(task: Todo) {
+        self.isScreenBack.toggle()
         vm.getAllTask(list: self.list)
     }
     

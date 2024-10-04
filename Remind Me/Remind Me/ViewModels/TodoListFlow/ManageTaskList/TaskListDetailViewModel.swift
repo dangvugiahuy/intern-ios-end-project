@@ -12,6 +12,7 @@ protocol TaskListDetailViewModelDelegate: AnyObject {
     func getAllTaskSuccess(todos: [Todo])
     func setCompleteTaskSuccess()
     func deleteTaskSuccess()
+    func deleteThisListSuccess()
 }
 
 final class TaskListDetailViewModel {
@@ -63,6 +64,17 @@ final class TaskListDetailViewModel {
                 delegate?.deleteTaskSuccess()
             case .failure(let failure):
                 print("Write Data Error: \(failure.localizedDescription)")
+            }
+        })
+    }
+    
+    func deleteThisTaskList(list: TaskList, todos: [Todo]) {
+        service?.deleteTaskList(from: todos, of: list, completion: { [self] result in
+            switch result {
+            case .success(_):
+                delegate?.deleteThisListSuccess()
+            case .failure(let failure):
+                print("Delete Data Error: \(failure.localizedDescription)")
             }
         })
     }

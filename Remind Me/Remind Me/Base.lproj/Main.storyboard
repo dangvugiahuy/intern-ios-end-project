@@ -244,6 +244,7 @@
                                                 <connections>
                                                     <outlet property="cellContainView" destination="Ng7-UB-W5s" id="bLg-lS-hx9"/>
                                                     <outlet property="completedTaskCheckButton" destination="xgq-H5-2QY" id="eiN-Vb-QAn"/>
+                                                    <outlet property="editTaskButton" destination="snd-g4-Y8X" id="ir2-tP-FE6"/>
                                                     <outlet property="priorityIconImageView" destination="wEu-aa-wRY" id="VRb-Z3-SX3"/>
                                                     <outlet property="taskDateLabel" destination="UfU-qj-l6X" id="TPk-DD-5pg"/>
                                                     <outlet property="taskListButton" destination="oqS-2k-78Y" id="Ejq-o5-cCj"/>

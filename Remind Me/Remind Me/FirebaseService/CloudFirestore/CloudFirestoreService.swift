@@ -59,6 +59,17 @@ final class CloudFirestoreService {
         }
     }
     
+    func editTaskList(list: TaskList, completion: @escaping (Result<TaskList, Error>) -> Void) {
+        let path = primaryPath + "/TaskList"
+        db.collection(path).document(list.id!).setData(["name" : list.name, "tintColor": list.tintColor], merge: true) { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(list))
+        }
+    }
+    
     func createTask(from list: TaskList, with task: Todo, completion: @escaping (Result<Todo, Error>) -> Void) {
         let path = primaryPath + "/TaskList/\(list.id!)/Todos"
         do  {
@@ -133,5 +144,27 @@ final class CloudFirestoreService {
             }
             completion(.success("Clear Success!"))
         }
+    }
+    
+    func deleteTaskList(from todos: [Todo], of list: TaskList, completion: @escaping (Result<Any, Error>) -> Void) {
+        if !todos.isEmpty {
+            let todosPath = primaryPath + "/TaskList/\(list.id!)/Todos"
+            for todo in todos {
+                db.collection(todosPath).document(todo.id!).delete { error in
+                    guard error == nil else {
+                        completion(.failure(error!))
+                        return
+                    }
+                }
+            }
+        }
+        let path = primaryPath + "/TaskList"
+        db.collection(path).document(list.id!).delete { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+        }
+        completion(.success("Delete Success!"))
     }
 }

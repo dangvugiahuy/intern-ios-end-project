@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddTaskListTableViewControllerDelegate: AnyObject {
     func addTaskListSuccessHandle(list: TaskList)
+    func editTaskListSuccessHandle(list: TaskList)
 }
 
 class AddTaskListTableViewController: UITableViewController {
@@ -17,6 +18,7 @@ class AddTaskListTableViewController: UITableViewController {
     private let colors: [String] = ["#D22B2B", "#F28C28", "#FDDA0D", "#55847A", "#4169E1", "#CF9FFF", "#6F4E37"]
     private var colorChoosen: String = ""
     weak var delegate: AddTaskListTableViewControllerDelegate?
+    var taskList: TaskList?
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var colorsCollectionView: UICollectionView!
@@ -26,7 +28,7 @@ class AddTaskListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "New List"
+        self.title = taskList != nil ? "Detail" : "New List"
         cancelButton.setupPlainLightTitleButton()
         doneButton.setupPlainBoldTitleButton()
         listNameTextField.becomeFirstResponder()
@@ -36,10 +38,21 @@ class AddTaskListTableViewController: UITableViewController {
         colorsCollectionView.dataSource = self
         vm.delegate = self
         colorsCollectionView.isScrollEnabled = false
-        colorChoosen = colors[3]
+        if let taskList = self.taskList {
+            listNameTextField.text = taskList.name
+            colorChoosen = taskList.tintColor
+            for i in 0..<colors.count {
+                if taskList.tintColor == colors[i] {
+                    colorsCollectionView.selectItem(at: IndexPath(row: i, section: 0), animated: false, scrollPosition: [])
+                    break
+                }
+            }
+        } else {
+            colorChoosen = colors[3]
+            colorsCollectionView.selectItem(at: IndexPath(row: 3, section: 0), animated: false, scrollPosition: [])
+        }
         listIconImageView.tintColor = UIColor().colorFrom(hex: colorChoosen)
-        colorsCollectionView.selectItem(at: IndexPath(row: 3, section: 0), animated: false, scrollPosition: [])
-        doneButton.isEnabled = false
+        doneButton.isEnabled = listNameTextField.text != "" ? true : false
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -60,7 +73,13 @@ class AddTaskListTableViewController: UITableViewController {
     @IBAction func doneButtonClicked(_ sender: Any) {
         vm.name = listNameTextField.text!
         vm.tintColor = colorChoosen
-        vm.addNewTaskList()
+        if self.taskList != nil {
+            taskList?.name = listNameTextField.text!
+            taskList?.tintColor = colorChoosen
+            vm.editTaskList(list: taskList!)
+        } else {
+            vm.addNewTaskList()
+        }
     }
     
     @IBAction func listNameTextFieldChange(_ sender: Any) {
@@ -69,6 +88,11 @@ class AddTaskListTableViewController: UITableViewController {
 }
 
 extension AddTaskListTableViewController: UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AddTaskListViewModelDelegate {
+    
+    func editTaskListSuccessHandle(list: TaskList) {
+        self.dismiss(animated: true)
+        delegate?.editTaskListSuccessHandle(list: list)
+    }
     
     func addTaskListSuccessHandle(list: TaskList) {
         self.dismiss(animated: true)

@@ -13,6 +13,7 @@ protocol TodoViewModelDelegate: AnyObject {
     func getAllTaskSuccessHandle(tasks: [Todo])
     func setCompleteTaskSuccess()
     func clearAllTaskCompletedSuccess()
+    func deleteTaskSuccess()
 }
 
 final class TodoViewModel {
@@ -93,6 +94,17 @@ final class TodoViewModel {
             switch result {
             case .success(_):
                 delegate?.clearAllTaskCompletedSuccess()
+            case .failure(let failure):
+                print("Write Data Error: \(failure.localizedDescription)")
+            }
+        })
+    }
+    
+    func deleteTask(task: Todo) {
+        service?.deleteDocument(from: task, completion: { [self] result in
+            switch result {
+            case .success(_):
+                delegate?.deleteTaskSuccess()
             case .failure(let failure):
                 print("Write Data Error: \(failure.localizedDescription)")
             }

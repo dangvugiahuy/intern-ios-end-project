@@ -53,6 +53,8 @@ class TaskListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = TaskListDetailViewController()
         vc.list = list[indexPath.row]
+        vc.indexPath = indexPath
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -103,6 +105,17 @@ class TaskListTableViewController: UITableViewController {
 
 }
 
-extension TaskListTableViewController {
+extension TaskListTableViewController: TaskListDetailViewControllerDelegate {
     
+    func update(at indexPath: IndexPath, with list: TaskList) {
+        self.list[indexPath.row] = list
+        tableView.reloadData()
+    }
+    
+    func delete(at indexPath: IndexPath) {
+        list.remove(at: indexPath.row)
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
 }

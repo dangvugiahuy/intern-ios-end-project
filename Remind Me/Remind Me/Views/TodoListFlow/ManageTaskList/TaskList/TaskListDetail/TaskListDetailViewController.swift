@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol TaskListDetailViewControllerDelegate: AnyObject {
+    func delete(at indexPath: IndexPath)
+    func update(at indexPath: IndexPath, with list: TaskList)
+}
+
 class TaskListDetailViewController: BaseViewController {
     
     private let vm: TaskListDetailViewModel = TaskListDetailViewModel()
+    private var isEdit: Bool = false
+    var indexPath: IndexPath?
     var list: TaskList?
     var todos: [Todo] = [Todo]()
+    weak var delegate: TaskListDetailViewControllerDelegate?
     @IBOutlet weak var todoTableView: UITableView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addNewTaskButton: UIButton!
@@ -20,7 +28,17 @@ class TaskListDetailViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isEdit {
+            delegate?.update(at: indexPath!, with: list!)
+            isEdit.toggle()
+        }
+    }
+    
     override func setupFirstLoadVC() {
+        let detailButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: detailMenu())
+        self.navigationItem.rightBarButtonItem = detailButton
         loadingIndicator.hidesWhenStopped = true
         self.tabBarController?.tabBar.isHidden = true
         let nib = UINib(nibName: "TaskListTodoTableViewCell", bundle: .main)
@@ -45,6 +63,30 @@ class TaskListDetailViewController: BaseViewController {
         }
     }
     
+    private func detailMenu() -> UIMenu {
+        let menuItems: [UIAction] = [
+            UIAction(title: "Detail", image: UIImage(systemName: "info.circle"), handler: { [self] _ in
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
+                let rootview = storyboard.instantiateViewController(withIdentifier: "AddTaskListVC") as! AddTaskListTableViewController
+                rootview.taskList = list
+                rootview.delegate = self
+                let navigateVC = UINavigationController(rootViewController: rootview)
+                navigateVC.modalPresentationStyle = .custom
+                navigateVC.transitioningDelegate = self
+                self.present(navigateVC, animated: true)
+            }),
+            UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { [self] _ in
+                let alert = UIAlertController.createSimpleAlert(with: "Delete list \"\(list!.name)\"?", and: "This will delete all todo in list", style: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] _ in
+                    vm.deleteThisTaskList(list: list!, todos: todos)
+                }))
+                self.present(alert, animated: true)
+            }),
+        ]
+        return UIMenu(children: menuItems)
+    }
+    
     @IBAction func addNewTodoClicked(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
         let rootview = storyboard.instantiateViewController(withIdentifier: "AddNewTaskVC") as! AddTaskTableViewController
@@ -57,7 +99,23 @@ class TaskListDetailViewController: BaseViewController {
     }
 }
 
-extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSource, TaskListDetailViewModelDelegate, TaskListTodoTableViewCellDelegate, AddTaskTableViewControllerDelegate, UIViewControllerTransitioningDelegate {
+extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSource, TaskListDetailViewModelDelegate, TaskListTodoTableViewCellDelegate, AddTaskTableViewControllerDelegate, UIViewControllerTransitioningDelegate, AddTaskListTableViewControllerDelegate {
+    
+    func editTaskListSuccessHandle(list: TaskList) {
+        self.list = list
+        self.title = list.name
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor().colorFrom(hex: list.tintColor)]
+        addNewTaskButton.tintColor = UIColor().colorFrom(hex: list.tintColor)
+        handleEmptyList()
+        isEdit.toggle()
+    }
+    
+    func addTaskListSuccessHandle(list: TaskList) {}
+    
+    func deleteThisListSuccess() {
+        delegate?.delete(at: indexPath!)
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func deleteTaskSuccess() {
         handleEmptyList()

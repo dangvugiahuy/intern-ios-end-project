@@ -9,6 +9,7 @@ import UIKit
 
 protocol TaskTableViewCellDelegate: AnyObject {
     func setTaskComplete(cell: UITableViewCell, task: Todo)
+    func deleteTaskHandle(cell: UITableViewCell, task: Todo)
 }
 
 class TaskTableViewCell: UITableViewCell {
@@ -21,6 +22,7 @@ class TaskTableViewCell: UITableViewCell {
     
     weak var delegate: TaskTableViewCellDelegate?
     
+    @IBOutlet weak var editTaskButton: UIButton!
     @IBOutlet weak var completedTaskCheckButton: UIButton!
     @IBOutlet weak var timeIconImageView: UIImageView!
     @IBOutlet weak var cellContainView: UIView!
@@ -60,6 +62,7 @@ class TaskTableViewCell: UITableViewCell {
         completedTaskCheckButton.setImage(UIImage(systemName: "square")?.withRenderingMode(.automatic), for: .normal)
         let config = UIImage.SymbolConfiguration(paletteColors: [.redscale900, .greyscale800])
         completedTaskCheckButton.setImage(UIImage(systemName: "checkmark.square")?.applyingSymbolConfiguration(config), for: .selected)
+        editTaskButton.showsMenuAsPrimaryAction = true
     }
     
     private func setupUIWithData() {
@@ -75,6 +78,7 @@ class TaskTableViewCell: UITableViewCell {
             timeIconImageView.isHidden = task.time != nil ? false : true
             taskListButton.setAttributedTitle(NSMutableAttributedString(string: task.taskList!.name, attributes: [NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)]), for: .normal)
             taskListButton.tintColor = UIColor().colorFrom(hex: task.taskList!.tintColor)
+            editTaskButton.menu = createMenu()
         }
     }
     
@@ -82,5 +86,16 @@ class TaskTableViewCell: UITableViewCell {
         completedTaskCheckButton.isSelected.toggle()
         task?.completed = completedTaskCheckButton.isSelected
         delegate?.setTaskComplete(cell: self, task: task!)
+    }
+    
+    private func createMenu() -> UIMenu {
+        return UIMenu(children: [
+            UIAction(title: "Detail", image: UIImage(systemName: "info.circle"), handler: { _ in
+                
+            }),
+            UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { [self] _ in
+                delegate?.deleteTaskHandle(cell: self, task: task!)
+            })
+        ])
     }
 }
