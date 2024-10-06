@@ -146,11 +146,22 @@ class TodoViewController: BaseViewController {
     }
 }
 
-extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource, TaskTableViewCellDelegate {
+extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource, TaskTableViewCellDelegate, TaskDetailViewControllerDelegate {
+    
+    func editTaskFromDetailSuccessHandle() {
+        self.isScreenBack.toggle()
+        vm.getAllTask(list: self.list)
+    }
+    
+    func deleteTaskFromDetailSuccessHandle() {
+        self.isScreenBack.toggle()
+        vm.getAllTask(list: self.list)
+    }
     
     func editTaskHandle(cell: UITableViewCell, task: Todo) {
         let vc = TaskDetailViewController()
         vc.task = task
+        vc.delegate = self
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = self
         self.present(vc, animated: true)

@@ -23,10 +23,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskDetailViewController" customModule="Remind_Me" customModuleProvider="target">
             <connections>
+                <outlet property="checkCompleteButton" destination="9v2-ra-pTO" id="U9e-Hd-BkB"/>
+                <outlet property="datePickerStackView" destination="SNl-lO-cgm" id="z9R-6a-YCN"/>
                 <outlet property="dateTimeLabel" destination="Vmi-VK-zVQ" id="0Ty-Zr-lCe"/>
+                <outlet property="priorityButton" destination="QMy-5x-4AO" id="XHa-55-MW3"/>
+                <outlet property="saveTaskDetailButton" destination="xPa-95-g0r" id="EvY-kl-Plg"/>
+                <outlet property="taskDateButton" destination="j2a-nF-Wrm" id="5Ez-Pi-m1x"/>
+                <outlet property="taskDatePicker" destination="Mr0-bd-HqV" id="M1c-uK-aGN"/>
+                <outlet property="taskDateSwitch" destination="4Lf-TN-yg1" id="VVq-Mu-4pK"/>
                 <outlet property="taskNotesTextView" destination="Ock-eN-aI8" id="0UI-zl-bft"/>
+                <outlet property="taskTimeButton" destination="w3B-03-fgA" id="gr6-fc-HCM"/>
+                <outlet property="taskTimePicker" destination="j6e-Mb-VFj" id="KUG-wr-CbN"/>
+                <outlet property="taskTimeSwitch" destination="u4n-ti-RxC" id="AXJ-P3-hfl"/>
                 <outlet property="taskTitleTextField" destination="QMt-ed-kHh" id="Agr-Pu-Bys"/>
                 <outlet property="textViewPlaceHolderLabel" destination="Uje-qe-gD5" id="HyP-zm-cN0"/>
+                <outlet property="timePickerStackView" destination="UR1-wp-upW" id="an0-uS-bE1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -67,6 +78,10 @@
                     <color key="textColor" name="Greyscale800"/>
                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="19"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                    <connections>
+                        <action selector="taskTitleTextFieldValueChange:" destination="-1" eventType="editingChanged" id="Qvc-OR-j12"/>
+                        <outlet property="delegate" destination="-1" id="blM-yy-rfw"/>
+                    </connections>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ock-eN-aI8">
                     <rect key="frame" x="14" y="177" width="363" height="30"/>
@@ -113,6 +128,9 @@
                             <color key="tintColor" name="Greyscale600"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="calendar" catalog="system"/>
+                            <connections>
+                                <action selector="taskDateButtonClicked:" destination="-1" eventType="touchUpInside" id="LUE-5R-kzd"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3B-03-fgA">
                             <rect key="frame" x="34" y="0.0" width="24" height="24"/>
@@ -123,6 +141,9 @@
                             <color key="tintColor" name="Greyscale600"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="clock.fill" catalog="system"/>
+                            <connections>
+                                <action selector="taskTimeButtonClicked:" destination="-1" eventType="touchUpInside" id="xZU-Dj-KFK"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-5x-4AO">
                             <rect key="frame" x="68" y="0.0" width="24" height="24"/>
@@ -134,18 +155,31 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="flag.fill" catalog="system"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9v2-ra-pTO">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9v2-ra-pTO">
                             <rect key="frame" x="102" y="0.0" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="0TM-xf-f6y"/>
                                 <constraint firstAttribute="height" constant="24" id="jxm-eT-k8v"/>
                             </constraints>
-                            <color key="tintColor" name="Greyscale600"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="square.and.pencil" catalog="system"/>
+                            <state key="normal" image="checkmark.square" catalog="system"/>
+                            <buttonConfiguration key="configuration" style="plain" image="checkmark.square" catalog="system">
+                                <color key="baseForegroundColor" name="Greyscale600"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="checkCompleteButtonClick:" destination="-1" eventType="touchUpInside" id="Lcp-7f-tma"/>
+                            </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9DL-Xt-Qtc">
+                            <rect key="frame" x="136" y="0.0" width="1" height="24"/>
+                            <color key="backgroundColor" name="Greyscale200"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="mdM-m7-7Hv"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9A-pP-YKk">
-                            <rect key="frame" x="136" y="0.0" width="191" height="24"/>
+                            <rect key="frame" x="147" y="0.0" width="180" height="24"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egB-Jx-c8O">
@@ -157,16 +191,12 @@
                             <color key="tintColor" name="Redscale900"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="trash.fill" catalog="system"/>
+                            <connections>
+                                <action selector="deleteTaskButtonClicked:" destination="-1" eventType="touchUpInside" id="vIG-US-GLa"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lj5-6J-o7k">
-                    <rect key="frame" x="16" y="313" width="361" height="1"/>
-                    <color key="backgroundColor" name="Greyscale200"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="QrG-2M-24n"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPa-95-g0r">
                     <rect key="frame" x="16" y="746" width="361" height="56"/>
                     <constraints>
@@ -174,14 +204,74 @@
                     </constraints>
                     <color key="tintColor" name="Primary900"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Save"/>
+                    <buttonConfiguration key="configuration" style="tinted" title="Save">
+                        <fontDescription key="titleFontDescription" name="Poppins-Medium" family="Poppins-Medium" pointSize="17"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="saveTaskDetailButtonClicked:" destination="-1" eventType="touchUpInside" id="poo-XG-9ki"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write some notes..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uje-qe-gD5">
-                    <rect key="frame" x="18" y="183.33333333333334" width="130" height="17.666666666666657"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <rect key="frame" x="18" y="181.66666666666666" width="140.33333333333334" height="21"/>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins-Regular" pointSize="15"/>
                     <color key="textColor" name="Greyscale500"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-0w-Q9g">
+                    <rect key="frame" x="16" y="321" width="361" height="79"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sj-eV-2uE">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="1"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="pra-mv-VyA"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SNl-lO-cgm">
+                            <rect key="frame" x="0.0" y="9" width="361" height="31"/>
+                            <subviews>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Lf-TN-yg1">
+                                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                    <color key="onTintColor" name="Primary900"/>
+                                    <connections>
+                                        <action selector="taskDateSwitchValueChange:" destination="-1" eventType="valueChanged" id="ME0-fw-KhN"/>
+                                    </connections>
+                                </switch>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Mr0-bd-HqV">
+                                    <rect key="frame" x="57" y="0.0" width="304" height="31"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="31" id="bSc-V8-F2a"/>
+                                    </constraints>
+                                </datePicker>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="UR1-wp-upW">
+                            <rect key="frame" x="0.0" y="48" width="361" height="31"/>
+                            <subviews>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4n-ti-RxC">
+                                    <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                    <color key="onTintColor" name="Primary900"/>
+                                    <connections>
+                                        <action selector="taskTimeSwitchValueChange:" destination="-1" eventType="valueChanged" id="JP5-TM-KPF"/>
+                                    </connections>
+                                </switch>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="j6e-Mb-VFj">
+                                    <rect key="frame" x="60" y="0.0" width="301" height="31"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="31" id="AjQ-wd-UTm"/>
+                                    </constraints>
+                                </datePicker>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTI-tx-TTZ">
+                    <rect key="frame" x="16" y="408" width="361" height="1"/>
+                    <color key="backgroundColor" name="Greyscale200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8FX-ix-hCd"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <keyboardLayoutGuide key="keyboard" id="kyX-Cy-s0H"/>
@@ -190,40 +280,43 @@
                 <constraint firstItem="vAk-Zn-3c7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="0j9-WC-CHk"/>
                 <constraint firstItem="s9x-fA-W2f" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="7eG-LN-Mbt"/>
                 <constraint firstItem="QMt-ed-kHh" firstAttribute="top" secondItem="vAk-Zn-3c7" secondAttribute="bottom" constant="24" id="7rt-3o-4mH"/>
-                <constraint firstItem="lj5-6J-o7k" firstAttribute="top" secondItem="fB4-y6-9p9" secondAttribute="bottom" constant="16" id="9Gc-EJ-cTe"/>
+                <constraint firstItem="dbf-0w-Q9g" firstAttribute="top" secondItem="fB4-y6-9p9" secondAttribute="bottom" constant="24" id="8DB-Qe-RT9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dbf-0w-Q9g" secondAttribute="trailing" constant="16" id="B1w-gr-YVb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fB4-y6-9p9" secondAttribute="trailing" constant="16" id="CvT-M2-iD9"/>
                 <constraint firstItem="xrh-UE-bPp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="Fjo-tO-fsa"/>
                 <constraint firstItem="QMt-ed-kHh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HiJ-B8-L7M"/>
                 <constraint firstItem="fB4-y6-9p9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ied-ek-0UL"/>
                 <constraint firstItem="D33-5l-mnU" firstAttribute="top" secondItem="Ock-eN-aI8" secondAttribute="bottom" constant="24" id="LVu-YO-YGA"/>
-                <constraint firstItem="lj5-6J-o7k" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="O6v-xN-JPx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="D33-5l-mnU" secondAttribute="trailing" constant="16" id="Okx-Vk-E4b"/>
                 <constraint firstItem="D33-5l-mnU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Q69-Ws-aIw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KTI-tx-TTZ" secondAttribute="trailing" constant="16" id="QVG-0o-wRf"/>
                 <constraint firstItem="kyX-Cy-s0H" firstAttribute="top" secondItem="xPa-95-g0r" secondAttribute="bottom" constant="16" id="T5Q-Gb-3zB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xPa-95-g0r" secondAttribute="trailing" constant="16" id="TCv-ja-Me9"/>
+                <constraint firstItem="xPa-95-g0r" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KTI-tx-TTZ" secondAttribute="bottom" constant="16" id="VF2-pQ-E9g"/>
                 <constraint firstItem="Ock-eN-aI8" firstAttribute="top" secondItem="QMt-ed-kHh" secondAttribute="bottom" id="Xr6-Xn-h5P"/>
                 <constraint firstItem="xPa-95-g0r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Y6z-ek-CJI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lj5-6J-o7k" secondAttribute="trailing" constant="16" id="hjW-5F-MqU"/>
+                <constraint firstItem="dbf-0w-Q9g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="aJT-2a-wJd"/>
+                <constraint firstItem="KTI-tx-TTZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="aPJ-Xo-ZTL"/>
                 <constraint firstItem="vAk-Zn-3c7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="jFc-Oa-Vol"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QMt-ed-kHh" secondAttribute="trailing" constant="16" id="n3Z-NH-DGi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xrh-UE-bPp" secondAttribute="trailing" constant="16" id="nnA-8V-blr"/>
                 <constraint firstItem="Uje-qe-gD5" firstAttribute="leading" secondItem="Ock-eN-aI8" secondAttribute="leading" constant="4" id="oMo-Hk-tfF"/>
+                <constraint firstItem="KTI-tx-TTZ" firstAttribute="top" secondItem="dbf-0w-Q9g" secondAttribute="bottom" constant="8" id="orh-Xg-2Vm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ock-eN-aI8" secondAttribute="trailing" constant="16" id="qp5-0a-bTC"/>
                 <constraint firstItem="Ock-eN-aI8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="14" id="tPm-bn-Ffk"/>
                 <constraint firstItem="s9x-fA-W2f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ulL-sN-IRd"/>
-                <constraint firstItem="xPa-95-g0r" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lj5-6J-o7k" secondAttribute="bottom" constant="24" id="wCD-l6-kMc"/>
                 <constraint firstItem="fB4-y6-9p9" firstAttribute="top" secondItem="D33-5l-mnU" secondAttribute="bottom" constant="24" id="wGt-r5-T7R"/>
                 <constraint firstItem="Uje-qe-gD5" firstAttribute="centerY" secondItem="Ock-eN-aI8" secondAttribute="centerY" id="xGy-CZ-bCw"/>
             </constraints>
-            <point key="canvasLocation" x="131" y="-11"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
     </objects>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="clock.fill" catalog="system" width="128" height="123"/>
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="pin" catalog="system" width="116" height="128"/>
-        <image name="square.and.pencil" catalog="system" width="128" height="121"/>
         <image name="trash.fill" catalog="system" width="117" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="Greyscale200">

@@ -70,6 +70,16 @@ final class CloudFirestoreService {
         }
     }
     
+    func editTask(task: Todo, completion: @escaping (Result<Any, Error>) -> Void) {
+        let path = primaryPath + "/TaskList/\(task.taskList!.id!)/Todos"
+        do {
+            try db.collection(path).document(task.id!).setData(from: task)
+            completion(.success("Edit Success!"))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
     func createTask(from list: TaskList, with task: Todo, completion: @escaping (Result<Todo, Error>) -> Void) {
         let path = primaryPath + "/TaskList/\(list.id!)/Todos"
         do  {

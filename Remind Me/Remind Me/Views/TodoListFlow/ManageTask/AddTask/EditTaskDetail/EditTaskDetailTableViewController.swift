@@ -93,15 +93,13 @@ class EditTaskDetailTableViewController: UITableViewController {
     }
     
     private func setMenuAction() -> [UIAction] {
-        var actions = [UIAction]()
-        _ = Priority.allCases.map {
+        let actions: [UIAction] = Priority.allCases.map {
             let priority = $0
-            let action = UIAction(title: "\(priority)", image: UIImage(systemName: taskPriorityLabel.text == "\(priority)" ? "checkmark" : "")) { [self] action in
+            return UIAction(title: "\(priority)", image: UIImage(systemName: taskPriorityLabel.text == "\(priority)" ? "checkmark" : "")) { [self] action in
                 taskPriorityLabel.text = "\(priority)"
                 self.priority = priority
                 refreshMenuState()
             }
-            actions.append(action)
         }
         return actions
     }

@@ -92,6 +92,7 @@
 		669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */; };
 		669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */; };
 		669BA2122CAAE29A001083FA /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BA2112CAAE29A001083FA /* TodoViewModel.swift */; };
+		66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D854F62CB221C6001D50EE /* TaskDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,7 @@
 		669075D22CA960C2001E3B63 /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
 		669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListDetailViewController.xib; sourceTree = "<group>"; };
 		669BA2112CAAE29A001083FA /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
+		66D854F62CB221C6001D50EE /* TaskDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 		294E3CD12CAAAD2B008DF4D7 /* ManageTask */ = {
 			isa = PBXGroup;
 			children = (
+				66D854F52CB2210B001D50EE /* TaskDetail */,
 				294E3CD22CAAAD8E008DF4D7 /* AddTask */,
 			);
 			path = ManageTask;
@@ -658,6 +661,14 @@
 			path = TaskListDetail;
 			sourceTree = "<group>";
 		};
+		66D854F52CB2210B001D50EE /* TaskDetail */ = {
+			isa = PBXGroup;
+			children = (
+				66D854F62CB221C6001D50EE /* TaskDetailViewModel.swift */,
+			);
+			path = TaskDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -771,6 +782,7 @@
 				29A88C7A2CA655DD00CE0662 /* DateShowType.swift in Sources */,
 				29FF84FC2CA2B64E00673602 /* UIBarButtonItem.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
+				66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */,
 				29A5DB452C9983F900862103 /* ChangeNameViewController.swift in Sources */,
 				668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */,
 				29B184CF2CA3E83700A4EE06 /* TaskList.swift in Sources */,
