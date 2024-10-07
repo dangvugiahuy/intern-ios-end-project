@@ -11,7 +11,7 @@ import FirebaseAuth
 protocol TaskListDetailViewModelDelegate: AnyObject {
     func getAllTaskSuccess(todos: [Todo])
     func setCompleteTaskSuccess()
-    func deleteTaskSuccess()
+    func deleteTaskSuccess(task: Todo)
     func deleteThisListSuccess()
 }
 
@@ -61,7 +61,7 @@ final class TaskListDetailViewModel {
         service?.deleteDocument(from: task, completion: { [self] result in
             switch result {
             case .success(_):
-                delegate?.deleteTaskSuccess()
+                delegate?.deleteTaskSuccess(task: task)
             case .failure(let failure):
                 print("Write Data Error: \(failure.localizedDescription)")
             }

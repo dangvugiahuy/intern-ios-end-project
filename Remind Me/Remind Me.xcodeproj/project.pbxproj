@@ -93,6 +93,7 @@
 		669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */; };
 		669BA2122CAAE29A001083FA /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BA2112CAAE29A001083FA /* TodoViewModel.swift */; };
 		66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D854F62CB221C6001D50EE /* TaskDetailViewModel.swift */; };
+		66E48BD42CB42B7E00D054DB /* UNUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E48BD32CB42B7E00D054DB /* UNUserNotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +179,7 @@
 		669075D32CA960C2001E3B63 /* TaskListDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListDetailViewController.xib; sourceTree = "<group>"; };
 		669BA2112CAAE29A001083FA /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		66D854F62CB221C6001D50EE /* TaskDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewModel.swift; sourceTree = "<group>"; };
+		66E48BD32CB42B7E00D054DB /* UNUserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNUserNotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 				669075CA2CA94991001E3B63 /* String.swift */,
 				294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */,
 				6637FBD12CAC60B4008902FE /* Date.swift */,
+				66E48BD32CB42B7E00D054DB /* UNUserNotificationCenter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */,
 				294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */,
 				6637FBD02CAC3050008902FE /* TaskTableViewCell.swift in Sources */,
+				66E48BD42CB42B7E00D054DB /* UNUserNotificationCenter.swift in Sources */,
 				661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */,
 				29B184D32CA4096A00A4EE06 /* PresentationController.swift in Sources */,
 				29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */,
@@ -1000,7 +1004,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1031,7 +1035,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

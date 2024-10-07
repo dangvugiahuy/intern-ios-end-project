@@ -16,6 +16,7 @@ class TaskListDetailViewController: BaseViewController {
     
     private let vm: TaskListDetailViewModel = TaskListDetailViewModel()
     private var isEdit: Bool = false
+    private let enableNotification = UserDefaults.standard.bool(forKey: "enableNotification")
     var indexPath: IndexPath?
     var list: TaskList?
     var todos: [Todo] = [Todo]()
@@ -114,6 +115,12 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
         todoTableView.deleteRows(at: [indexPath!], with: .left)
         todoTableView.endUpdates()
         handleEmptyList()
+        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: todos[indexPath!.row].id!) {
+        case true:
+            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: todos[indexPath!.row].id!)
+        case false:
+            break
+        }
     }
     
     func editTaskHandle(cell: UITableViewCell, task: Todo) {
@@ -142,7 +149,13 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
         self.navigationController?.popViewController(animated: true)
     }
     
-    func deleteTaskSuccess() {
+    func deleteTaskSuccess(task: Todo) {
+        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: task.id!) {
+        case true:
+            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+        case false:
+            break
+        }
         handleEmptyList()
     }
     
@@ -167,6 +180,7 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
         todoTableView.insertRows(at: [indexPath], with: .automatic)
         todoTableView.endUpdates()
         handleEmptyList()
+        UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
     }
     
     func setCompleteTaskSuccess() {

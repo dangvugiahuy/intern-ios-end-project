@@ -14,7 +14,6 @@ class TodoViewController: BaseViewController {
     private var allTodos: [Todo] = [Todo]()
     private var todos: [Todo] = [Todo]()
     private var isScreenBack =  false
-    private let enableNotification = UserDefaults.standard.bool(forKey: "enableNotification")
         
     @IBOutlet weak var taskClearButton: UIButton!
     @IBOutlet weak var taskCompletedCountLabel: UILabel!
@@ -178,6 +177,13 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell) {
         self.isScreenBack.toggle()
+        let indexPath = todosTableView.indexPath(for: cell)
+        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: todos[indexPath!.row].id!) {
+        case true:
+            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: todos[indexPath!.row].id!)
+        case false:
+            break
+        }
         vm.getAllTask(list: self.list)
     }
     
@@ -194,8 +200,11 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     func editTaskListSuccessHandle(list: TaskList) {}
     
     func deleteTaskSuccess(task: Todo) {
-        if task.date != nil && task.time != nil {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id!])
+        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: task.id!) {
+        case true:
+            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+        case false:
+            break
         }
         vm.getAllTask(list: self.list)
     }
@@ -266,17 +275,7 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func addNewTaskSuccessHandle(task: Todo) {
         self.isScreenBack.toggle()
-        if let date = task.date, let time = task.time {
-            if enableNotification {
-                let content = UNMutableNotificationContent()
-                content.title = "Remind Me"
-                content.body = task.title
-                content.sound = UNNotificationSound.default
-                let trigger = UNCalendarNotificationTrigger(dateMatching: Date.merge(from: date, and: time), repeats: false)
-                let request = UNNotificationRequest(identifier: task.id!, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            }
-        }
+        UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
         vm.getAllTask(list: self.list)
     }
     

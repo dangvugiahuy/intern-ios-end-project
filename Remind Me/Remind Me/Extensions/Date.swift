@@ -38,7 +38,7 @@ extension Date {
     
     static func merge(from date: TimeInterval, and time: TimeInterval) -> DateComponents {
         var dmyComp = Calendar.current.dateComponents([.day, .month, .year], from: Date(timeIntervalSince1970: date))
-        var hmComp = Calendar.current.dateComponents([.hour, .minute], from: Date(timeIntervalSince1970: time))
+        let hmComp = Calendar.current.dateComponents([.hour, .minute], from: Date(timeIntervalSince1970: time))
         dmyComp.hour = hmComp.hour
         dmyComp.minute = hmComp.minute
         return dmyComp
