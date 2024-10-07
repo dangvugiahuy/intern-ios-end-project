@@ -39,6 +39,7 @@
                 <outlet property="textViewPlaceHolderLabel" destination="Uje-qe-gD5" id="HyP-zm-cN0"/>
                 <outlet property="timePickerStackView" destination="UR1-wp-upW" id="an0-uS-bE1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewTapGesture" destination="l1S-60-QiZ" id="3Zd-Rw-Gpn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -239,9 +240,13 @@
                                 </switch>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Mr0-bd-HqV">
                                     <rect key="frame" x="57" y="0.0" width="304" height="31"/>
+                                    <color key="tintColor" name="Primary900"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="31" id="bSc-V8-F2a"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="taskDatePickerValueChange:" destination="-1" eventType="valueChanged" id="jv3-BX-hfU"/>
+                                    </connections>
                                 </datePicker>
                             </subviews>
                         </stackView>
@@ -257,9 +262,13 @@
                                 </switch>
                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="j6e-Mb-VFj">
                                     <rect key="frame" x="60" y="0.0" width="301" height="31"/>
+                                    <color key="tintColor" name="Primary900"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="31" id="AjQ-wd-UTm"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="taskTimePickerValueChange:" destination="-1" eventType="valueChanged" id="dhj-Ni-ufr"/>
+                                    </connections>
                                 </datePicker>
                             </subviews>
                         </stackView>
@@ -276,6 +285,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <keyboardLayoutGuide key="keyboard" id="kyX-Cy-s0H"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vAk-Zn-3c7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="0j9-WC-CHk"/>
                 <constraint firstItem="s9x-fA-W2f" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="7eG-LN-Mbt"/>
@@ -308,8 +318,16 @@
                 <constraint firstItem="fB4-y6-9p9" firstAttribute="top" secondItem="D33-5l-mnU" secondAttribute="bottom" constant="24" id="wGt-r5-T7R"/>
                 <constraint firstItem="Uje-qe-gD5" firstAttribute="centerY" secondItem="Ock-eN-aI8" secondAttribute="centerY" id="xGy-CZ-bCw"/>
             </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="l1S-60-QiZ" appends="YES" id="X9T-o6-sCG"/>
+            </connections>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
+        <tapGestureRecognizer id="l1S-60-QiZ">
+            <connections>
+                <action selector="hideKeyboard:" destination="-1" id="zlW-ol-pCN"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>

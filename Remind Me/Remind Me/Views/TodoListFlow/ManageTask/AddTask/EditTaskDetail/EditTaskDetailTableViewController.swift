@@ -78,7 +78,7 @@ class EditTaskDetailTableViewController: UITableViewController {
     
     private func setupDateUIWithData() {
         if let date = date {
-            let dateFromInterval = Date(timeIntervalSinceNow: date)
+            let dateFromInterval = Date(timeIntervalSince1970: date)
             taskDatePicker.setDate(dateFromInterval, animated: true)
             dateLabel.text = Date.dateToString(date: date, format: "EEEE, MMMM d, yyyy")
         }
@@ -113,10 +113,10 @@ class EditTaskDetailTableViewController: UITableViewController {
         if !hideShowDateSwitch.isOn && hideShowTimeSwitch.isOn {
             hideShowTimeSwitch.isOn = false
             timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
-            self.time = hideShowTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSinceNow : nil
+            self.time = hideShowTimeSwitch.isOn ? Date().timeIntervalSince1970 : nil
         }
         dateLabel.isHidden = hideShowDateSwitch.isOn ? false : true
-        self.date = hideShowDateSwitch.isOn ? taskDatePicker.date.timeIntervalSinceNow : nil
+        self.date = hideShowDateSwitch.isOn ? Date().timeIntervalSince1970 : nil
         setupDateUIWithData()
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -126,12 +126,12 @@ class EditTaskDetailTableViewController: UITableViewController {
         if hideShowTimeSwitch.isOn && !hideShowDateSwitch.isOn {
             hideShowDateSwitch.isOn = true
             dateLabel.isHidden = hideShowDateSwitch.isOn ? false : true
-            self.date = hideShowDateSwitch.isOn ? taskDatePicker.date.timeIntervalSinceNow : nil
+            self.date = hideShowDateSwitch.isOn ? Date().timeIntervalSince1970 : nil
             setupDateUIWithData()
         }
         timeLabel.isHidden = hideShowTimeSwitch.isOn ? false : true
         taskTimePicker.alpha = hideShowTimeSwitch.isOn ? 1 : 0
-        self.time = hideShowTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSinceNow : nil
+        self.time = hideShowTimeSwitch.isOn ? Date().timeIntervalSince1970 : nil
         setupTimeUIWithData()
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -139,13 +139,12 @@ class EditTaskDetailTableViewController: UITableViewController {
     
     
     @IBAction func taskDatePickerChange(_ sender: Any) {
-        self.date = taskDatePicker.date.timeIntervalSinceNow
+        self.date = taskDatePicker.date.dateToTimeInterVal()
         setupDateUIWithData()
     }
     
     @IBAction func taskTimePickerChange(_ sender: Any) {
-        self.time = taskTimePicker.date.timeIntervalSince1970
+        self.time = taskTimePicker.date.timeToTimeInterVal()
         setupTimeUIWithData()
     }
-    
 }

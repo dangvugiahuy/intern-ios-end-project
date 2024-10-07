@@ -17,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         NetworkMonitor.shared.startMonitoring()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                UserDefaults.standard.set(true, forKey: "enableNotification")
+            } else {
+                UserDefaults.standard.set(false, forKey: "enableNotification")
+            }
+        }
         return true
     }
 

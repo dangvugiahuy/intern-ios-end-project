@@ -10,6 +10,7 @@ import UIKit
 protocol TaskListTodoTableViewCellDelegate: AnyObject {
     func setTaskComplete(cell: UITableViewCell, task: Todo)
     func deleteTaskHandle(cell: UITableViewCell, task: Todo)
+    func editTaskHandle(cell: UITableViewCell, task: Todo)
 }
 
 class TaskListTodoTableViewCell: UITableViewCell {
@@ -84,8 +85,8 @@ class TaskListTodoTableViewCell: UITableViewCell {
     
     private func createMenu() -> UIMenu {
         return UIMenu(children: [
-            UIAction(title: "Detail", image: UIImage(systemName: "info.circle"), handler: { _ in
-                
+            UIAction(title: "Detail", image: UIImage(systemName: "info.circle"), handler: { [self] _ in
+                delegate?.editTaskHandle(cell: self, task: todo!)
             }),
             UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { [self] _ in
                 delegate?.deleteTaskHandle(cell: self, task: todo!)

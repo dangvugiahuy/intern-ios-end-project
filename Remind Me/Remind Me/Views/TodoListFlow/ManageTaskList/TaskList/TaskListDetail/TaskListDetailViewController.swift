@@ -99,7 +99,32 @@ class TaskListDetailViewController: BaseViewController {
     }
 }
 
-extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSource, TaskListDetailViewModelDelegate, TaskListTodoTableViewCellDelegate, AddTaskTableViewControllerDelegate, UIViewControllerTransitioningDelegate, AddTaskListTableViewControllerDelegate {
+extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSource, TaskListDetailViewModelDelegate, TaskListTodoTableViewCellDelegate, AddTaskTableViewControllerDelegate, UIViewControllerTransitioningDelegate, AddTaskListTableViewControllerDelegate, TaskDetailViewControllerDelegate {
+    
+    func editTaskFromDetailSuccessHandle(cell: UITableViewCell, task: Todo) {
+        let indexPath = todoTableView.indexPath(for: cell)
+        todos[indexPath!.row] = task
+        todoTableView.reloadData()
+    }
+    
+    func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell) {
+        let indexPath = todoTableView.indexPath(for: cell)
+        todos.remove(at: indexPath!.row)
+        todoTableView.beginUpdates()
+        todoTableView.deleteRows(at: [indexPath!], with: .left)
+        todoTableView.endUpdates()
+        handleEmptyList()
+    }
+    
+    func editTaskHandle(cell: UITableViewCell, task: Todo) {
+        let vc = TaskDetailViewController()
+        vc.task = task
+        vc.delegate = self
+        vc.cell = cell
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = self
+        self.present(vc, animated: true)
+    }
     
     func editTaskListSuccessHandle(list: TaskList) {
         self.list = list
@@ -182,7 +207,7 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let presentController = PresentationController(presentedViewController: presented, presenting: presenting)
-        presentController.heightValue = 0.7
+        presentController.heightValue = 0.8
         presentController.yValue = (1 - presentController.heightValue!)
         return presentController
     }

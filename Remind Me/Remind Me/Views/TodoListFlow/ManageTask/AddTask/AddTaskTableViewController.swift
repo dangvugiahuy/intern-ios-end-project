@@ -60,14 +60,14 @@ class AddTaskTableViewController: UITableViewController {
     private func updateDateTime() {
         taskDetailLabel.isHidden = date == nil && time == nil ? true : false
         if let date = date {
-            if Calendar.current.isDateInToday(Date(timeIntervalSinceNow: date)) {
+            if Calendar.current.isDateInToday(Date(timeIntervalSince1970: date)) {
                 dateShowType = .Today
-            } else if Calendar.current.isDateInYesterday(Date(timeIntervalSinceNow: date)) {
+            } else if Calendar.current.isDateInYesterday(Date(timeIntervalSince1970: date)) {
                 dateShowType = .Yesterday
-            } else if Calendar.current.isDateInTomorrow(Date(timeIntervalSinceNow: date)) {
+            } else if Calendar.current.isDateInTomorrow(Date(timeIntervalSince1970: date)) {
                 dateShowType = .Tomorrow
             } else {
-                dateShowType = .Other(DateFormatter().formated(from: Date(timeIntervalSinceNow: date), with: "MMM d, yyyy"))
+                dateShowType = .Other(DateFormatter().formated(from: Date(timeIntervalSince1970: date), with: "MMM d, yyyy"))
             }
         }
         let dateString: String = date != nil ? dateShowType.dateStringFormat() : ""

@@ -14,6 +14,7 @@ class TodoViewController: BaseViewController {
     private var allTodos: [Todo] = [Todo]()
     private var todos: [Todo] = [Todo]()
     private var isScreenBack =  false
+    private let enableNotification = UserDefaults.standard.bool(forKey: "enableNotification")
         
     @IBOutlet weak var taskClearButton: UIButton!
     @IBOutlet weak var taskCompletedCountLabel: UILabel!
@@ -50,6 +51,8 @@ class TodoViewController: BaseViewController {
         todosTableView.dataSource = self
         switchTaskSegmentControl.setupSegment()
         loadingIndicator.hidesWhenStopped = true
+        filterButton.primaryAction = nil
+        filterButton.menu = filterMenu()
         manageTaskListButton.primaryAction = nil
         manageTaskListButton.menu = setupMenu()
         self.setupLeftNavigationBarItem()
@@ -92,6 +95,30 @@ class TodoViewController: BaseViewController {
         todosTableView.reloadData()
     }
     
+    private func filterMenu() -> UIMenu {
+        let dueDateSortMenu = UIMenu(title: "Sort By: Due date", image: UIImage(systemName: "calendar"), options: .singleSelection, children: [
+            UIAction(title: "Oldest First", image: UIImage(systemName: "arrow.up"), handler: { [self] _ in
+                todos = vm.filterDueDate(todos: todos, option: .low)
+                todosTableView.reloadData()
+            }),
+            UIAction(title: "Newest First", image: UIImage(systemName: "arrow.down"), handler: { [self] _ in
+                todos = vm.filterDueDate(todos: todos, option: .high)
+                todosTableView.reloadData()
+            })
+        ])
+        let prioritySortMenu = UIMenu(title: "Sort By: Priority", image: UIImage(systemName: "flag"), options: .singleSelection, children: [
+            UIAction(title: "Highest First", image: UIImage(systemName: "arrow.up"), handler: { [self] _ in
+                todos = vm.filterPriority(todos: todos, option: .high)
+                todosTableView.reloadData()
+            }),
+            UIAction(title: "Lowest First", image: UIImage(systemName: "arrow.down"), handler: { [self] _ in
+                todos = vm.filterPriority(todos: todos, option: .low)
+                todosTableView.reloadData()
+            })
+        ])
+        return UIMenu(options: [], children: [dueDateSortMenu, prioritySortMenu])
+    }
+    
     private func setupClearTaskCompleted() {
         taskClearButton.isHidden = switchTaskSegmentControl.selectedSegmentIndex == 2 ? false : true
         taskCompletedCountLabel.isHidden = switchTaskSegmentControl.selectedSegmentIndex == 2 ? false : true
@@ -112,10 +139,6 @@ class TodoViewController: BaseViewController {
         setupClearTaskCompleted()
         loadingIndicator.stopAnimating()
         handleEmptyList()
-    }
-    
-    @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
-        
     }
     
     @IBAction func addTaskClicked(_ sender: UIBarButtonItem) {
@@ -148,12 +171,12 @@ class TodoViewController: BaseViewController {
 
 extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTableViewControllerDelegate, AddTaskListTableViewControllerDelegate, TodoViewModelDelegate, UITableViewDelegate, UITableViewDataSource, TaskTableViewCellDelegate, TaskDetailViewControllerDelegate {
     
-    func editTaskFromDetailSuccessHandle() {
+    func editTaskFromDetailSuccessHandle(cell: UITableViewCell, task: Todo) {
         self.isScreenBack.toggle()
         vm.getAllTask(list: self.list)
     }
     
-    func deleteTaskFromDetailSuccessHandle() {
+    func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell) {
         self.isScreenBack.toggle()
         vm.getAllTask(list: self.list)
     }
@@ -161,6 +184,7 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     func editTaskHandle(cell: UITableViewCell, task: Todo) {
         let vc = TaskDetailViewController()
         vc.task = task
+        vc.cell = cell
         vc.delegate = self
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = self
@@ -169,7 +193,10 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func editTaskListSuccessHandle(list: TaskList) {}
     
-    func deleteTaskSuccess() {
+    func deleteTaskSuccess(task: Todo) {
+        if task.date != nil && task.time != nil {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id!])
+        }
         vm.getAllTask(list: self.list)
     }
     
@@ -223,6 +250,7 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func getAllTaskSuccessHandle(tasks: [Todo]) {
         self.allTodos = tasks
+        filterButton.isEnabled = allTodos.isEmpty ? false : true
         switch self.isScreenBack {
         case true:
             refreshTableView()
@@ -238,6 +266,17 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func addNewTaskSuccessHandle(task: Todo) {
         self.isScreenBack.toggle()
+        if let date = task.date, let time = task.time {
+            if enableNotification {
+                let content = UNMutableNotificationContent()
+                content.title = "Remind Me"
+                content.body = task.title
+                content.sound = UNNotificationSound.default
+                let trigger = UNCalendarNotificationTrigger(dateMatching: Date.merge(from: date, and: time), repeats: false)
+                let request = UNNotificationRequest(identifier: task.id!, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+            }
+        }
         vm.getAllTask(list: self.list)
     }
     

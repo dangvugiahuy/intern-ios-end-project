@@ -8,18 +8,20 @@
 import UIKit
 
 protocol TaskDetailViewControllerDelegate: AnyObject {
-    func deleteTaskFromDetailSuccessHandle()
-    func editTaskFromDetailSuccessHandle()
+    func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell)
+    func editTaskFromDetailSuccessHandle(cell: UITableViewCell, task: Todo)
 }
 
 class TaskDetailViewController: UIViewController {
     
     private let vm: TaskDetailViewModel = TaskDetailViewModel()
+    var cell: UITableViewCell?
     var task: Todo?
     weak var delegate: TaskDetailViewControllerDelegate?
     private var priority: Priority = .None
     private var menuItem: [UIAction] = [UIAction]()
 
+    @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var datePickerStackView: UIStackView!
     @IBOutlet weak var saveTaskDetailButton: UIButton!
     @IBOutlet weak var checkCompleteButton: UIButton!
@@ -48,6 +50,7 @@ class TaskDetailViewController: UIViewController {
         vm.delegate = self
         priorityButton.showsMenuAsPrimaryAction = true
         refreshMenuState()
+        viewTapGesture.isEnabled = false
     }
     
     private func setupUIWithData() {
@@ -73,8 +76,12 @@ class TaskDetailViewController: UIViewController {
     
     private func setUpDateTimeWithData() {
         if let date = task?.date {
+            let dateFromInterval = Date(timeIntervalSince1970: date)
+            taskDatePicker.setDate(dateFromInterval, animated: true)
             dateTimeLabel.text = Date.dateToString(date: date, format: "EEE, d MMM yyyy")
             if let time = task?.time {
+                let timeFromInterval = Date(timeIntervalSince1970: time)
+                taskTimePicker.setDate(timeFromInterval, animated: true)
                 dateTimeLabel.text = dateTimeLabel.text! + " - " + DateFormatter().formated(from: Date(timeIntervalSince1970: time), with: "h:mm a")
             }
         } else {
@@ -125,6 +132,21 @@ class TaskDetailViewController: UIViewController {
         }
     }
     
+    private func closeDateTimePicker() {
+        if datePickerStackView.isHidden == false {
+            UIView.animate(withDuration: 0.35) { [self] in
+                datePickerStackView.isHidden = true
+                datePickerStackView.alpha = 0
+            }
+        }
+        if timePickerStackView.isHidden == false {
+            UIView.animate(withDuration: 0.35) { [self] in
+                timePickerStackView.isHidden = true
+                timePickerStackView.alpha = 0
+            }
+        }
+    }
+    
     @IBAction func closeButtonClicked(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -141,7 +163,7 @@ class TaskDetailViewController: UIViewController {
     @IBAction func saveTaskDetailButtonClicked(_ sender: Any) {
         task?.priority = priority.rawValue
         task?.title = taskTitleTextField.text!
-        task?.note = taskNotesTextView.text ?? ""
+        task?.note = taskNotesTextView.text != "" ? taskNotesTextView.text! : nil
         vm.updateTask(task: task!)
     }
     
@@ -155,10 +177,16 @@ class TaskDetailViewController: UIViewController {
     }
     
     @IBAction func taskDateButtonClicked(_ sender: Any) {
+        if taskTitleTextField.isEditing || taskNotesTextView.isEditable {
+            view.endEditing(true)
+        }
         animateDateStackView()
     }
     
     @IBAction func taskTimeButtonClicked(_ sender: Any) {
+        if taskTitleTextField.isEditing || taskNotesTextView.isEditable {
+            view.endEditing(true)
+        }
         animateTimeStackView()
     }
     
@@ -166,14 +194,36 @@ class TaskDetailViewController: UIViewController {
         if !taskDateSwitch.isOn && taskTimeSwitch.isOn {
             taskTimeSwitch.isOn = false
             taskTimePicker.isEnabled = taskTimeSwitch.isOn ? true : false
-            task?.time = taskTimeSwitch.isOn ? taskTimePicker.date.timeIntervalSince1970 : nil
+            task?.time = taskTimeSwitch.isOn ? Date().timeIntervalSince1970 : nil
         }
         taskDatePicker.isEnabled = taskDateSwitch.isOn ? true : false
-        
+        task?.date = taskDateSwitch.isOn ? Date().timeIntervalSince1970 : nil
+        setUpDateTimeWithData()
     }
     
     @IBAction func taskTimeSwitchValueChange(_ sender: Any) {
-        
+        if taskTimeSwitch.isOn && !taskDateSwitch.isOn {
+            taskDateSwitch.isOn = true
+            taskDatePicker.isEnabled = taskDateSwitch.isOn ? true : false
+            task?.date = taskDateSwitch.isOn ? Date().timeIntervalSince1970 : nil
+        }
+        taskTimePicker.isEnabled = taskTimeSwitch.isOn ? true : false
+        task?.time = taskTimeSwitch.isOn ? Date().timeIntervalSince1970 : nil
+        setUpDateTimeWithData()
+    }
+    
+    @IBAction func taskDatePickerValueChange(_ sender: UIDatePicker) {
+        task?.date = taskDatePicker.date.dateToTimeInterVal()
+        setUpDateTimeWithData()
+    }
+    
+    @IBAction func taskTimePickerValueChange(_ sender: UIDatePicker) {
+        task?.time = taskTimePicker.date.timeToTimeInterVal()
+        setUpDateTimeWithData()
+    }
+    
+    @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }
 
@@ -181,12 +231,12 @@ extension TaskDetailViewController: UITextViewDelegate, TaskDetailViewModelDeleg
     
     func editTaskHandle() {
         self.dismiss(animated: true)
-        delegate?.editTaskFromDetailSuccessHandle()
+        delegate?.editTaskFromDetailSuccessHandle(cell: self.cell!, task: self.task!)
     }
     
     func deleteTaskHandle() {
         self.dismiss(animated: true)
-        delegate?.deleteTaskFromDetailSuccessHandle()
+        delegate?.deleteTaskFromDetailSuccessHandle(cell: self.cell!)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -198,17 +248,20 @@ extension TaskDetailViewController: UITextViewDelegate, TaskDetailViewModelDeleg
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if datePickerStackView.isHidden == false {
-            UIView.animate(withDuration: 0.35) { [self] in
-                datePickerStackView.isHidden = true
-                datePickerStackView.alpha = 0
-            }
-        }
-        if timePickerStackView.isHidden == false {
-            UIView.animate(withDuration: 0.35) { [self] in
-                timePickerStackView.isHidden = true
-                timePickerStackView.alpha = 0
-            }
-        }
+        viewTapGesture.isEnabled = true
+        closeDateTimePicker()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        viewTapGesture.isEnabled = true
+        closeDateTimePicker()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewTapGesture.isEnabled = false
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        viewTapGesture.isEnabled = false
     }
 }

@@ -13,7 +13,7 @@ protocol TodoViewModelDelegate: AnyObject {
     func getAllTaskSuccessHandle(tasks: [Todo])
     func setCompleteTaskSuccess()
     func clearAllTaskCompletedSuccess()
-    func deleteTaskSuccess()
+    func deleteTaskSuccess(task: Todo)
 }
 
 final class TodoViewModel {
@@ -63,7 +63,7 @@ final class TodoViewModel {
         let result = todos.compactMap {
             switch $0.date != nil && $0.completed == false {
             case true:
-                return Calendar.current.isDateInToday(Date(timeIntervalSinceNow: $0.date!)) ? $0 : nil
+                return Calendar.current.isDateInToday(Date(timeIntervalSince1970: $0.date!)) ? $0 : nil
             case false:
                 return nil
             }
@@ -104,10 +104,47 @@ final class TodoViewModel {
         service?.deleteDocument(from: task, completion: { [self] result in
             switch result {
             case .success(_):
-                delegate?.deleteTaskSuccess()
+                delegate?.deleteTaskSuccess(task: task)
             case .failure(let failure):
                 print("Write Data Error: \(failure.localizedDescription)")
             }
         })
     }
+    
+    func filterDueDate(todos: [Todo], option: filterType) -> [Todo] {
+        let taskWithDate = todos.compactMap {
+            return $0.date != nil ? $0 : nil
+        }
+        let taskWithOutDate = todos.compactMap {
+            return $0.date == nil ? $0 : nil
+        }
+        var result: [Todo] = [Todo]()
+        result = taskWithDate.sorted { todo1, todo2 in
+            switch option {
+            case .low:
+                return todo1.date! < todo2.date!
+            case .high:
+                return todo1.date! > todo2.date!
+            }
+        }
+        result.append(contentsOf: taskWithOutDate)
+        return result
+    }
+    
+    func filterPriority(todos: [Todo], option: filterType) -> [Todo] {
+        let result = todos.sorted { todo1, todo2 in
+            switch option {
+            case .low:
+                return todo1.priority < todo2.priority
+            case .high:
+                return todo1.priority > todo2.priority
+            }
+        }
+        return result
+    }
+}
+
+enum filterType {
+    case high
+    case low
 }
