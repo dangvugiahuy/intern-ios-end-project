@@ -10,10 +10,7 @@ import UIKit
 class AddNewFeedViewController: BaseViewController {
     
     private let profileVm: ProfileViewModel = ProfileViewModel()
-
-    @IBOutlet weak var feedContentTextView: UITextView!
-    @IBOutlet weak var userDisplayNameLabel: UILabel!
-    @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var addNewFeedContentTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +19,36 @@ class AddNewFeedViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userDisplayNameLabel.text = profileVm.getUserDisplayName()
-        userAvatarImageView.loadImageFromURL(profileVm.getUserPhotoURL())
+
     }
     
     override func setupFirstLoadVC() {
-        userAvatarImageView.setupAvtImage()
+        
+    }
+}
+
+extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            cell = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedUserInfoCell", for: indexPath)
+        case 1:
+            cell = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedContentCell", for: indexPath)
+        case 2:
+            cell = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedImageCell", for: indexPath)
+        default:
+            break
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

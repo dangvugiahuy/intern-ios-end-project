@@ -88,6 +88,9 @@
 		6637FBD02CAC3050008902FE /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637FBCF2CAC3050008902FE /* TaskTableViewCell.swift */; };
 		6637FBD22CAC60B4008902FE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637FBD12CAC60B4008902FE /* Date.swift */; };
 		666B687B2C952D94003212AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666B687A2C952D94003212AC /* ProfileViewController.swift */; };
+		66703FBF2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66703FBE2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift */; };
+		66703FC12CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66703FC02CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift */; };
+		66703FC32CB5813000D8E319 /* AddFeedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66703FC22CB5813000D8E319 /* AddFeedImageTableViewCell.swift */; };
 		668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668940162C9FD0200099AC20 /* SignInMethod.swift */; };
 		669075C82CA93A31001E3B63 /* AddTaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */; };
 		669075CB2CA94991001E3B63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669075CA2CA94991001E3B63 /* String.swift */; };
@@ -176,6 +179,9 @@
 		6637FBCF2CAC3050008902FE /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		6637FBD12CAC60B4008902FE /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		666B687A2C952D94003212AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		66703FBE2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedUserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		66703FC02CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedContentTableViewCell.swift; sourceTree = "<group>"; };
+		66703FC22CB5813000D8E319 /* AddFeedImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedImageTableViewCell.swift; sourceTree = "<group>"; };
 		668940162C9FD0200099AC20 /* SignInMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMethod.swift; sourceTree = "<group>"; };
 		669075C72CA93A31001E3B63 /* AddTaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListViewModel.swift; sourceTree = "<group>"; };
 		669075CA2CA94991001E3B63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -506,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				29E558832CB52C6F00BE4697 /* AddNewFeedViewController.swift */,
+				66703FBD2CB57D0E00D8E319 /* AddNewFeedTableViewCell */,
 			);
 			path = AddNewFeed;
 			sourceTree = "<group>";
@@ -628,6 +635,16 @@
 				29EA98372C981E2E001DB26A /* AboutUs */,
 			);
 			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		66703FBD2CB57D0E00D8E319 /* AddNewFeedTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				66703FBE2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift */,
+				66703FC02CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift */,
+				66703FC22CB5813000D8E319 /* AddFeedImageTableViewCell.swift */,
+			);
+			path = AddNewFeedTableViewCell;
 			sourceTree = "<group>";
 		};
 		669075C62CA939E2001E3B63 /* TodoListFlow */ = {
@@ -802,10 +819,12 @@
 				29C089392CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.swift in Sources */,
 				2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */,
 				29A0D0652C9A8125008B6E37 /* GoogleAuthService.swift in Sources */,
+				66703FC12CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift in Sources */,
 				29B184C72CA3AEC400A4EE06 /* ChooseTaskListViewController.swift in Sources */,
 				29B184CA2CA3CD3200A4EE06 /* CloudFirestoreService.swift in Sources */,
 				29A88C7A2CA655DD00CE0662 /* DateShowType.swift in Sources */,
 				29FF84FC2CA2B64E00673602 /* UIBarButtonItem.swift in Sources */,
+				66703FBF2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */,
 				29A5DB452C9983F900862103 /* ChangeNameViewController.swift in Sources */,
@@ -849,6 +868,7 @@
 				292D73FB2C9446420069A2B1 /* FeedViewController.swift in Sources */,
 				294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */,
 				6637FBD02CAC3050008902FE /* TaskTableViewCell.swift in Sources */,
+				66703FC32CB5813000D8E319 /* AddFeedImageTableViewCell.swift in Sources */,
 				66E48BD42CB42B7E00D054DB /* UNUserNotificationCenter.swift in Sources */,
 				661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */,
 				29B184D32CA4096A00A4EE06 /* PresentationController.swift in Sources */,
