@@ -10,17 +10,13 @@ import UIKit
 
 extension UNUserNotificationCenter {
     
-    static func checkRequestInNotificationCenter(id: String) -> Bool {
-        var result: Bool = false
+    static func checkRequestInNotificationCenter(task: Todo, completion: @escaping (Result<[UNNotificationRequest?], Error>) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            for request in requests {
-                if request.identifier == id {
-                    result = true
-                    break
-                }
+            let request = requests.compactMap {
+                return $0.identifier == task.id! ? $0 : nil
             }
+            completion(.success(request))
         }
-        return result
     }
     
     static func addNewScheduleTaskToNotification(task: Todo) {

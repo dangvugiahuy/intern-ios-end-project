@@ -50,9 +50,7 @@ class TodoViewController: BaseViewController {
         todosTableView.dataSource = self
         switchTaskSegmentControl.setupSegment()
         loadingIndicator.hidesWhenStopped = true
-        filterButton.primaryAction = nil
         filterButton.menu = filterMenu()
-        manageTaskListButton.primaryAction = nil
         manageTaskListButton.menu = setupMenu()
         self.setupLeftNavigationBarItem()
         vm.delegate = self
@@ -131,6 +129,35 @@ class TodoViewController: BaseViewController {
         }
     }
     
+    private func deletePendingTaskNotification(task: Todo) {
+        UNUserNotificationCenter.checkRequestInNotificationCenter(task: task) { result in
+            switch result {
+            case .success(let model):
+                if !model.isEmpty {
+                    UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    private func replaceTaskNotification(task: Todo) {
+        UNUserNotificationCenter.checkRequestInNotificationCenter(task: task) { result in
+            switch result {
+            case .success(let model):
+                if !model.isEmpty {
+                    UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+                    UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
+                } else {
+                    UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     @IBAction func switchTaskSegmentControlValueChange(_ sender: Any) {
         loadingIndicator.startAnimating()
         loadingIndicator.isHidden = false
@@ -172,18 +199,18 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     
     func editTaskFromDetailSuccessHandle(cell: UITableViewCell, task: Todo) {
         self.isScreenBack.toggle()
+        if task.date != nil && task.time != nil {
+            replaceTaskNotification(task: task)
+        } else {
+            deletePendingTaskNotification(task: task)
+        }
         vm.getAllTask(list: self.list)
     }
     
     func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell) {
         self.isScreenBack.toggle()
         let indexPath = todosTableView.indexPath(for: cell)
-        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: todos[indexPath!.row].id!) {
-        case true:
-            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: todos[indexPath!.row].id!)
-        case false:
-            break
-        }
+        deletePendingTaskNotification(task: todos[indexPath!.row])
         vm.getAllTask(list: self.list)
     }
     
@@ -200,12 +227,7 @@ extension TodoViewController: UIViewControllerTransitioningDelegate, AddTaskTabl
     func editTaskListSuccessHandle(list: TaskList) {}
     
     func deleteTaskSuccess(task: Todo) {
-        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: task.id!) {
-        case true:
-            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
-        case false:
-            break
-        }
+        deletePendingTaskNotification(task: task)
         vm.getAllTask(list: self.list)
     }
     

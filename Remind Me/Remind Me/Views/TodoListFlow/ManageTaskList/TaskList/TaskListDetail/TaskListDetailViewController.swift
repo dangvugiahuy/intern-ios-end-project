@@ -88,6 +88,35 @@ class TaskListDetailViewController: BaseViewController {
         return UIMenu(children: menuItems)
     }
     
+    private func deletePendingTaskNotification(task: Todo) {
+        UNUserNotificationCenter.checkRequestInNotificationCenter(task: task) { result in
+            switch result {
+            case .success(let model):
+                if !model.isEmpty {
+                    UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    private func replaceTaskNotification(task: Todo) {
+        UNUserNotificationCenter.checkRequestInNotificationCenter(task: task) { result in
+            switch result {
+            case .success(let model):
+                if !model.isEmpty {
+                    UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
+                    UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
+                } else {
+                    UNUserNotificationCenter.addNewScheduleTaskToNotification(task: task)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     @IBAction func addNewTodoClicked(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: .main)
         let rootview = storyboard.instantiateViewController(withIdentifier: "AddNewTaskVC") as! AddTaskTableViewController
@@ -106,21 +135,21 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
         let indexPath = todoTableView.indexPath(for: cell)
         todos[indexPath!.row] = task
         todoTableView.reloadData()
+        if task.date != nil && task.time != nil {
+            replaceTaskNotification(task: task)
+        } else {
+            deletePendingTaskNotification(task: task)
+        }
     }
     
     func deleteTaskFromDetailSuccessHandle(cell: UITableViewCell) {
         let indexPath = todoTableView.indexPath(for: cell)
+        deletePendingTaskNotification(task: todos[indexPath!.row])
         todos.remove(at: indexPath!.row)
         todoTableView.beginUpdates()
         todoTableView.deleteRows(at: [indexPath!], with: .left)
         todoTableView.endUpdates()
         handleEmptyList()
-        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: todos[indexPath!.row].id!) {
-        case true:
-            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: todos[indexPath!.row].id!)
-        case false:
-            break
-        }
     }
     
     func editTaskHandle(cell: UITableViewCell, task: Todo) {
@@ -150,12 +179,7 @@ extension TaskListDetailViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func deleteTaskSuccess(task: Todo) {
-        switch UNUserNotificationCenter.checkRequestInNotificationCenter(id: task.id!) {
-        case true:
-            UNUserNotificationCenter.removeScheduleTaskFromNotification(id: task.id!)
-        case false:
-            break
-        }
+        deletePendingTaskNotification(task: task)
         handleEmptyList()
     }
     
