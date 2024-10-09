@@ -33,7 +33,7 @@ final class AddNewFeedViewModel {
         cloudFireStoreService?.addNewFeed(from: feed, completion: { [self] result in
             switch result {
             case .success(let imagePath):
-                if imagePath != "" {
+                if let imagePath = imagePath {
                     if let image = image {
                         storageService?.uploadImage(from: image, with: imagePath, completion: { [self] result in
                             switch result {

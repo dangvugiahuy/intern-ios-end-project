@@ -36,14 +36,9 @@ class AddNewFeedViewController: BaseViewController {
     }
     
     @IBAction func postFeedButtonClicked(_ sender: UIBarButtonItem) {
-//        let id = UUID().uuidString
-//        if let image = self.image {
-//            let feed = Feed(id: id, content: self.content, imageURL: "\(id).jpg", createDate: self.date!)
-//            vm.addNewFeed(from: feed, with: image)
-//        } else {
-//            let feed = Feed(id: id, content: self.content, createDate: self.date!)
-//            vm.addNewFeed(from: feed)
-//        }
+        let id = UUID().uuidString
+        let feed = self.image != nil ? Feed(id: id, content: self.content, imageURL: "\(id).jpg", createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
+        vm.addNewFeed(from: feed, with: image)
     }
     
     @IBAction func chooseImageButtonClicked(_ sender: Any) {
@@ -65,12 +60,13 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
     func uploadImageProgressHandle(progress: Float) {
         uploadFeedProgress.progress = progress
         if uploadFeedProgress.progress == 1 {
-            print("success!")
+            print("upload success!")
         }
     }
     
     func addFeedWithoutImageHandle() {
-        
+        uploadFeedProgress.progress = 1
+        self.dismiss(animated: true)
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
