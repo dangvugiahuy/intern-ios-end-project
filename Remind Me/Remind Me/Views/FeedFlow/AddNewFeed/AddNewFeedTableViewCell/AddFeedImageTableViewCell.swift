@@ -9,9 +9,17 @@ import UIKit
 
 class AddFeedImageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var discardImageButton: UIButton!
+    @IBOutlet weak var feedImageView: UIImageView!
+    
+    var image: UIImage? {
+        didSet {
+            setupImageWithData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -19,5 +27,16 @@ class AddFeedImageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    private func setupImageWithData() {
+        if let image = self.image {
+            feedImageView.isHidden = false
+            discardImageButton.isHidden = false
+            feedImageView.image = image
+            self.layoutIfNeeded()
+        } else {
+            feedImageView.isHidden = true
+            discardImageButton.isHidden = true
+        }
+    }
 }

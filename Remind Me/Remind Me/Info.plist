@@ -39,5 +39,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>In order to upload data, this app requires permission to access your photo library</string>
 </dict>
 </plist>

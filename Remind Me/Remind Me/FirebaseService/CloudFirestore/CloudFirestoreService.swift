@@ -177,4 +177,14 @@ final class CloudFirestoreService {
         }
         completion(.success("Delete Success!"))
     }
+    
+    func addNewFeed(from feed: Feed, completion: @escaping (Result<String, Error>) -> Void) {
+        let path = primaryPath + "/Feed"
+        do  {
+            try db.collection(path).document(feed.id!).setData(from: feed)
+            completion(.success(feed.imageURL ?? ""))
+        } catch {
+            completion(.failure(error))
+        }
+    }
 }
