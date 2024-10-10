@@ -187,4 +187,21 @@ final class CloudFirestoreService {
             completion(.failure(error))
         }
     }
+    
+    func fetchFeeds(completion: @escaping (Result<[Feed], Error>) -> Void) {
+        var feeds: [Feed] = [Feed]()
+        let path = primaryPath + "/Feed"
+        db.collection(path).getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            if !snapshot.isEmpty {
+                feeds = snapshot.documents.map({ document in
+                    return Feed(id: document["id"] as? String, content: document["content"] as! String, imageURL: document["imageURL"] as? String, createDate: document["createDate"] as! TimeInterval)
+                })
+            }
+            completion(.success(feeds))
+        }
+    }
 }

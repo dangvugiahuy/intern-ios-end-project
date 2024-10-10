@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import Photos
 import PhotosUI
+
+protocol AddNewFeedViewControllerDelegate: AnyObject {
+    func addnewFeedSuccess()
+}
 
 class AddNewFeedViewController: BaseViewController {
     
     private let profileVm: ProfileViewModel = ProfileViewModel()
     private let vm: AddNewFeedViewModel = AddNewFeedViewModel()
+    weak var delegate: AddNewFeedViewControllerDelegate?
     private var content: String = ""
-    private var image: UIImage?
+    private var images: [UIImage] = [UIImage]()
     private var date: TimeInterval?
     @IBOutlet weak var postFeedButton: UIBarButtonItem!
     @IBOutlet weak var uploadFeedProgress: UIProgressView!
@@ -37,14 +43,14 @@ class AddNewFeedViewController: BaseViewController {
     
     @IBAction func postFeedButtonClicked(_ sender: UIBarButtonItem) {
         let id = UUID().uuidString
-        let feed = self.image != nil ? Feed(id: id, content: self.content, imageURL: "\(id).jpg", createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
-        vm.addNewFeed(from: feed, with: image)
+        let feed = self.images.isEmpty == false ? Feed(id: id, content: self.content, imageURL: "\(id)/", createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
+        vm.addNewFeed(from: feed, with: images)
     }
     
     @IBAction func chooseImageButtonClicked(_ sender: Any) {
         var config: PHPickerConfiguration = PHPickerConfiguration(photoLibrary: .shared())
         config.filter = .images
-        config.selectionLimit = 1
+        config.selectionLimit = 5
         let picker: PHPickerViewController = PHPickerViewController(configuration: config)
         picker.delegate = self
         self.present(picker, animated: true)
@@ -53,20 +59,33 @@ class AddNewFeedViewController: BaseViewController {
     @IBAction func backButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func createDatePickerValueChange(_ sender: Any) {
+        date = feedCreateDatePicker.date.dateToTimeInterVal()
+    }
 }
 
-extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, AddFeedContentTableViewCellDelegate, PHPickerViewControllerDelegate, AddNewFeedViewModelDelegate {
+extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, AddFeedContentTableViewCellDelegate, PHPickerViewControllerDelegate, AddNewFeedViewModelDelegate, AddFeedImageTableViewCellDelegate {
     
-    func uploadImageProgressHandle(progress: Float) {
-        uploadFeedProgress.progress = progress
+    func discardImage() {
+        self.images = []
+        addNewFeedContentTableView.reloadData()
+    }
+    
+    func uploadImageProgressHandle() {
+        uploadFeedProgress.progress += Float(1 / self.images.count)
         if uploadFeedProgress.progress == 1 {
-            print("upload success!")
+            self.dismiss(animated: true)
+            delegate?.addnewFeedSuccess()
         }
     }
     
     func addFeedWithoutImageHandle() {
         uploadFeedProgress.progress = 1
-        self.dismiss(animated: true)
+        if uploadFeedProgress.progress == 1 {
+            self.dismiss(animated: true)
+            delegate?.addnewFeedSuccess()
+        }
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -74,9 +93,9 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         results.forEach { result in
             result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
                 guard let image = reading as? UIImage, error == nil else { return }
-                self.image = image
+                self.images.append(image)
                 DispatchQueue.main.async { [self] in
-                    if self.image != nil {
+                    if self.images.count == results.count {
                         addNewFeedContentTableView.reloadData()
                     }
                 }
@@ -115,7 +134,8 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
             cell = cellFeedContent
         case 2:
             let cellFeedImage = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedImageCell", for: indexPath) as! AddFeedImageTableViewCell
-            cellFeedImage.image = self.image
+            cellFeedImage.images = self.images
+            cellFeedImage.delegate = self
             cell = cellFeedImage
         default:
             break

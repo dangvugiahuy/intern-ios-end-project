@@ -21,8 +21,8 @@ final class StorageService {
         self.primaryPath = "users/\(user.uid)/"
     }
     
-    func uploadImage(from image: UIImage, with imageName: String, completion: @escaping (Result<Float, Error>) -> Void) {
-        let ref = storage.reference(withPath: primaryPath + imageName)
+    func uploadImage(from image: UIImage, with path: String, completion: @escaping (Result<Any, Error>) -> Void) {
+        let ref = storage.reference(withPath: primaryPath + path)
         guard let imgData = image.jpegData(compressionQuality: 0.75) else { return }
         let uploadMetaData = StorageMetadata.init()
         uploadMetaData.contentType = "image/jpeg"
@@ -32,11 +32,19 @@ final class StorageService {
                 completion(.failure(error!))
                 return
             }
+            completion(.success("Upload Success!!"))
         }
-        
-        taskRef.observe(.progress) { snapShot in
-            guard let snapProgress = snapShot.progress?.fractionCompleted else { return }
-            completion(.success(Float(snapProgress)))
+    }
+    
+    func fetchImage(path: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        let ref = storage.reference(withPath: primaryPath + path)
+        ref.getData(maxSize: 4 * 1024 * 1024) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(UIImage(data: data)!))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
         }
     }
 }

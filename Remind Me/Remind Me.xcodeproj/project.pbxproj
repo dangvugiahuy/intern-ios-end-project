@@ -83,6 +83,12 @@
 		29E558862CB52D0900BE4697 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E558852CB52D0900BE4697 /* FeedTableViewCell.swift */; };
 		29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA98352C97E1D8001DB26A /* UIImageView.swift */; };
 		29EA98392C9820F1001DB26A /* AboutUsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EA98382C9820F1001DB26A /* AboutUsSwiftUIView.swift */; };
+		29EACAF02CB77FB8008A63A8 /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EACAEF2CB77FB8008A63A8 /* FeedCellViewModel.swift */; };
+		29EACAF32CB7AECB008A63A8 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 29EACAF22CB7AECB008A63A8 /* SkeletonView */; };
+		29EACAF62CB7C079008A63A8 /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 29EACAF52CB7C079008A63A8 /* CHTCollectionViewWaterfallLayout */; };
+		29EACAF82CB7C079008A63A8 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 29EACAF72CB7C079008A63A8 /* CHTCollectionViewWaterfallLayoutObjC */; };
+		29EACB002CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EACAFF2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.xib */; };
+		29EACB012CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EACAFE2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift */; };
 		29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF84F62CA29B6400673602 /* UISegmentedControl.swift */; };
 		29FF84FC2CA2B64E00673602 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF84FB2CA2B64E00673602 /* UIBarButtonItem.swift */; };
 		661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E06992C9EFD3200D54656 /* ChangePasswordViewModel.swift */; };
@@ -178,6 +184,9 @@
 		29E558852CB52D0900BE4697 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		29EA98352C97E1D8001DB26A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		29EA98382C9820F1001DB26A /* AboutUsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsSwiftUIView.swift; sourceTree = "<group>"; };
+		29EACAEF2CB77FB8008A63A8 /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
+		29EACAFE2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		29EACAFF2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosPickerCollectionViewCell.xib; sourceTree = "<group>"; };
 		29FF84F62CA29B6400673602 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		29FF84FB2CA2B64E00673602 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		661E06992C9EFD3200D54656 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
@@ -206,8 +215,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				29A0D06A2C9A82A2008B6E37 /* GoogleSignInSwift in Frameworks */,
+				29EACAF82CB7C079008A63A8 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */,
+				29EACAF32CB7AECB008A63A8 /* SkeletonView in Frameworks */,
 				29A5DB3A2C995CC800862103 /* FirebaseAuth in Frameworks */,
 				29A0D0682C9A82A2008B6E37 /* GoogleSignIn in Frameworks */,
+				29EACAF62CB7C079008A63A8 /* CHTCollectionViewWaterfallLayout in Frameworks */,
 				29B184CD2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				29A5DB3C2C995CC800862103 /* FirebaseFirestore in Frameworks */,
 				29A5DB3E2C995CC800862103 /* FirebaseStorage in Frameworks */,
@@ -239,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				29321F3C2CB67766000EC651 /* FeedViewModel.swift */,
+				29EACAEF2CB77FB8008A63A8 /* FeedCellViewModel.swift */,
 				29321F3E2CB68B0E000EC651 /* AddNewFeed */,
 			);
 			path = FeedFlow;
@@ -561,6 +574,15 @@
 			path = AboutUs;
 			sourceTree = "<group>";
 		};
+		29EACAFD2CB7DFE8008A63A8 /* PhotosPickerCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				29EACAFE2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift */,
+				29EACAFF2CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.xib */,
+			);
+			path = PhotosPickerCollectionCell;
+			sourceTree = "<group>";
+		};
 		29FF84F82CA2A0F800673602 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +701,7 @@
 				66703FBE2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift */,
 				66703FC02CB57F6F00D8E319 /* AddFeedContentTableViewCell.swift */,
 				66703FC22CB5813000D8E319 /* AddFeedImageTableViewCell.swift */,
+				29EACAFD2CB7DFE8008A63A8 /* PhotosPickerCollectionCell */,
 			);
 			path = AddNewFeedTableViewCell;
 			sourceTree = "<group>";
@@ -770,6 +793,9 @@
 				29A0D0672C9A82A2008B6E37 /* GoogleSignIn */,
 				29A0D0692C9A82A2008B6E37 /* GoogleSignInSwift */,
 				29B184CC2CA3D2AB00A4EE06 /* FirebaseFirestoreCombine-Community */,
+				29EACAF22CB7AECB008A63A8 /* SkeletonView */,
+				29EACAF52CB7C079008A63A8 /* CHTCollectionViewWaterfallLayout */,
+				29EACAF72CB7C079008A63A8 /* CHTCollectionViewWaterfallLayoutObjC */,
 			);
 			productName = "Remind Me";
 			productReference = 2947C3642C9051BF00C9C3FF /* Remind Me.app */;
@@ -802,6 +828,8 @@
 			packageReferences = (
 				29A5DB382C995CC800862103 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				29A0D0662C9A82A2008B6E37 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				29EACAF12CB7AECB008A63A8 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				29EACAF42CB7C079008A63A8 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
 			);
 			productRefGroup = 2947C3652C9051BF00C9C3FF /* Products */;
 			projectDirPath = "";
@@ -826,6 +854,7 @@
 				2947C3712C9051C000C9C3FF /* Assets.xcassets in Resources */,
 				669075D52CA960C2001E3B63 /* TaskListDetailViewController.xib in Resources */,
 				2947C3742C9051C000C9C3FF /* Base in Resources */,
+				29EACB002CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.xib in Resources */,
 				29B75BE72CAB92DD00B388AE /* Poppins-Regular.ttf in Resources */,
 				29C5859F2C9289CD00E26CC4 /* Poppins-Medium.ttf in Resources */,
 				29C585A12C9289E300E26CC4 /* Poppins-SemiBold.ttf in Resources */,
@@ -847,6 +876,7 @@
 				662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */,
 				299F0A8F2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift in Sources */,
 				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
+				29EACB012CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29321F3D2CB67766000EC651 /* FeedViewModel.swift in Sources */,
 				29EA98362C97E1D8001DB26A /* UIImageView.swift in Sources */,
@@ -908,6 +938,7 @@
 				294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */,
 				29321F362CB629BB000EC651 /* StorageService.swift in Sources */,
 				6637FBD02CAC3050008902FE /* TaskTableViewCell.swift in Sources */,
+				29EACAF02CB77FB8008A63A8 /* FeedCellViewModel.swift in Sources */,
 				66703FC32CB5813000D8E319 /* AddFeedImageTableViewCell.swift in Sources */,
 				66E48BD42CB42B7E00D054DB /* UNUserNotificationCenter.swift in Sources */,
 				661E069A2C9EFD3200D54656 /* ChangePasswordViewModel.swift in Sources */,
@@ -1163,6 +1194,22 @@
 				minimumVersion = 11.2.0;
 			};
 		};
+		29EACAF12CB7AECB008A63A8 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.31.0;
+			};
+		};
+		29EACAF42CB7C079008A63A8 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.10;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1195,6 +1242,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29A5DB382C995CC800862103 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreCombine-Community";
+		};
+		29EACAF22CB7AECB008A63A8 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29EACAF12CB7AECB008A63A8 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+		29EACAF52CB7C079008A63A8 /* CHTCollectionViewWaterfallLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29EACAF42CB7C079008A63A8 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
+			productName = CHTCollectionViewWaterfallLayout;
+		};
+		29EACAF72CB7C079008A63A8 /* CHTCollectionViewWaterfallLayoutObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29EACAF42CB7C079008A63A8 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
+			productName = CHTCollectionViewWaterfallLayoutObjC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
