@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class FeedViewController: BaseViewController {
     
@@ -23,10 +24,14 @@ class FeedViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
-        if feeds.isEmpty {
-            vm.getAllFeed()
+        userAvtImageView.showAnimatedGradientSkeleton()
+        DispatchQueue.main.async { [self] in
+            userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
+            userAvtImageView.hideSkeleton()
         }
+//        if feeds.isEmpty {
+//            vm.getAllFeed()
+//        }
     }
     
     override func setupFirstLoadVC() {

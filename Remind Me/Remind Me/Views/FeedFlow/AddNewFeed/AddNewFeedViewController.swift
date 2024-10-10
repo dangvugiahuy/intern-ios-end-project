@@ -90,6 +90,9 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
+        if self.images.isEmpty == false {
+            self.images.removeAll()
+        }
         results.forEach { result in
             result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
                 guard let image = reading as? UIImage, error == nil else { return }
@@ -135,7 +138,6 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         case 2:
             let cellFeedImage = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedImageCell", for: indexPath) as! AddFeedImageTableViewCell
             cellFeedImage.images = self.images
-            cellFeedImage.delegate = self
             cell = cellFeedImage
         default:
             break

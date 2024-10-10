@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import SwiftUI
+import SkeletonView
 
 class ProfileViewController: BaseViewController {
     
@@ -23,6 +24,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        userAvatarImageView.showAnimatedGradientSkeleton()
         vm.reloadUserProfile()
         setupUIWithUserData()
         self.tabBarController?.tabBar.isHidden = false
@@ -38,7 +40,10 @@ class ProfileViewController: BaseViewController {
     private func setupUIWithUserData() {
         userDisplayNameLabel.text = vm.getUserDisplayName()
         userEmailLabel.text = vm.getUserEmail()
-        userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
+        DispatchQueue.main.async { [self] in
+            userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
+            userAvatarImageView.hideSkeleton()
+        }
     }
     
     @IBSegueAction func goToAboutUsView(_ coder: NSCoder) -> UIViewController? {

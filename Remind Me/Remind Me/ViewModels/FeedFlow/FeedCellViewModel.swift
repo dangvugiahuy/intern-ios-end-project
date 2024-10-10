@@ -27,7 +27,7 @@ final class FeedCellViewModel {
     }
     
     func getImage(imageURL: String) {
-        storageService?.fetchImage(imageName: imageURL, completion: { [self] result in
+        storageService?.fetchImage(path: imageURL, completion: { [self] result in
             switch result {
             case .success(let image):
                 delegate?.setImage(image: image)

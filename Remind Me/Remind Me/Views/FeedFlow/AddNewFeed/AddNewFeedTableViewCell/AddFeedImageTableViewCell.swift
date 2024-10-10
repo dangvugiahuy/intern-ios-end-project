@@ -13,10 +13,12 @@ protocol AddFeedImageTableViewCellDelegate: AnyObject {
 }
 
 class AddFeedImageTableViewCell: UITableViewCell {
+    
+    var localImages: [UIImage] = [UIImage]()
 
     var images: [UIImage]? {
         didSet {
-            setupCollectionImageWithData()
+            setupUIWithData()
         }
     }
     
@@ -24,6 +26,7 @@ class AddFeedImageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var discardImageButton: UIButton!
+    @IBOutlet weak var imagesCollectionViewHeightConstrant: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +34,11 @@ class AddFeedImageTableViewCell: UITableViewCell {
         imagesCollectionView.register(nib, forCellWithReuseIdentifier: "PhotosPickerCollectionCell")
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.minimumColumnSpacing = 2.0
+        layout.minimumInteritemSpacing = 2.0
+        imagesCollectionView.alwaysBounceVertical = true
+        imagesCollectionView.collectionViewLayout = layout
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,9 +47,14 @@ class AddFeedImageTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    private func setupCollectionImageWithData() {
-        if let images = self.images {
+    private func setupUIWithData() {
+        if let images = images {
+            localImages = images
             imagesCollectionView.reloadData()
+            imagesCollectionView.performBatchUpdates {
+                let height: CGFloat = imagesCollectionView.collectionViewLayout.collectionViewContentSize.height
+                imagesCollectionViewHeightConstrant.constant = height
+            }
         }
     }
     
@@ -50,13 +63,20 @@ class AddFeedImageTableViewCell: UITableViewCell {
     }
 }
 
-extension AddFeedImageTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AddFeedImageTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let imageSize = localImages[indexPath.item].size
+        return imageSize
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images?.count ?? 0
+        return localImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "PhotosPickerCollectionCell", for: indexPath) as! PhotosPickerCollectionViewCell
+        cell.image = localImages[indexPath.item]
         return cell
     }
 }
