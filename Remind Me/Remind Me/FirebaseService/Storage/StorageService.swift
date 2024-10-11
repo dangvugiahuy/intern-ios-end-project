@@ -27,7 +27,7 @@ final class StorageService {
         let uploadMetaData = StorageMetadata.init()
         uploadMetaData.contentType = "image/jpeg"
         
-        let taskRef = ref.putData(imgData, metadata: uploadMetaData) { metaData, error in
+        ref.putData(imgData, metadata: uploadMetaData) { metaData, error in
             guard error == nil else {
                 completion(.failure(error!))
                 return

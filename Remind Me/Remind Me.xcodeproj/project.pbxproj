@@ -16,6 +16,9 @@
 		29321F382CB63010000EC651 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29321F372CB63010000EC651 /* Feed.swift */; };
 		29321F3D2CB67766000EC651 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29321F3C2CB67766000EC651 /* FeedViewModel.swift */; };
 		29321F402CB68B2A000EC651 /* AddNewFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29321F3F2CB68B2A000EC651 /* AddNewFeedViewModel.swift */; };
+		293D4A8B2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293D4A8A2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.xib */; };
+		293D4A8C2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D4A892CB8D12A00479D35 /* FeedPhotosCollectionViewCell.swift */; };
+		293D4A8F2CB92FDC00479D35 /* FeedPhotosCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D4A8E2CB92FDC00479D35 /* FeedPhotosCollectionView.swift */; };
 		2947C3682C9051BF00C9C3FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3672C9051BF00C9C3FF /* AppDelegate.swift */; };
 		2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */; };
 		2947C36F2C9051BF00C9C3FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2947C36E2C9051BF00C9C3FF /* Base */; };
@@ -121,6 +124,9 @@
 		29321F372CB63010000EC651 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		29321F3C2CB67766000EC651 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		29321F3F2CB68B2A000EC651 /* AddNewFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFeedViewModel.swift; sourceTree = "<group>"; };
+		293D4A892CB8D12A00479D35 /* FeedPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		293D4A8A2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
+		293D4A8E2CB92FDC00479D35 /* FeedPhotosCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPhotosCollectionView.swift; sourceTree = "<group>"; };
 		2947C3642C9051BF00C9C3FF /* Remind Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remind Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2947C3672C9051BF00C9C3FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2947C3692C9051BF00C9C3FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +269,15 @@
 				29321F3F2CB68B2A000EC651 /* AddNewFeedViewModel.swift */,
 			);
 			path = AddNewFeed;
+			sourceTree = "<group>";
+		};
+		293D4A8D2CB8D12E00479D35 /* FeedPhotosCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				293D4A892CB8D12A00479D35 /* FeedPhotosCollectionViewCell.swift */,
+				293D4A8A2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.xib */,
+			);
+			path = FeedPhotosCollectionCell;
 			sourceTree = "<group>";
 		};
 		2947C35B2C9051BF00C9C3FF = {
@@ -553,6 +568,8 @@
 			isa = PBXGroup;
 			children = (
 				29E558852CB52D0900BE4697 /* FeedTableViewCell.swift */,
+				293D4A8E2CB92FDC00479D35 /* FeedPhotosCollectionView.swift */,
+				293D4A8D2CB8D12E00479D35 /* FeedPhotosCollectionCell */,
 			);
 			path = FeedTableViewCell;
 			sourceTree = "<group>";
@@ -847,6 +864,7 @@
 			files = (
 				29C0893A2CA6A53200BAC69D /* TaskListChooseColorCollectionViewCell.xib in Resources */,
 				29C585A32C9289ED00E26CC4 /* Poppins-Light.ttf in Resources */,
+				293D4A8B2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.xib in Resources */,
 				299AC7012CA1007900608361 /* ChangePasswordSuccessViewController.xib in Resources */,
 				29C585AE2C92A5D300E26CC4 /* OnBoardingCollectionViewCell.xib in Resources */,
 				29A0D0722C9AA8DE008B6E37 /* InternetUnavailableViewController.xib in Resources */,
@@ -891,6 +909,7 @@
 				29B184CA2CA3CD3200A4EE06 /* CloudFirestoreService.swift in Sources */,
 				29A88C7A2CA655DD00CE0662 /* DateShowType.swift in Sources */,
 				29FF84FC2CA2B64E00673602 /* UIBarButtonItem.swift in Sources */,
+				293D4A8F2CB92FDC00479D35 /* FeedPhotosCollectionView.swift in Sources */,
 				66703FBF2CB57D6100D8E319 /* AddFeedUserInfoTableViewCell.swift in Sources */,
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */,
@@ -946,6 +965,7 @@
 				29FF84F72CA29B6400673602 /* UISegmentedControl.swift in Sources */,
 				29C585B52C92D90400E26CC4 /* RegisterUserViewController.swift in Sources */,
 				291DFE192CA4FA3B0019A851 /* AddTaskTableViewController.swift in Sources */,
+				293D4A8C2CB8D12A00479D35 /* FeedPhotosCollectionViewCell.swift in Sources */,
 				669075D42CA960C2001E3B63 /* TaskListDetailViewController.swift in Sources */,
 				29E558842CB52C6F00BE4697 /* AddNewFeedViewController.swift in Sources */,
 			);

@@ -178,11 +178,11 @@ final class CloudFirestoreService {
         completion(.success("Delete Success!"))
     }
     
-    func addNewFeed(from feed: Feed, completion: @escaping (Result<String?, Error>) -> Void) {
+    func addNewFeed(from feed: Feed, completion: @escaping (Result<[String]?, Error>) -> Void) {
         let path = primaryPath + "/Feed"
         do  {
             try db.collection(path).document(feed.id!).setData(from: feed)
-            completion(.success(feed.imageURL))
+            completion(.success(feed.imagesURL))
         } catch {
             completion(.failure(error))
         }
@@ -198,7 +198,7 @@ final class CloudFirestoreService {
             }
             if !snapshot.isEmpty {
                 feeds = snapshot.documents.map({ document in
-                    return Feed(id: document["id"] as? String, content: document["content"] as! String, imageURL: document["imageURL"] as? String, createDate: document["createDate"] as! TimeInterval)
+                    return Feed(id: document["id"] as? String, content: document["content"] as! String, imagesURL: document["imagesURL"] as? [String], createDate: document["createDate"] as! TimeInterval)
                 })
             }
             completion(.success(feeds))

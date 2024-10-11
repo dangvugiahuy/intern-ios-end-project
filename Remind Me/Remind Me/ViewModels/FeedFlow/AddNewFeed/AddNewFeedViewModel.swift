@@ -10,7 +10,7 @@ import FirebaseAuth
 import UIKit
 
 protocol AddNewFeedViewModelDelegate: AnyObject {
-    func uploadImageProgressHandle()
+    func uploadImageProgressHandle(progress: Float)
     func addFeedWithoutImageHandle()
 }
 
@@ -32,14 +32,14 @@ final class AddNewFeedViewModel {
     func addNewFeed(from feed: Feed, with images: [UIImage]) {
         cloudFireStoreService?.addNewFeed(from: feed, completion: { [self] result in
             switch result {
-            case .success(let imagePath):
-                if let imagePath = imagePath {
-                    for image in images {
-                        let imageID = UUID().uuidString
-                        storageService?.uploadImage(from: image, with: imagePath + "\(imageID).jpg", completion: { [self] result in
+            case .success(let imagesPath):
+                if let imagesPath = imagesPath {
+                    let imagesWithURL = zip(imagesPath, images).map { $0 }
+                    for image in imagesWithURL {
+                        storageService?.uploadImage(from: image.1, with: "\(feed.id!)/\(image.0).jpg", completion: { [self] result in
                             switch result {
                             case .success(_):
-                                delegate?.uploadImageProgressHandle()
+                                delegate?.uploadImageProgressHandle(progress: Float(1 / Float(images.count)))
                             case .failure(let failure):
                                 print("Upload Image Error: \(failure.localizedDescription)")
                             }

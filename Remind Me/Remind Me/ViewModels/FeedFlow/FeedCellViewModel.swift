@@ -10,7 +10,7 @@ import FirebaseAuth
 import UIKit
 
 protocol FeedCellViewModelDelegate: AnyObject {
-    func setImage(image: UIImage)
+    func returnImages(images: [UIImage])
 }
 
 final class FeedCellViewModel {
@@ -26,14 +26,22 @@ final class FeedCellViewModel {
         }
     }
     
-    func getImage(imageURL: String) {
-        storageService?.fetchImage(path: imageURL, completion: { [self] result in
-            switch result {
-            case .success(let image):
-                delegate?.setImage(image: image)
-            case .failure(let failure):
-                print("fetch Image Fail")
+    func getImages(from feed: Feed) {
+        if let imagesURL = feed.imagesURL {
+            var images: [UIImage] = [UIImage]()
+            for url in imagesURL {
+                storageService?.fetchImage(path: "\(feed.id!)/\(url).jpg", completion: { [self] result in
+                    switch result {
+                    case .success(let image):
+                        images.append(image)
+                        if images.count == feed.imagesURL?.count {
+                            delegate?.returnImages(images: images)
+                        }
+                    case .failure(let failure):
+                        print("fetch Image Fail: \(failure.localizedDescription)")
+                    }
+                })
             }
-        })
+        }
     }
 }

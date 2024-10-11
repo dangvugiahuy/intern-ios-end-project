@@ -19,7 +19,6 @@ class FeedViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,9 +28,9 @@ class FeedViewController: BaseViewController {
             userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
             userAvtImageView.hideSkeleton()
         }
-//        if feeds.isEmpty {
-//            vm.getAllFeed()
-//        }
+        if feeds.isEmpty {
+            vm.getAllFeed()
+        }
     }
     
     override func setupFirstLoadVC() {
@@ -49,7 +48,12 @@ class FeedViewController: BaseViewController {
     }
 }
 
-extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedViewModelDelegate, AddNewFeedViewControllerDelegate {
+extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedViewModelDelegate, AddNewFeedViewControllerDelegate, FeedTableViewCellDelegate {
+    
+    func update(at cell: UITableViewCell) {
+        let indexPath = feedTableView.indexPath(for: cell)
+        feedTableView.reloadRows(at: [indexPath!], with: .automatic)
+    }
     
     func addnewFeedSuccess() {
         vm.getAllFeed()
@@ -67,6 +71,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "FeedTableCell", for: indexPath) as! FeedTableViewCell
         cell.feed = feeds[indexPath.row]
+        cell.delegate = self
         return cell
     }
     

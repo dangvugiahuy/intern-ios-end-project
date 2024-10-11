@@ -22,6 +22,7 @@ class AddNewFeedViewController: BaseViewController {
     private var images: [UIImage] = [UIImage]()
     private var date: TimeInterval?
     @IBOutlet weak var postFeedButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var uploadFeedProgress: UIProgressView!
     @IBOutlet weak var feedCreateDatePicker: UIDatePicker!
     @IBOutlet weak var addNewFeedContentTableView: UITableView!
@@ -35,6 +36,12 @@ class AddNewFeedViewController: BaseViewController {
         addNewFeedContentTableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        postFeedButton.isEnabled = true
+        backButton.isEnabled = true
+    }
+    
     override func setupFirstLoadVC() {
         postFeedButton.isEnabled = false
         vm.delegate = self
@@ -43,8 +50,13 @@ class AddNewFeedViewController: BaseViewController {
     
     @IBAction func postFeedButtonClicked(_ sender: UIBarButtonItem) {
         let id = UUID().uuidString
-        let feed = self.images.isEmpty == false ? Feed(id: id, content: self.content, imageURL: "\(id)/", createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
+        let imagesURL: [String] = images.map {_ in
+            return UUID().uuidString
+        }
+        let feed = self.images.isEmpty == false ? Feed(id: id, content: self.content, imagesURL: imagesURL, createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
         vm.addNewFeed(from: feed, with: images)
+        postFeedButton.isEnabled = false
+        backButton.isEnabled = false
     }
     
     @IBAction func chooseImageButtonClicked(_ sender: Any) {
@@ -67,21 +79,22 @@ class AddNewFeedViewController: BaseViewController {
 
 extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, AddFeedContentTableViewCellDelegate, PHPickerViewControllerDelegate, AddNewFeedViewModelDelegate, AddFeedImageTableViewCellDelegate {
     
-    func discardImage() {
-        self.images = []
-        addNewFeedContentTableView.reloadData()
-    }
-    
-    func uploadImageProgressHandle() {
-        uploadFeedProgress.progress += Float(1 / self.images.count)
-        if uploadFeedProgress.progress == 1 {
+    func uploadImageProgressHandle(progress: Float) {
+        let tempProgress = uploadFeedProgress.progress + progress
+        uploadFeedProgress.setProgress(tempProgress, animated: true)
+        if uploadFeedProgress.progress >= 1 {
             self.dismiss(animated: true)
             delegate?.addnewFeedSuccess()
         }
     }
     
+    func discardImage() {
+        self.images = []
+        addNewFeedContentTableView.reloadData()
+    }
+    
     func addFeedWithoutImageHandle() {
-        uploadFeedProgress.progress = 1
+        uploadFeedProgress.setProgress(1, animated: true)
         if uploadFeedProgress.progress == 1 {
             self.dismiss(animated: true)
             delegate?.addnewFeedSuccess()
@@ -138,6 +151,7 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         case 2:
             let cellFeedImage = addNewFeedContentTableView.dequeueReusableCell(withIdentifier: "AddFeedImageCell", for: indexPath) as! AddFeedImageTableViewCell
             cellFeedImage.images = self.images
+            cellFeedImage.delegate = self
             cell = cellFeedImage
         default:
             break

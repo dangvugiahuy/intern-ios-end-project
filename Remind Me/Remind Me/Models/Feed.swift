@@ -11,6 +11,6 @@ import FirebaseFirestore
 struct Feed: Codable, Identifiable {
     var id: String?
     var content: String
-    var imageURL: String?
+    var imagesURL: [String]?
     var createDate: TimeInterval
 }
