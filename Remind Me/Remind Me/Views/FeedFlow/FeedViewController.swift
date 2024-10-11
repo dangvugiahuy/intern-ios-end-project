@@ -50,9 +50,9 @@ class FeedViewController: BaseViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedViewModelDelegate, AddNewFeedViewControllerDelegate, FeedTableViewCellDelegate {
     
-    func update(at cell: UITableViewCell) {
-        let indexPath = feedTableView.indexPath(for: cell)
-        feedTableView.reloadRows(at: [indexPath!], with: .automatic)
+    func update() {
+        feedTableView.beginUpdates()
+        feedTableView.endUpdates()
     }
     
     func addnewFeedSuccess() {

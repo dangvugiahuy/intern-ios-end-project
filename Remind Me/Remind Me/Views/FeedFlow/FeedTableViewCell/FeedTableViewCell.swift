@@ -10,7 +10,7 @@ import SkeletonView
 import CHTCollectionViewWaterfallLayout
 
 protocol FeedTableViewCellDelegate: AnyObject {
-    func update(at cell: UITableViewCell)
+    func update()
 }
 
 class FeedTableViewCell: UITableViewCell {
@@ -27,7 +27,9 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var createDateLabel: UILabel!
     @IBOutlet weak var photosCollectionView: UICollectionView!
+    @IBOutlet weak var skeletonLoaderView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var photosClViewHeightConstrant: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +44,7 @@ class FeedTableViewCell: UITableViewCell {
         photosCollectionView.alwaysBounceVertical = true
         photosCollectionView.collectionViewLayout = layout
         vm.delegate = self
+        skeletonLoaderView.showAnimatedGradientSkeleton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,8 +52,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        images = []
-        photosCollectionView.reloadData()
+        photosCollectionView.backgroundView = nil
     }
     
     private func setUIWithData() {
@@ -60,8 +62,10 @@ class FeedTableViewCell: UITableViewCell {
             if let imagesURL = feed.imagesURL {
                 if imagesURL.isEmpty {
                     photosCollectionView.isHidden = true
+                    photosCollectionView.backgroundView = nil
                 } else {
                     photosCollectionView.isHidden = false
+                    photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
                     vm.getImages(from: feed)
                 }
             }
@@ -77,10 +81,18 @@ extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate
     
     func returnImages(images: [UIImage]) {
         self.images = images
-        photosCollectionView.reloadData()
-        photosCollectionView.performBatchUpdates {
-            photosCollectionView.layoutIfNeeded()
-//            delegate?.update(at: self)
+        self.photosCollectionView.reloadData()
+        self.photosCollectionView.performBatchUpdates {
+            let height: CGFloat = self.photosCollectionView.collectionViewLayout.collectionViewContentSize.height
+            if height > self.photosClViewHeightConstrant.constant {
+                self.photosClViewHeightConstrant.constant = height
+                self.photosCollectionView.layoutIfNeeded()
+                self.delegate?.update()
+                skeletonLoaderView.hideSkeleton()
+                skeletonLoaderView.isHidden = true
+            }
+            skeletonLoaderView.hideSkeleton()
+            skeletonLoaderView.isHidden = true
         }
     }
     
