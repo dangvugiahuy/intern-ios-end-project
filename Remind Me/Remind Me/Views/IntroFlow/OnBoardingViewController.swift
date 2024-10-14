@@ -50,6 +50,13 @@ class OnBoardingViewController: BaseViewController {
             self.present(vc, animated: true)
         }
     }
+    
+    @IBAction func skipButtonClicked(_ sender: Any) {
+        let rootview = self.storyboard?.instantiateViewController(withIdentifier: "RegisterUserVC") as! RegisterUserViewController
+        let navigateVC = UINavigationController(rootViewController: rootview)
+        navigateVC.modalPresentationStyle = .fullScreen
+        self.present(navigateVC, animated: true)
+    }
 }
 
 extension OnBoardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
