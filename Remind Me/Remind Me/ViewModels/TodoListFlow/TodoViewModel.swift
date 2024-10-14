@@ -111,7 +111,7 @@ final class TodoViewModel {
         })
     }
     
-    func filterDueDate(todos: [Todo], option: filterType) -> [Todo] {
+    func filterDueDate(todos: [Todo], option: FilterType) -> [Todo] {
         let taskWithDate = todos.compactMap {
             return $0.date != nil ? $0 : nil
         }
@@ -131,7 +131,7 @@ final class TodoViewModel {
         return result
     }
     
-    func filterPriority(todos: [Todo], option: filterType) -> [Todo] {
+    func filterPriority(todos: [Todo], option: FilterType) -> [Todo] {
         let result = todos.sorted { todo1, todo2 in
             switch option {
             case .low:
@@ -144,7 +144,7 @@ final class TodoViewModel {
     }
 }
 
-enum filterType {
+enum FilterType {
     case high
     case low
 }
