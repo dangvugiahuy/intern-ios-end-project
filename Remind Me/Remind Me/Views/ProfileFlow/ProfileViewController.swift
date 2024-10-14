@@ -52,18 +52,22 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func changeUserImageSelector(_ sender: Any) {
-        let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Change account image", style: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            actionSheet.dismiss(animated: true)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Take picture", style: .default, handler: { _ in
-            
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Import from gallery", style: .default, handler: { _ in
-            
-        }))
-        actionSheet.view.tintColor = UIColor(named: "Greyscale800")
-        self.present(actionSheet, animated: true)
+        if SignInMethod.getCurrentSignInMethodValue() != "Google" {
+            let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Change account image", style: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                actionSheet.dismiss(animated: true)
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Take picture", style: .default, handler: { _ in
+                
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Import from gallery", style: .default, handler: { _ in
+                
+            }))
+            actionSheet.view.tintColor = UIColor(named: "Greyscale800")
+            self.present(actionSheet, animated: true)
+        } else {
+            UIAlertController.showSimpleAlertWithOKButton(on: self, message: "This feature can't be used, because you are sign in with Google")
+        }
     }
     
     @IBAction func signOutButtonClicked(_ sender: Any) {
