@@ -82,7 +82,6 @@ class RegisterUserViewController: BaseViewController {
         view.endEditing(true)
         viewTapGesture.isEnabled = false
     }
-    
 }
 
 extension RegisterUserViewController: UITextFieldDelegate, RegisterUserViewModelDelegate {

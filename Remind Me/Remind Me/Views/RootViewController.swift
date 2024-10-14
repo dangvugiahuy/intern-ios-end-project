@@ -29,9 +29,11 @@ class RootViewController: UIViewController {
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
                     sceneDelegate.window?.rootViewController = tabBarVC
                 } else {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginUserVC") as! LoginUserViewController
-                    vc.modalPresentationStyle = .fullScreen
-                    present(vc, animated: true)
+                    let rootVc = self.storyboard?.instantiateViewController(withIdentifier: "LoginUserVC") as! LoginUserViewController
+                    rootVc.isroot = true
+                    let navigateVC = UINavigationController(rootViewController: rootVc)
+                    navigateVC.modalPresentationStyle = .fullScreen
+                    present(navigateVC, animated: true)
                 }
             }
         } else {

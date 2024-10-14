@@ -14,6 +14,7 @@ class EmailAuthViewController: BaseViewController {
     }
     
     override func setupFirstLoadVC() {
+        self.navigationController?.navigationBar.isHidden = false
         self.setupLeftNavigationBarItem()
         self.title = "Forgot Password"
     }

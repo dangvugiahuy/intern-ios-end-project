@@ -10,6 +10,7 @@ import UIKit
 class LoginUserViewController: BaseViewController {
     
     private let vm: LoginUserViewModel = LoginUserViewModel()
+    var isroot: Bool = false
 
     @IBOutlet weak var emailTextFieldView: UIView!
     @IBOutlet var viewTapGesture: UITapGestureRecognizer!
@@ -31,6 +32,7 @@ class LoginUserViewController: BaseViewController {
         viewTapGesture.isEnabled = false
         vm.delegate = self
         vm.vc = self
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func foundEmptyField() -> Bool {
@@ -62,6 +64,19 @@ class LoginUserViewController: BaseViewController {
     
     @IBAction func signInWithGoogleButtonClicked(_ sender: Any) {
         vm.signInWithGoogle()
+    }
+    
+    @IBAction func signUpButtonClicked(_ sender: Any) {
+        switch isroot {
+        case true:
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterUserVC") as! RegisterUserViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .flipHorizontal
+            self.present(vc, animated: true)
+        case false:
+            self.dismiss(animated: true)
+        }
+        
     }
 }
 
