@@ -47,4 +47,24 @@ final class StorageService {
             }
         }
     }
+    
+    func deleteFeedImages(feed: Feed, completion: @escaping (Result<Any, Error>) -> Void) {
+        let ref = storage.reference(withPath: primaryPath + "\(feed.id!)")
+        ref.listAll { result in
+            switch result {
+            case .success(let storeResult):
+                for item in storeResult.items {
+                    item.delete { error in
+                        guard error == nil else {
+                            completion(.failure(error!))
+                            return
+                        }
+                    }
+                }
+                completion(.success("Delete Successs"))
+            case .failure( let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
 }

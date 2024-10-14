@@ -11,6 +11,7 @@ import CHTCollectionViewWaterfallLayout
 
 protocol FeedTableViewCellDelegate: AnyObject {
     func update()
+    func deletePostHandle(cell: UITableViewCell)
 }
 
 class FeedTableViewCell: UITableViewCell {
@@ -28,6 +29,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var createDateLabel: UILabel!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var skeletonLoaderView: UIView!
+    @IBOutlet weak var editFeedButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var photosClViewHeightConstrant: NSLayoutConstraint!
     
@@ -45,6 +47,8 @@ class FeedTableViewCell: UITableViewCell {
         photosCollectionView.collectionViewLayout = layout
         vm.delegate = self
         skeletonLoaderView.showAnimatedGradientSkeleton()
+        contentLabel.textColor = .clear
+        editFeedButton.showsMenuAsPrimaryAction = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,17 +56,19 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        photosCollectionView.backgroundView = nil
+        contentLabel.textColor = .clear
+        skeletonLoaderView.isHidden = false
+        skeletonLoaderView.showAnimatedGradientSkeleton()
     }
     
     private func setUIWithData() {
         if let feed = self.feed {
+            editFeedButton.menu = editFeedMenu()
             createDateLabel.text = Date.dateToString(date: feed.createDate, format: "EEE, MMM d")
             contentLabel.text = feed.content
             if let imagesURL = feed.imagesURL {
                 if imagesURL.isEmpty {
                     photosCollectionView.isHidden = true
-                    photosCollectionView.backgroundView = nil
                 } else {
                     photosCollectionView.isHidden = false
                     photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
@@ -70,6 +76,14 @@ class FeedTableViewCell: UITableViewCell {
                 }
             }
         }
+    }
+    
+    private func editFeedMenu() -> UIMenu {
+        return UIMenu(options: [], children: [
+            UIAction(title: "Delete this Post", image: UIImage(systemName: "trash"), attributes: .destructive, handler: { [self] _ in
+                delegate?.deletePostHandle(cell: self)
+            })
+        ])
     }
 }
 
@@ -89,9 +103,11 @@ extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate
                 self.photosCollectionView.layoutIfNeeded()
                 self.delegate?.update()
                 skeletonLoaderView.hideSkeleton()
+                contentLabel.textColor = .greyscale800
                 skeletonLoaderView.isHidden = true
             }
             skeletonLoaderView.hideSkeleton()
+            contentLabel.textColor = .greyscale800
             skeletonLoaderView.isHidden = true
         }
     }

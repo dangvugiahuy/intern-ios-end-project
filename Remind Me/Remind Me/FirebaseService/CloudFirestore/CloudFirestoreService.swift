@@ -204,4 +204,15 @@ final class CloudFirestoreService {
             completion(.success(feeds))
         }
     }
+    
+    func deleteFeed(feed: Feed, completion: @escaping (Result<Feed, Error>) -> Void) {
+        let path = primaryPath + "/Feed"
+        db.collection(path).document(feed.id!).delete { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(feed))
+        }
+    }
 }

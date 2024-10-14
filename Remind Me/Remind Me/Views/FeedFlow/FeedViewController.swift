@@ -14,6 +14,7 @@ class FeedViewController: BaseViewController {
     private let vm: FeedViewModel = FeedViewModel()
     private var feeds: [Feed] = [Feed]()
     
+    @IBOutlet weak var sortButton: UIBarButtonItem!
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var userAvtImageView: UIImageView!
     
@@ -37,6 +38,21 @@ class FeedViewController: BaseViewController {
         self.title = "Feed"
         userAvtImageView.setupAvtImage()
         vm.delegate = self
+        sortButton.menu = sortMenu()
+    }
+    
+    private func sortMenu() -> UIMenu {
+        let dateSortMenu = UIMenu(title: "Sort By: Due date", image: UIImage(systemName: "calendar"), options: .singleSelection, children: [
+            UIAction(title: "Oldest First", image: UIImage(systemName: "arrow.up"), handler: { [self] _ in
+                feeds = vm.sortFeedDate(feeds: feeds, option: .low)
+                feedTableView.reloadData()
+            }),
+            UIAction(title: "Newest First", image: UIImage(systemName: "arrow.down"), handler: { [self] _ in
+                feeds = vm.sortFeedDate(feeds: feeds, option: .high)
+                feedTableView.reloadData()
+            })
+        ])
+        return UIMenu(options: [], children: [dateSortMenu])
     }
     
     @IBAction func addNewFeedButton(_ sender: Any) {
@@ -50,6 +66,21 @@ class FeedViewController: BaseViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedViewModelDelegate, AddNewFeedViewControllerDelegate, FeedTableViewCellDelegate {
     
+    func deletePostHandle(cell: UITableViewCell) {
+        let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Are you sure to delete this post? This action can't be undone", style: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] _ in
+            let indexPath = feedTableView.indexPath(for: cell)
+            let feed = feeds[indexPath!.row]
+            feeds.remove(at: indexPath!.row)
+            feedTableView.beginUpdates()
+            feedTableView.deleteRows(at: [indexPath!], with: .automatic)
+            feedTableView.endUpdates()
+            vm.deleteFeed(feed: feed)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(actionSheet, animated: true)
+    }
+    
     func update() {
         feedTableView.beginUpdates()
         feedTableView.endUpdates()
@@ -61,6 +92,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedVi
     
     func getAllFeedSuccess(feeds: [Feed]) {
         self.feeds = feeds
+        sortButton.isEnabled = self.feeds.isEmpty ? false : true
         feedTableView.reloadData()
     }
     
