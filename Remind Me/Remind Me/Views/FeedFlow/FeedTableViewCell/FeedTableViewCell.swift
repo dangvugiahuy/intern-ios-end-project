@@ -48,6 +48,7 @@ class FeedTableViewCell: UITableViewCell {
         vm.delegate = self
         skeletonLoaderView.showAnimatedGradientSkeleton()
         contentLabel.textColor = .clear
+        createDateLabel.textColor = .clear
         editFeedButton.showsMenuAsPrimaryAction = true
     }
 
@@ -67,13 +68,14 @@ class FeedTableViewCell: UITableViewCell {
             createDateLabel.text = Date.dateToString(date: feed.createDate, format: "EEE, MMM d")
             contentLabel.text = feed.content
             if let imagesURL = feed.imagesURL {
-                if imagesURL.isEmpty {
-                    photosCollectionView.isHidden = true
-                } else {
-                    photosCollectionView.isHidden = false
-                    photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
-                    vm.getImages(from: feed)
-                }
+                photosCollectionView.isHidden = false
+                photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
+                vm.getImages(from: feed)
+            } else {
+                createDateLabel.textColor = .greyscale800
+                contentLabel.textColor = .greyscale800
+                skeletonLoaderView.hideSkeleton()
+                skeletonLoaderView.isHidden = true
             }
         }
     }
@@ -103,6 +105,7 @@ extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate
                 self.photosCollectionView.layoutIfNeeded()
                 self.delegate?.update()
                 skeletonLoaderView.hideSkeleton()
+                createDateLabel.textColor = .greyscale800
                 contentLabel.textColor = .greyscale800
                 skeletonLoaderView.isHidden = true
             }

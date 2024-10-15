@@ -20,6 +20,7 @@ extension UIImageView {
         self.showAnimatedGradientSkeleton()
         guard let url = URL(string: urlString) else {
             self.image = UIImage(named: "AvatarDefault")
+            self.hideSkeleton()
             return
         }
         DispatchQueue.global().async { [weak self] in
