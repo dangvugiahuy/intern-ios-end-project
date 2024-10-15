@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import SkeletonView
+
 
 extension UIImageView {
     func setupAvtImage() {
@@ -15,6 +17,7 @@ extension UIImageView {
     }
     
     func loadImageFromURL(_ urlString: String) {
+        self.showAnimatedGradientSkeleton()
         guard let url = URL(string: urlString) else {
             self.image = UIImage(named: "AvatarDefault")
             return
@@ -24,6 +27,7 @@ extension UIImageView {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
+                        self?.hideSkeleton()
                     }
                 }
             }

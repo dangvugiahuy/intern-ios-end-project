@@ -24,14 +24,14 @@ class FeedViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userAvtImageView.showAnimatedGradientSkeleton()
-        DispatchQueue.main.async { [self] in
-            userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
-            userAvtImageView.hideSkeleton()
-        }
         if feeds.isEmpty {
             vm.getAllFeed()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
     }
     
     override func setupFirstLoadVC() {

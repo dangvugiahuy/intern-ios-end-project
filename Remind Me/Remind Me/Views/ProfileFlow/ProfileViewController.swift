@@ -9,6 +9,8 @@ import UIKit
 import FirebaseAuth
 import SwiftUI
 import SkeletonView
+import Photos
+import PhotosUI
 
 class ProfileViewController: BaseViewController {
     
@@ -26,8 +28,12 @@ class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         userAvatarImageView.showAnimatedGradientSkeleton()
         vm.reloadUserProfile()
-        setupUIWithUserData()
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupUIWithUserData()
     }
     
     override func setupFirstLoadVC() {
@@ -40,10 +46,7 @@ class ProfileViewController: BaseViewController {
     private func setupUIWithUserData() {
         userDisplayNameLabel.text = vm.getUserDisplayName()
         userEmailLabel.text = vm.getUserEmail()
-        DispatchQueue.main.async { [self] in
-            userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
-            userAvatarImageView.hideSkeleton()
-        }
+        userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
     }
     
     @IBSegueAction func goToAboutUsView(_ coder: NSCoder) -> UIViewController? {
@@ -58,10 +61,19 @@ class ProfileViewController: BaseViewController {
                 actionSheet.dismiss(animated: true)
             }))
             actionSheet.addAction(UIAlertAction(title: "Take picture", style: .default, handler: { _ in
-                
+                let vc = UIImagePickerController()
+                vc.sourceType = .camera
+                vc.allowsEditing = true
+                vc.delegate = self
+                self.present(vc, animated: true)
             }))
             actionSheet.addAction(UIAlertAction(title: "Import from gallery", style: .default, handler: { _ in
-                
+                var config: PHPickerConfiguration = PHPickerConfiguration(photoLibrary: .shared())
+                config.filter = .images
+                config.selectionLimit = 1
+                let picker: PHPickerViewController = PHPickerViewController(configuration: config)
+                picker.delegate = self
+                self.present(picker, animated: true)
             }))
             actionSheet.view.tintColor = UIColor(named: "Greyscale800")
             self.present(actionSheet, animated: true)
@@ -82,11 +94,48 @@ class ProfileViewController: BaseViewController {
     }
 }
 
-extension ProfileViewController: ProfileViewModelDelegate {
+extension ProfileViewController: ProfileViewModelDelegate, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func changeUserPhotoSuccessHandle() {
+        DispatchQueue.main.async { [self] in
+            vm.reloadUserProfile()
+            userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
+            userAvatarImageView.hideSkeleton()
+        }
+    }
+    
+    func uploadImageSuccessHandle() {
+        vm.changeUserImage()
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        let itemProvider = results.first?.itemProvider
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async { [self] in
+                    if let image = image as? UIImage {
+                        userAvatarImageView.showAnimatedGradientSkeleton()
+                        vm.uploadUserImage(image: image)
+                    }
+                }
+            }
+        }
+    }
+    
     func signOutSuccessHandle() {
         let vc = self.storyboard?.instantiateViewController(identifier: "RootVC") as! RootViewController
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
         sceneDelegate.window?.rootViewController = vc
         self.backToRoot()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[.originalImage] as? UIImage else {
+            return
+        }
+        userAvatarImageView.showAnimatedGradientSkeleton()
+        vm.uploadUserImage(image: image)
     }
 }

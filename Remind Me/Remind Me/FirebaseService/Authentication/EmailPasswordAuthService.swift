@@ -40,4 +40,16 @@ final class EmailPasswordAuthService {
         }
     }
     
+    func resetPassword(email: String, completion: @escaping (Result<Any, AuthErrorCode>) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            guard error == nil else {
+                if let error = error as NSError? {
+                    guard let errorCode = AuthErrorCode(rawValue: error.code) else { return }
+                    completion(.failure(errorCode))
+                }
+                return
+            }
+            completion(.success("Send email success"))
+        }
+    }
 }

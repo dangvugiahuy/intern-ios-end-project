@@ -29,8 +29,9 @@
 		294E3CD02CAA9CAE008DF4D7 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */; };
 		294E3CD42CAAADE7008DF4D7 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E3CD32CAAADE7008DF4D7 /* AddTaskViewModel.swift */; };
 		297086EB2C992A510031F478 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086EA2C992A510031F478 /* UIAlertController.swift */; };
-		297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086ED2C993C360031F478 /* EmailAuthViewController.swift */; };
+		297086EE2C993C360031F478 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297086ED2C993C360031F478 /* ResetPasswordViewController.swift */; };
 		2971EBDB2CA517C8005B4124 /* EditTaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971EBDA2CA517C8005B4124 /* EditTaskDetailTableViewController.swift */; };
+		299370732CBE1D3400D73B12 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299370722CBE1D3400D73B12 /* ResetPasswordViewModel.swift */; };
 		299AC7002CA1007900608361 /* ChangePasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC6FE2CA1007900608361 /* ChangePasswordSuccessViewController.swift */; };
 		299AC7012CA1007900608361 /* ChangePasswordSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */; };
 		299AC7032CA10CDF00608361 /* ChangePasswordErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */; };
@@ -139,8 +140,9 @@
 		294E3CCF2CAA9CAE008DF4D7 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		294E3CD32CAAADE7008DF4D7 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		297086EA2C992A510031F478 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		297086ED2C993C360031F478 /* EmailAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthViewController.swift; sourceTree = "<group>"; };
+		297086ED2C993C360031F478 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		2971EBDA2CA517C8005B4124 /* EditTaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskDetailTableViewController.swift; sourceTree = "<group>"; };
+		299370722CBE1D3400D73B12 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		299AC6FE2CA1007900608361 /* ChangePasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordSuccessViewController.swift; sourceTree = "<group>"; };
 		299AC6FF2CA1007900608361 /* ChangePasswordSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordSuccessViewController.xib; sourceTree = "<group>"; };
 		299AC7022CA10CDF00608361 /* ChangePasswordErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordErrorType.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			children = (
 				29A0D05C2C9A79D0008B6E37 /* LoginUserViewModel.swift */,
 				29A0D05E2C9A7A4B008B6E37 /* RegisterUserViewModel.swift */,
+				299370722CBE1D3400D73B12 /* ResetPasswordViewModel.swift */,
 			);
 			path = LoginRegisterUserFlow;
 			sourceTree = "<group>";
@@ -430,7 +433,7 @@
 		29A5DB352C99466A00862103 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
-				297086ED2C993C360031F478 /* EmailAuthViewController.swift */,
+				297086ED2C993C360031F478 /* ResetPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -893,7 +896,7 @@
 				29A88C7C2CA662B400CE0662 /* DateFormatter.swift in Sources */,
 				662E1E6F2C91B3B300CBA8B3 /* BaseViewController.swift in Sources */,
 				299F0A8F2CAE49CB00AD1589 /* TaskListTodoTableViewCell.swift in Sources */,
-				297086EE2C993C360031F478 /* EmailAuthViewController.swift in Sources */,
+				297086EE2C993C360031F478 /* ResetPasswordViewController.swift in Sources */,
 				29EACB012CB7E02B008A63A8 /* PhotosPickerCollectionViewCell.swift in Sources */,
 				29A0D07B2C9ACD64008B6E37 /* HomeTabBarController.swift in Sources */,
 				29321F3D2CB67766000EC651 /* FeedViewModel.swift in Sources */,
@@ -914,6 +917,7 @@
 				2947C36A2C9051BF00C9C3FF /* SceneDelegate.swift in Sources */,
 				66D854F72CB221C6001D50EE /* TaskDetailViewModel.swift in Sources */,
 				29A5DB452C9983F900862103 /* ChangeNameViewController.swift in Sources */,
+				299370732CBE1D3400D73B12 /* ResetPasswordViewModel.swift in Sources */,
 				668940172C9FD0200099AC20 /* SignInMethod.swift in Sources */,
 				29B184CF2CA3E83700A4EE06 /* TaskList.swift in Sources */,
 				29321F382CB63010000EC651 /* Feed.swift in Sources */,
@@ -1119,6 +1123,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L54CH7A8JQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Remind Me/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1150,6 +1155,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L54CH7A8JQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Remind Me/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -74,6 +74,18 @@ final class UserManagementService {
         }
     }
     
+    func changePhotoURL(from user: User, with url: URL, completion: @escaping (Result<Any, Error>) -> Void) {
+        let changeRequest = user.createProfileChangeRequest()
+        changeRequest.photoURL = url
+        changeRequest.commitChanges { error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success("Change success"))
+        }
+    }
+    
     func reload(from user: User, completion: @escaping (Result<User, AuthErrorCode>) -> Void) {
         user.reload { error in
             guard error == nil else {

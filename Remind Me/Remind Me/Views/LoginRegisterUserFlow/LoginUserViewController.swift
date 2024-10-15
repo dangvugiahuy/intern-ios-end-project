@@ -24,6 +24,11 @@ class LoginUserViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func setupFirstLoadVC() {
         emailTextFieldView.textFieldViewConfig()
         passwordTextFieldView.textFieldViewConfig()
@@ -32,7 +37,8 @@ class LoginUserViewController: BaseViewController {
         viewTapGesture.isEnabled = false
         vm.delegate = self
         vm.vc = self
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.tintColor = .primary900
+        self.setupLeftNavigationBarItem()
     }
     
     private func foundEmptyField() -> Bool {

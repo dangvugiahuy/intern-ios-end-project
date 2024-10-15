@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseAuth
 import UIKit
 
 protocol RegisterUserViewModelDelegate: AnyObject {
@@ -34,7 +33,7 @@ final class RegisterUserViewModel {
                     error = .InvalidEmail
                 } else if failure == .emailAlreadyInUse {
                     error = .EmailAlreadyInUse
-                } else if failure == .weakPassword {
+                } else {
                     error = .WeakPassword
                 }
                 delegate?.showErrorAlert(message: error.errorDescription())

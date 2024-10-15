@@ -48,6 +48,18 @@ final class StorageService {
         }
     }
     
+    func getImageURL(path: String, completion: @escaping (Result<URL, Error>) -> Void) {
+        let ref = storage.reference(withPath: primaryPath + path)
+        ref.downloadURL { result in
+            switch result {
+            case .success(let url):
+                completion(.success(url))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
     func deleteFeedImages(feed: Feed, completion: @escaping (Result<Any, Error>) -> Void) {
         let ref = storage.reference(withPath: primaryPath + "\(feed.id!)")
         ref.listAll { result in
