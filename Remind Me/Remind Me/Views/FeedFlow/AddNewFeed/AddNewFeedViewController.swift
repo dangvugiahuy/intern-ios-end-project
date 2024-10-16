@@ -23,6 +23,7 @@ class AddNewFeedViewController: BaseViewController {
     private var date: TimeInterval?
     private var feed: Feed?
     @IBOutlet weak var postFeedButton: UIBarButtonItem!
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var uploadFeedProgress: UIProgressView!
     @IBOutlet weak var feedCreateDatePicker: UIDatePicker!
@@ -42,6 +43,7 @@ class AddNewFeedViewController: BaseViewController {
         postFeedButton.isEnabled = false
         vm.delegate = self
         date = feedCreateDatePicker.date.dateToTimeInterVal()
+        loadingView.isHidden = true
     }
     
     @IBAction func postFeedButtonClicked(_ sender: UIBarButtonItem) {
@@ -54,6 +56,10 @@ class AddNewFeedViewController: BaseViewController {
         vm.addNewFeed(from: feed, with: images)
         postFeedButton.isEnabled = false
         backButton.isEnabled = false
+        UIView.animate(withDuration: 0.35) { [self] in
+            loadingView.isHidden = false
+            loadingView.alpha = 1
+        }
     }
     
     @IBAction func chooseImageButtonClicked(_ sender: Any) {

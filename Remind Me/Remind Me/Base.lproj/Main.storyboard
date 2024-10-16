@@ -435,7 +435,7 @@
                             <tableViewSection id="KtB-Bw-cY6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bLf-Jo-Pd9">
-                                        <rect key="frame" x="20" y="205" width="353" height="54"/>
+                                        <rect key="frame" x="20" y="205.00000000000003" width="353" height="53.999999999999972"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bLf-Jo-Pd9" id="Jld-Ut-7uY">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="54"/>
@@ -762,7 +762,7 @@
                             <tableViewSection id="AWE-bo-h3g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oVE-Vx-2cR">
-                                        <rect key="frame" x="20" y="738.66664886474609" width="353" height="55.333332061767578"/>
+                                        <rect key="frame" x="20" y="738.66664886474621" width="353" height="55.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oVE-Vx-2cR" id="3VK-ap-dEs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="55.333332061767578"/>
@@ -2082,6 +2082,20 @@
                                     <constraint firstAttribute="height" constant="1" id="qgN-dE-Xsl"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl7-2k-yNw">
+                                <rect key="frame" x="0.0" y="103" width="393" height="784"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ahT-1l-I0n">
+                                        <rect key="frame" x="178" y="373.66666666666669" width="37" height="37"/>
+                                        <color key="color" systemColor="systemBackgroundColor"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
+                                <constraints>
+                                    <constraint firstItem="ahT-1l-I0n" firstAttribute="centerX" secondItem="hl7-2k-yNw" secondAttribute="centerX" id="4wa-SY-FCX"/>
+                                    <constraint firstItem="ahT-1l-I0n" firstAttribute="centerY" secondItem="hl7-2k-yNw" secondAttribute="centerY" id="OJ0-9t-KZP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z6Z-fQ-uP8"/>
                         <keyboardLayoutGuide key="keyboard" id="faj-KC-iAL"/>
@@ -2092,10 +2106,14 @@
                             <constraint firstItem="Z6Z-fQ-uP8" firstAttribute="trailing" secondItem="WR7-qj-cfv" secondAttribute="trailing" id="Pwt-gL-mVI"/>
                             <constraint firstItem="FxG-aL-AZs" firstAttribute="leading" secondItem="Z6Z-fQ-uP8" secondAttribute="leading" id="Vak-Li-YIA"/>
                             <constraint firstItem="Z6Z-fQ-uP8" firstAttribute="trailing" secondItem="FxG-aL-AZs" secondAttribute="trailing" id="WSH-tw-fL6"/>
+                            <constraint firstItem="Z6Z-fQ-uP8" firstAttribute="trailing" secondItem="hl7-2k-yNw" secondAttribute="trailing" id="arU-iA-5cz"/>
                             <constraint firstItem="faj-KC-iAL" firstAttribute="top" secondItem="WR7-qj-cfv" secondAttribute="bottom" id="b9o-C9-nQs"/>
                             <constraint firstItem="Hsl-N3-OE4" firstAttribute="leading" secondItem="Z6Z-fQ-uP8" secondAttribute="leading" id="hAi-J5-APy"/>
                             <constraint firstItem="Z6Z-fQ-uP8" firstAttribute="trailing" secondItem="Hsl-N3-OE4" secondAttribute="trailing" id="igO-NH-HQO"/>
+                            <constraint firstItem="hl7-2k-yNw" firstAttribute="top" secondItem="FxG-aL-AZs" secondAttribute="top" id="lQN-fd-aVP"/>
                             <constraint firstItem="Z6Z-fQ-uP8" firstAttribute="bottom" secondItem="FxG-aL-AZs" secondAttribute="bottom" id="mOx-sW-aML"/>
+                            <constraint firstItem="hl7-2k-yNw" firstAttribute="leading" secondItem="Z6Z-fQ-uP8" secondAttribute="leading" id="qCz-w7-7R5"/>
+                            <constraint firstItem="hl7-2k-yNw" firstAttribute="bottom" secondItem="Z6Z-fQ-uP8" secondAttribute="bottom" constant="69" id="rle-rU-ndt"/>
                             <constraint firstItem="WR7-qj-cfv" firstAttribute="leading" secondItem="Z6Z-fQ-uP8" secondAttribute="leading" id="v9V-S3-TeU"/>
                         </constraints>
                     </view>
@@ -2118,6 +2136,7 @@
                         <outlet property="addNewFeedContentTableView" destination="FxG-aL-AZs" id="GHH-dn-hqK"/>
                         <outlet property="backButton" destination="A3p-lM-95u" id="MTj-fe-ed8"/>
                         <outlet property="feedCreateDatePicker" destination="SEx-e2-mLU" id="Ahs-NP-dWn"/>
+                        <outlet property="loadingView" destination="hl7-2k-yNw" id="xrs-4I-Pis"/>
                         <outlet property="postFeedButton" destination="wi0-Hd-zYA" id="MCA-uB-Eja"/>
                         <outlet property="uploadFeedProgress" destination="acT-BZ-d7L" id="pve-2u-NvZ"/>
                     </connections>
@@ -3240,6 +3259,9 @@
         </namedColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
