@@ -26,14 +26,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userAvatarImageView.showAnimatedGradientSkeleton()
-        vm.reloadUserProfile()
         self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setupUIWithUserData()
     }
     
     override func setupFirstLoadVC() {
@@ -41,6 +34,7 @@ class ProfileViewController: BaseViewController {
         userAvatarImageView.setupAvtImage()
         self.setupLeftNavigationBarItem()
         vm.delegate = self
+        setupUIWithUserData()
     }
     
     private func setupUIWithUserData() {
@@ -92,15 +86,27 @@ class ProfileViewController: BaseViewController {
         }))
         present(alert, animated: true)
     }
+    
+    @IBAction func changeAccountNameClicked(_ sender: UITapGestureRecognizer) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangeAccountNameVC") as! ChangeNameViewController
+        vc.delegate = self
+        self.next(vc: vc)
+    }
 }
 
-extension ProfileViewController: ProfileViewModelDelegate, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileViewController: ProfileViewModelDelegate, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChangeNameViewControllerDelegate {
+    
+    func changeNameSuccessHandle() {
+        vm.reloadUserProfile()
+        userDisplayNameLabel.text = vm.getUserDisplayName()
+    }
     
     func changeUserPhotoSuccessHandle() {
         DispatchQueue.main.async { [self] in
             vm.reloadUserProfile()
             userAvatarImageView.loadImageFromURL(vm.getUserPhotoURL())
             userAvatarImageView.hideSkeleton()
+            UserDefaults.standard.set(true, forKey: "UserChangeAvt")
         }
     }
     

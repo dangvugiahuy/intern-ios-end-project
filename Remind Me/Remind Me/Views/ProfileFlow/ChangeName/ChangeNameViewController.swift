@@ -8,9 +8,14 @@
 import UIKit
 import FirebaseAuth
 
+protocol ChangeNameViewControllerDelegate: AnyObject {
+    func changeNameSuccessHandle()
+}
+
 class ChangeNameViewController: BaseViewController {
  
     private let vm: ChangeNameViewModel =  ChangeNameViewModel()
+    weak var delegate: ChangeNameViewControllerDelegate?
 
     @IBOutlet var viewTapGesture: UITapGestureRecognizer!
     @IBOutlet weak var fullNameTextFieldView: UIView!
@@ -64,8 +69,9 @@ extension ChangeNameViewController: UITextFieldDelegate, ChangNameViewModelDeleg
     func changeNameSuccessHandle() {
         let alert = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Change Display name successfully", style: .alert)
         alert.view.tintColor = UIColor(named: "Greyscale800")
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { [self] _ in
             self.back()
+            delegate?.changeNameSuccessHandle()
         }))
         present(alert, animated: true)
     }

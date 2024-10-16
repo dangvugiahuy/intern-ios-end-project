@@ -10,7 +10,7 @@ import Photos
 import PhotosUI
 
 protocol AddNewFeedViewControllerDelegate: AnyObject {
-    func addnewFeedSuccess()
+    func addnewFeedSuccess(feed: Feed)
 }
 
 class AddNewFeedViewController: BaseViewController {
@@ -21,6 +21,7 @@ class AddNewFeedViewController: BaseViewController {
     private var content: String = ""
     private var images: [UIImage] = [UIImage]()
     private var date: TimeInterval?
+    private var feed: Feed?
     @IBOutlet weak var postFeedButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var uploadFeedProgress: UIProgressView!
@@ -29,11 +30,6 @@ class AddNewFeedViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        addNewFeedContentTableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,6 +50,7 @@ class AddNewFeedViewController: BaseViewController {
             return UUID().uuidString
         }
         let feed = self.images.isEmpty == false ? Feed(id: id, content: self.content, imagesURL: imagesURL, createDate: self.date!) : Feed(id: id, content: self.content, createDate: self.date!)
+        self.feed = feed
         vm.addNewFeed(from: feed, with: images)
         postFeedButton.isEnabled = false
         backButton.isEnabled = false
@@ -84,7 +81,7 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         uploadFeedProgress.setProgress(tempProgress, animated: true)
         if uploadFeedProgress.progress >= 1 {
             self.dismiss(animated: true)
-            delegate?.addnewFeedSuccess()
+            delegate?.addnewFeedSuccess(feed: self.feed!)
         }
     }
     
@@ -97,7 +94,7 @@ extension AddNewFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         uploadFeedProgress.setProgress(1, animated: true)
         if uploadFeedProgress.progress == 1 {
             self.dismiss(animated: true)
-            delegate?.addnewFeedSuccess()
+            delegate?.addnewFeedSuccess(feed: self.feed!)
         }
     }
     

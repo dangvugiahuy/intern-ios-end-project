@@ -58,6 +58,8 @@ class FeedTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         contentLabel.textColor = .clear
+        createDateLabel.textColor = .clear
+        photosCollectionView.isHidden = true
         skeletonLoaderView.isHidden = false
         skeletonLoaderView.showAnimatedGradientSkeleton()
     }

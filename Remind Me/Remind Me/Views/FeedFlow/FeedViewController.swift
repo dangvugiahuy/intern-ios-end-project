@@ -12,6 +12,7 @@ class FeedViewController: BaseViewController {
     
     private let profileVm: ProfileViewModel = ProfileViewModel()
     private let vm: FeedViewModel = FeedViewModel()
+    private var isUserChangeAvt: Bool?
     private var feeds: [Feed] = [Feed]()
     
     @IBOutlet weak var sortButton: UIBarButtonItem!
@@ -22,23 +23,24 @@ class FeedViewController: BaseViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if feeds.isEmpty {
-            vm.getAllFeed()
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
+        isUserChangeAvt = UserDefaults.standard.bool(forKey: "UserChangeAvt")
+        if let isUserChangeAvt = self.isUserChangeAvt {
+            if isUserChangeAvt {
+                userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
+                UserDefaults.standard.set(false, forKey: "UserChangeAvt")
+            }
+        }
     }
     
     override func setupFirstLoadVC() {
         self.title = "Feed"
         userAvtImageView.setupAvtImage()
         vm.delegate = self
+        vm.getAllFeed()
         sortButton.menu = sortMenu()
+        userAvtImageView.loadImageFromURL(profileVm.getUserPhotoURL())
     }
     
     private func sortMenu() -> UIMenu {
@@ -66,6 +68,14 @@ class FeedViewController: BaseViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedViewModelDelegate, AddNewFeedViewControllerDelegate, FeedTableViewCellDelegate {
     
+    func addnewFeedSuccess(feed: Feed) {
+        feeds.insert(feed, at: 0)
+        feedTableView.beginUpdates()
+        let indexPath = IndexPath(row: 0, section: 0)
+        feedTableView.insertRows(at: [indexPath], with: .automatic)
+        feedTableView.endUpdates()
+    }
+    
     func deletePostHandle(cell: UITableViewCell) {
         let actionSheet = UIAlertController.createSimpleAlert(with: "Remind Me", and: "Are you sure to delete this post? This action can't be undone", style: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [self] _ in
@@ -84,10 +94,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedVi
     func update() {
         feedTableView.beginUpdates()
         feedTableView.endUpdates()
-    }
-    
-    func addnewFeedSuccess() {
-        vm.getAllFeed()
     }
     
     func getAllFeedSuccess(feeds: [Feed]) {
