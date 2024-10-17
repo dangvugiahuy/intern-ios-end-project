@@ -74,6 +74,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedVi
         let indexPath = IndexPath(row: 0, section: 0)
         feedTableView.insertRows(at: [indexPath], with: .automatic)
         feedTableView.endUpdates()
+        sortButton.isEnabled = self.feeds.isEmpty ? false : true
     }
     
     func deletePostHandle(cell: UITableViewCell) {
@@ -89,6 +90,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource, FeedVi
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(actionSheet, animated: true)
+        sortButton.isEnabled = self.feeds.isEmpty ? false : true
     }
     
     func update() {

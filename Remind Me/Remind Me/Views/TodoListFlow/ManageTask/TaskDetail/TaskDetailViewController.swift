@@ -51,6 +51,7 @@ class TaskDetailViewController: UIViewController {
         priorityButton.showsMenuAsPrimaryAction = true
         refreshMenuState()
         viewTapGesture.isEnabled = false
+        saveTaskDetailButton.setupFilledButton()
     }
     
     private func setupUIWithData() {
