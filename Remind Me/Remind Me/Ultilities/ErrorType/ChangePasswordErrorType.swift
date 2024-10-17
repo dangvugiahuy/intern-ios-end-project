@@ -25,7 +25,13 @@ Your password must:
 - At least 1 special character
 """
         case .None:
-            return ""
+            return """
+Your password must:
+- At least 8 character
+- At least 1 lowercase letter
+- At least 1 uppercase letter
+- At least 1 special character
+"""
         }
     }
 }
