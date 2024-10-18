@@ -435,7 +435,7 @@
                             <tableViewSection id="KtB-Bw-cY6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bLf-Jo-Pd9">
-                                        <rect key="frame" x="20" y="205.00000000000003" width="353" height="53.999999999999972"/>
+                                        <rect key="frame" x="20" y="205" width="353" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bLf-Jo-Pd9" id="Jld-Ut-7uY">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="54"/>
@@ -762,7 +762,7 @@
                             <tableViewSection id="AWE-bo-h3g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="oVE-Vx-2cR">
-                                        <rect key="frame" x="20" y="738.66664886474621" width="353" height="55.333332061767578"/>
+                                        <rect key="frame" x="20" y="738.66664886474609" width="353" height="55.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oVE-Vx-2cR" id="3VK-ap-dEs">
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="55.333332061767578"/>
@@ -1788,11 +1788,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7O-SH-lPf">
-                                                    <rect key="frame" x="16" y="57.666666666666657" width="361" height="288.33333333333337"/>
+                                                    <rect key="frame" x="16" y="57.666666666666664" width="361" height="17.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins-Regular" pointSize="15"/>
                                                     <color key="textColor" name="Greyscale800"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="El6-ca-gvh">
+                                                    <rect key="frame" x="16" y="91.333333333333343" width="361" height="270.66666666666663"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="El6-ca-gvh" secondAttribute="height" multiplier="4:3" priority="750" id="5lG-MI-77S"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WM4-wH-b9O">
                                                     <rect key="frame" x="16" y="15.999999999999996" width="361" height="33.666666666666657"/>
                                                     <subviews>
@@ -1838,17 +1844,21 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="El6-ca-gvh" secondAttribute="trailing" constant="16" id="1QU-as-HvH"/>
                                                 <constraint firstItem="WM4-wH-b9O" firstAttribute="top" secondItem="BUl-gl-bNc" secondAttribute="top" constant="16" id="6hP-Kw-uSe"/>
                                                 <constraint firstItem="P7O-SH-lPf" firstAttribute="top" secondItem="WM4-wH-b9O" secondAttribute="bottom" constant="8" id="7Jq-w6-pHF"/>
-                                                <constraint firstItem="JgD-K2-Wab" firstAttribute="top" secondItem="P7O-SH-lPf" secondAttribute="bottom" constant="16" id="7i2-ER-dRq"/>
+                                                <constraint firstItem="JgD-K2-Wab" firstAttribute="top" relation="greaterThanOrEqual" secondItem="P7O-SH-lPf" secondAttribute="bottom" constant="16" id="7i2-ER-dRq"/>
                                                 <constraint firstAttribute="trailing" secondItem="WM4-wH-b9O" secondAttribute="trailing" constant="16" id="8eR-Hu-w6J"/>
                                                 <constraint firstAttribute="bottom" secondItem="yPI-UP-Xdk" secondAttribute="bottom" id="97q-K8-ucq"/>
                                                 <constraint firstItem="P7O-SH-lPf" firstAttribute="leading" secondItem="BUl-gl-bNc" secondAttribute="leading" constant="16" id="BIf-gS-Kqs"/>
                                                 <constraint firstAttribute="trailing" secondItem="P7O-SH-lPf" secondAttribute="trailing" constant="16" id="FE7-8u-Zis"/>
                                                 <constraint firstAttribute="trailing" secondItem="yPI-UP-Xdk" secondAttribute="trailing" id="Tbc-Ge-dir"/>
                                                 <constraint firstAttribute="trailing" secondItem="JgD-K2-Wab" secondAttribute="trailing" constant="16" id="XPa-IH-V86"/>
+                                                <constraint firstItem="El6-ca-gvh" firstAttribute="leading" secondItem="BUl-gl-bNc" secondAttribute="leading" constant="16" id="gQm-RQ-0Ax"/>
                                                 <constraint firstItem="yPI-UP-Xdk" firstAttribute="leading" secondItem="BUl-gl-bNc" secondAttribute="leading" id="guM-xw-0aw"/>
                                                 <constraint firstItem="JgD-K2-Wab" firstAttribute="leading" secondItem="BUl-gl-bNc" secondAttribute="leading" constant="16" id="ivh-Xs-o5M"/>
+                                                <constraint firstAttribute="bottom" secondItem="El6-ca-gvh" secondAttribute="bottom" id="lfX-LN-Roe"/>
+                                                <constraint firstItem="El6-ca-gvh" firstAttribute="top" secondItem="P7O-SH-lPf" secondAttribute="bottom" constant="16" id="oYO-er-ar7"/>
                                                 <constraint firstItem="yPI-UP-Xdk" firstAttribute="top" secondItem="BUl-gl-bNc" secondAttribute="top" id="oxA-0a-OhX"/>
                                                 <constraint firstAttribute="bottom" secondItem="JgD-K2-Wab" secondAttribute="bottom" id="qS8-1s-I97"/>
                                                 <constraint firstItem="WM4-wH-b9O" firstAttribute="leading" secondItem="BUl-gl-bNc" secondAttribute="leading" constant="16" id="wNF-LG-2ut"/>
@@ -1859,6 +1869,7 @@
                                             <outlet property="contentLabel" destination="P7O-SH-lPf" id="74j-OA-oR6"/>
                                             <outlet property="createDateLabel" destination="3iH-tb-gQO" id="avf-or-Du8"/>
                                             <outlet property="editFeedButton" destination="0M9-j5-NxB" id="aSE-aZ-mnf"/>
+                                            <outlet property="onlyOneImageView" destination="El6-ca-gvh" id="BqV-zX-Te4"/>
                                             <outlet property="photosClViewHeightConstrant" destination="Nk5-7h-eXS" id="CZe-y7-rEf"/>
                                             <outlet property="photosCollectionView" destination="JgD-K2-Wab" id="3Vw-cj-n83"/>
                                             <outlet property="skeletonLoaderView" destination="yPI-UP-Xdk" id="aXb-lZ-jLO"/>

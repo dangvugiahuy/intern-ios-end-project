@@ -29,6 +29,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var createDateLabel: UILabel!
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var skeletonLoaderView: UIView!
+    @IBOutlet weak var onlyOneImageView: UIImageView!
     @IBOutlet weak var editFeedButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var photosClViewHeightConstrant: NSLayoutConstraint!
@@ -50,6 +51,8 @@ class FeedTableViewCell: UITableViewCell {
         contentLabel.textColor = .clear
         createDateLabel.textColor = .clear
         editFeedButton.showsMenuAsPrimaryAction = true
+        photosCollectionView.isHidden = true
+        onlyOneImageView.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -60,6 +63,7 @@ class FeedTableViewCell: UITableViewCell {
         contentLabel.textColor = .clear
         createDateLabel.textColor = .clear
         photosCollectionView.isHidden = true
+        onlyOneImageView.isHidden = true
         skeletonLoaderView.isHidden = false
         skeletonLoaderView.showAnimatedGradientSkeleton()
     }
@@ -70,9 +74,14 @@ class FeedTableViewCell: UITableViewCell {
             createDateLabel.text = Date.dateToString(date: feed.createDate, format: "EEE, MMM d")
             contentLabel.text = feed.content
             if let imagesURL = feed.imagesURL {
-                photosCollectionView.isHidden = false
-                photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
-                vm.getImages(from: feed)
+                if imagesURL.count > 1 {
+                    photosCollectionView.isHidden = false
+                    photosClViewHeightConstrant.constant = 0.75 * photosCollectionView.frame.width
+                    vm.getImages(from: feed)
+                } else {
+                    onlyOneImageView.isHidden = false
+                    vm.getImage(from: feed)
+                }
             } else {
                 createDateLabel.textColor = .greyscale800
                 contentLabel.textColor = .greyscale800
@@ -92,6 +101,14 @@ class FeedTableViewCell: UITableViewCell {
 }
 
 extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout, SkeletonCollectionViewDelegate, SkeletonCollectionViewDataSource {
+    
+    func returnImage(image: UIImage) {
+        self.onlyOneImageView.image = image
+        skeletonLoaderView.hideSkeleton()
+        contentLabel.textColor = .greyscale800
+        createDateLabel.textColor = .greyscale800
+        skeletonLoaderView.isHidden = true
+    }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
         return "FeedPhotosCollectionViewCell"
@@ -113,6 +130,7 @@ extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate
             }
             skeletonLoaderView.hideSkeleton()
             contentLabel.textColor = .greyscale800
+            createDateLabel.textColor = .greyscale800
             skeletonLoaderView.isHidden = true
         }
     }

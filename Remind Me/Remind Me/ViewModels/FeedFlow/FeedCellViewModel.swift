@@ -11,6 +11,7 @@ import UIKit
 
 protocol FeedCellViewModelDelegate: AnyObject {
     func returnImages(images: [UIImage])
+    func returnImage(image: UIImage)
 }
 
 final class FeedCellViewModel {
@@ -42,6 +43,19 @@ final class FeedCellViewModel {
                     }
                 })
             }
+        }
+    }
+    
+    func getImage(from feed: Feed) {
+        if let url = feed.imagesURL?[0] {
+            storageService?.fetchImage(path: "\(feed.id!)/\(url).jpg", completion: { [self] result in
+                switch result {
+                case .success(let image):
+                    delegate?.returnImage(image: image)
+                case .failure(let failure):
+                    print("fetch Image Fail: \(failure.localizedDescription)")
+                }
+            })
         }
     }
 }
