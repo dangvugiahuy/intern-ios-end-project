@@ -32,6 +32,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var onlyOneImageView: UIImageView!
     @IBOutlet weak var editFeedButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var onlyImageHeightConstrant: NSLayoutConstraint!
     @IBOutlet weak var photosClViewHeightConstrant: NSLayoutConstraint!
     
     override func awakeFromNib() {
@@ -65,6 +66,8 @@ class FeedTableViewCell: UITableViewCell {
         photosCollectionView.isHidden = true
         onlyOneImageView.isHidden = true
         skeletonLoaderView.isHidden = false
+        photosClViewHeightConstrant.constant = 0
+        onlyImageHeightConstrant.constant = 0
         skeletonLoaderView.showAnimatedGradientSkeleton()
     }
     
@@ -80,6 +83,7 @@ class FeedTableViewCell: UITableViewCell {
                     vm.getImages(from: feed)
                 } else {
                     onlyOneImageView.isHidden = false
+                    onlyImageHeightConstrant.constant = 0.75 * onlyOneImageView.frame.width
                     vm.getImage(from: feed)
                 }
             } else {
@@ -104,6 +108,7 @@ extension FeedTableViewCell: FeedCellViewModelDelegate, UICollectionViewDelegate
     
     func returnImage(image: UIImage) {
         self.onlyOneImageView.image = image
+        self.delegate?.update()
         skeletonLoaderView.hideSkeleton()
         contentLabel.textColor = .greyscale800
         createDateLabel.textColor = .greyscale800

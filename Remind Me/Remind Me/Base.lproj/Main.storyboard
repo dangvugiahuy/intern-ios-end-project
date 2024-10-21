@@ -1788,15 +1788,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7O-SH-lPf">
-                                                    <rect key="frame" x="16" y="57.666666666666664" width="361" height="17.666666666666664"/>
+                                                    <rect key="frame" x="16" y="57.666666666666657" width="361" height="288.33333333333337"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins-Regular" pointSize="15"/>
                                                     <color key="textColor" name="Greyscale800"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="El6-ca-gvh">
-                                                    <rect key="frame" x="16" y="91.333333333333343" width="361" height="270.66666666666663"/>
+                                                    <rect key="frame" x="16" y="362" width="361" height="0.0"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="El6-ca-gvh" secondAttribute="height" multiplier="4:3" priority="750" id="5lG-MI-77S"/>
+                                                        <constraint firstAttribute="height" priority="750" id="K2A-OS-gvb"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WM4-wH-b9O">
@@ -1869,6 +1869,7 @@
                                             <outlet property="contentLabel" destination="P7O-SH-lPf" id="74j-OA-oR6"/>
                                             <outlet property="createDateLabel" destination="3iH-tb-gQO" id="avf-or-Du8"/>
                                             <outlet property="editFeedButton" destination="0M9-j5-NxB" id="aSE-aZ-mnf"/>
+                                            <outlet property="onlyImageHeightConstrant" destination="K2A-OS-gvb" id="fzK-la-iAK"/>
                                             <outlet property="onlyOneImageView" destination="El6-ca-gvh" id="BqV-zX-Te4"/>
                                             <outlet property="photosClViewHeightConstrant" destination="Nk5-7h-eXS" id="CZe-y7-rEf"/>
                                             <outlet property="photosCollectionView" destination="JgD-K2-Wab" id="3Vw-cj-n83"/>
@@ -2934,7 +2935,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.bullet.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CTd-Nb-vRj">
-                                            <rect key="frame" x="10" y="9.3333333333333321" width="35" height="33.666666666666657"/>
+                                            <rect key="frame" x="10" y="9.3333333333333321" width="35" height="33.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="4SI-Zb-hWh"/>
                                                 <constraint firstAttribute="height" constant="35" id="9jH-sc-cjU"/>
